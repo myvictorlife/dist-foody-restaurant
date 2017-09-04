@@ -998,6 +998,7 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1012,18 +1013,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 //import { CONFIG } from "./config.service";
+
 var DashboardService = (function () {
-    function DashboardService(http) {
+    function DashboardService(http, restaurantService) {
         this.http = http;
+        this.restaurantService = restaurantService;
         this.url = 'https://uaifomemaster.com';
     }
     DashboardService.prototype.calculateByDates = function (start, end) {
         var send = {
-            start: start,
-            end: end,
-            status: 'AGUARDANDO APROVACAO'
+            id: this.restaurantService.getRestaurantId(),
+            startDate: start,
+            endDate: end,
         };
-        return this.http.post(this.url + "/master/dashboard", send)
+        return this.http.post(this.url + "/restaurant/dashboard", send)
             .map(function (res) {
             return res.json();
         })
@@ -1033,10 +1036,10 @@ var DashboardService = (function () {
 }());
 DashboardService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object])
 ], DashboardService);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=dashboard.service.js.map
 
 /***/ }),

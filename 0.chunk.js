@@ -237,7 +237,7 @@ DashboardRoutingModule = __decorate([
 /***/ "../../../../../src/app/layout/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div [@routerTransition]>\n    <h2 class=\"text-muted\">Dashboard</h2>\n\n\n    <hr />\n</div>\n"
+module.exports = "<div [@routerTransition]>\n    <h2 class=\"text-muted\">Dashboard</h2>\n    \n    <div class=\"row\">\n        <div class=\"col-xl-2\">\n        </div>\n        <div class=\"col-xl-3 col-lg-6 margin-col\">\n            <div class=\"input-group\">\n\n                <input class=\"form-control\" style=\"float:none\" placeholder=\"Data inicio\" ngx-mydatepicker name=\"startDate\"\n                       [(ngModel)]=\"start\" [options]=\"myOptions\" #dp=\"ngx-mydatepicker\" />\n\n                    <button type=\"button\" class=\"btn btn-primary\" (click)=\"dp.toggleCalendar()\">\n                        <i class=\"fa fa-calendar\" aria-hidden=\"true\"></i>\n                    </button>\n            </div>\n\n        </div>\n        <div class=\"col-xl-3 col-lg-6 margin-col\">\n            <div class=\"input-group\">\n                <input class=\"form-control\" style=\"float:none\" placeholder=\"Data fim\" ngx-mydatepicker name=\"endDate\"\n                       [(ngModel)]=\"end\" [options]=\"myOptions\" #dp1=\"ngx-mydatepicker\" />\n\n                    <button type=\"button\" class=\"btn btn-primary\" (click)=\"dp1.toggleCalendar()\">\n                        <i class=\"fa fa-calendar\" aria-hidden=\"true\"></i>\n                    </button>\n            </div>\n        </div>\n        <div class=\"col-xl-3 col-lg-6 margin-col\">\n            <button type=\"button\" class=\"btn btn-primary\" (click)=\"calculateByDates(start, end)\">\n                        Buscar\n            </button>\n        </div>\n    </div>\n    <br/>    \n    <div class=\"row\">\n        <div class=\"col col-xl-12 col-lg-8 margin-col\">\n            <div class=\"card mb-3\">\n                <div class=\"card-header\">\n                    Produtos mais vendidos: {{formatDate(start)}} até {{formatDate(end)}}\n                </div>\n                <div class=\"card-block table-responsive\">\n                    <table class=\"table table-hover table-bordered\">\n                        <thead>\n                        <tr>\n                            <th>Produtos</th>\n                            <th>Vendidos</th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                            <tr *ngFor=\"let res of dashboard\">\n                                <td>{{res.name}}</td>\n                                <td>{{res.total}}</td>\n                            </tr>\n                            <tr *ngIf=\"!dashboard.length\">\n                                <td>Nenhum resultado encontrado</td>\n                                <td> - </td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        </div>\n    </div>\n    \n</div>\n"
 
 /***/ }),
 
@@ -292,11 +292,7 @@ var DashboardComponent = (function () {
         // Initialized to specific date (09.10.2018)
         this.start = { date: { year: 2017, month: 7, day: 1 } };
         this.end = { date: { year: 2017, month: 10, day: 9 } };
-        this.dashboard = {
-            sales: [],
-            totalRestaurants: 0,
-            totalUsers: 0
-        };
+        this.dashboard = [];
         var dateObj = new Date();
         var month = dateObj.getUTCMonth() + 1;
         var day = dateObj.getUTCDate();
@@ -322,8 +318,11 @@ var DashboardComponent = (function () {
         });
     };
     DashboardComponent.prototype.formatDate = function (date) {
-        var day = date.date.day <= 9 ? "0" + date.date.day : date.date.day, month = date.date.month <= 9 ? "0" + date.date.month : date.date.month;
-        return day + '-' + month + '-' + date.date.year;
+        console.log(date);
+        if (date) {
+            var day = date.date.day <= 9 ? "0" + date.date.day : date.date.day, month = date.date.month <= 9 ? "0" + date.date.month : date.date.month;
+            return day + '-' + month + '-' + date.date.year;
+        }
     };
     return DashboardComponent;
 }());
