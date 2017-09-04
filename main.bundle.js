@@ -1,4 +1,4 @@
-webpackJsonp([10],{
+webpackJsonp([11],{
 
 /***/ "../../../../../src async recursive":
 /***/ (function(module, exports, __webpack_require__) {
@@ -16,17 +16,21 @@ var map = {
 		"../../../../../src/app/layout/employee/employee.module.ts",
 		2
 	],
+	"./history/history.module": [
+		"../../../../../src/app/layout/history/history.module.ts",
+		5
+	],
 	"./layout/layout.module": [
 		"../../../../../src/app/layout/layout.module.ts",
-		5
+		6
 	],
 	"./login/login.module": [
 		"../../../../../src/app/login/login.module.ts",
-		6
+		7
 	],
 	"./not-found/not-found.module": [
 		"../../../../../src/app/not-found/not-found.module.ts",
-		8
+		9
 	],
 	"./orders/orders.module": [
 		"../../../../../src/app/layout/orders/orders.module.ts",
@@ -38,7 +42,7 @@ var map = {
 	],
 	"./signup/signup.module": [
 		"../../../../../src/app/signup/signup.module.ts",
-		7
+		8
 	]
 };
 function webpackAsyncContext(req) {
@@ -369,7 +373,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/shared/components/sidebar/sidebar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"sidebar\" [ngClass]=\"{sidebarPushRight: isActive}\">\n    <ul class=\"list-group\">\n         <a routerLink=\"/dashboard\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-fw fa-dashboard\"></i>&nbsp;{{ 'dashboard' | translate }}\n        </a> \n        <a [routerLink]=\"['/orders']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-cutlery\"></i>&nbsp;{{ 'orders' | translate }}\n        </a>\n        <a [routerLink]=\"['/employee']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-users\"></i>&nbsp;{{ 'employees' | translate }}\n        </a>\n        <a [routerLink]=\"['/product']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-product-hunt\"></i>&nbsp;{{ 'product' | translate }}\n        </a>\n        <a [routerLink]=\"['/config']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-pencil\"></i>&nbsp;{{ 'config' | translate }}\n        </a>    \n    </ul>\n</nav>\n"
+module.exports = "<nav class=\"sidebar\" [ngClass]=\"{sidebarPushRight: isActive}\">\n    <ul class=\"list-group\">\n         <a routerLink=\"/dashboard\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-fw fa-dashboard\"></i>&nbsp;{{ 'dashboard' | translate }}\n        </a> \n        <a [routerLink]=\"['/orders']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-cutlery\"></i>&nbsp;{{ 'orders' | translate }}\n        </a>\n        <a [routerLink]=\"['/employee']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-users\"></i>&nbsp;{{ 'employees' | translate }}\n        </a>\n        <a [routerLink]=\"['/product']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-product-hunt\"></i>&nbsp;{{ 'product' | translate }}\n        </a>\n        <a [routerLink]=\"['/config']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-pencil\"></i>&nbsp;{{ 'config' | translate }}\n        </a>\n        <a [routerLink]=\"['/history']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-pencil\"></i>&nbsp;{{ 'history' | translate }}\n        </a>\n    </ul>\n</nav>\n"
 
 /***/ }),
 
@@ -1228,8 +1232,8 @@ var OrdersService = (function () {
         })
             .catch(function (error) { return error.json(); });
     };
-    OrdersService.prototype.findByStatus = function () {
-        return this.http.get(this.url + "/orders/restaurant/" + this.restaurantId + "/status/1")
+    OrdersService.prototype.findByStatus = function (status) {
+        return this.http.get(this.url + "/orders/restaurant/" + this.restaurantId + "/status/" + status)
             .map(function (res) {
             return res.json();
         })
