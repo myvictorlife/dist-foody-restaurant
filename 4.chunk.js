@@ -109,7 +109,21 @@ var OrdersComponent = (function () {
             });
         }
     }
-    OrdersComponent.prototype.ngOnInit = function () { };
+    OrdersComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        setInterval(function () {
+            _this.ordersService.findByStatus().subscribe(function (result) {
+                var orders = result.data;
+                for (var i = 0; i < orders.length; i++) {
+                    if (!_this.ordersService.contains(orders[i])) {
+                        _this.ordersService.addOrder(orders[i]);
+                        _this.orders.push(orders[i]);
+                        _this.bkpOrders.push(orders[i]);
+                    }
+                }
+            });
+        }, 120000);
+    };
     OrdersComponent.prototype.changeStatus = function (status) {
         this.bkpOrders = this.ordersService.getAll();
         if (!this.status[status]) {

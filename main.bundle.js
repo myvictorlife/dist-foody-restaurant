@@ -1106,6 +1106,13 @@ var ItemService = (function () {
     ItemService.prototype.getAll = function () {
         return this.items;
     };
+    ItemService.prototype.remove = function (id) {
+        return this.http.delete(this.url + "/items/" + id)
+            .map(function (res) {
+            return res.json();
+        })
+            .catch(function (error) { return error.json(); });
+    };
     return ItemService;
 }());
 ItemService = __decorate([
@@ -1206,6 +1213,14 @@ var OrdersService = (function () {
             _this.orders = result.data;
         });
     }
+    OrdersService.prototype.contains = function (order) {
+        for (var i = 0; i < this.orders.length; i++) {
+            if (this.orders[i].id === order.id) {
+                return true;
+            }
+        }
+        return false;
+    };
     OrdersService.prototype.populate = function () {
         return this.http.get(this.url + "/orders/restaurant/" + this.restaurantId)
             .map(function (res) {
@@ -1213,8 +1228,8 @@ var OrdersService = (function () {
         })
             .catch(function (error) { return error.json(); });
     };
-    OrdersService.prototype.find = function () {
-        return this.http.get(this.url + "/orders/restaurant/" + this.restaurantId + "/status/")
+    OrdersService.prototype.findByStatus = function () {
+        return this.http.get(this.url + "/orders/restaurant/" + this.restaurantId + "/status/1")
             .map(function (res) {
             return res.json();
         })
@@ -1237,6 +1252,9 @@ var OrdersService = (function () {
             .catch(function (error) { return error.json(); });
     };
     OrdersService.prototype.edit = function (orders) {
+    };
+    OrdersService.prototype.addOrder = function (order) {
+        this.orders.push(order);
     };
     OrdersService.prototype.getAll = function () {
         return this.orders;
