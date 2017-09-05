@@ -1,5 +1,6 @@
 {
     "dashboard": "Principal",
+    "form.payment":"Forma de Pagamento",
     "login": "Entrar",
     "user":"Usuário",
     "password":"Senha",
