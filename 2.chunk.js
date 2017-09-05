@@ -39,7 +39,7 @@ PaymentRoutingModule = __decorate([
 /***/ "../../../../../src/app/layout/payment/payment.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div [@routerTransition]>\n    <h2 class=\"text-muted\">Formas de Pagamento</h2>\n</div>\n\n<form [formGroup]=\"updateDetailsForm\" *ngIf=\"payments && payments.length\">\n    <div class=\"row\" formArrayName=\"allPayments\">\n        \n            <div class=\"card mb-3\">\n                <div class=\"card-block table-responsive\">\n                    <table class=\"table table-hover table-bordered\">\n                        <thead>\n                        <tr>\n                            <th>#</th>\n                            <th>Tipo</th>\n                            <th>Cartao</th>\n                            <th>Online</th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                            <tr *ngFor=\"let payment of payments; let i = index\" (change)=\"changePayment(payment)\">\n                                <td formGroupName=\"{{i}}\">\n                                    <input type=\"checkbox\" formControlName=\"{{'hash'+payment.id}}\">\n                                </td>\n                                <td>{{payment.name}}</td>\n                                <td>{{payment.card}}</td>\n                                <td>{{payment.online == 0 ? 'SIM' : 'NÂO'}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        \n    </div>\n</form>\n<button type=\"submit\" class=\"btn btn-primary\" (click)=\"updatePayment()\" >{{ 'save' | translate }}</button>\n\n\n<!-- <pre>{{updateDetailsForm.value | json}}</pre> -->"
+module.exports = "<div [@routerTransition]>\n    <h2 class=\"text-muted\">Formas de Pagamento</h2>\n</div>\n\n<form [formGroup]=\"updateDetailsForm\" *ngIf=\"payments && payments.length\">\n    <div class=\"row\" formArrayName=\"allPayments\">\n        \n            <div class=\"card mb-3\">\n                <div class=\"card-block table-responsive\">\n                    <table class=\"table table-hover table-bordered\">\n                        <thead>\n                        <tr>\n                            <th>#</th>\n                            <th>Tipo</th>\n                            <th>Cartao</th>\n                            <th>Online</th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                            <tr *ngFor=\"let payment of payments; let i = index\">\n                                <td formGroupName=\"{{i}}\">\n                                    <input type=\"checkbox\" formControlName=\"{{payment.id}}\">\n                                </td>\n                                <td>{{payment.name}}</td>\n                                <td>{{payment.card}}</td>\n                                <td>{{payment.online == 0 ? 'SIM' : 'NÂO'}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        \n    </div>\n</form>\n<button type=\"submit\" class=\"btn btn-primary\" (click)=\"updatePayment()\" >{{ 'save' | translate }}</button>\n\n\n<!-- <pre>{{updateDetailsForm.value | json}}</pre> -->"
 
 /***/ }),
 
@@ -108,15 +108,12 @@ var PaymentComponent = (function () {
             'allPayments': []
         });
     };
-    PaymentComponent.prototype.changePayment = function (payment) {
-        console.log(payment);
-    };
     PaymentComponent.prototype.initForm = function (restaurant) {
         var allPayments = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["c" /* FormArray */]([]);
         for (var i = 0; i < this.payments.length; i++) {
             var fg = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["d" /* FormGroup */]({});
             var status = this.getRestaurantPayment(this.payments[i].id, restaurant);
-            fg.addControl("hash" + this.payments[i].id, new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["e" /* FormControl */](status));
+            fg.addControl(this.payments[i].id, new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["e" /* FormControl */](status));
             allPayments.push(fg);
         }
         this.updateDetailsForm = this.formBuilder.group({
@@ -124,21 +121,23 @@ var PaymentComponent = (function () {
         });
     };
     PaymentComponent.prototype.getRestaurantPayment = function (id, restaurant) {
-        var form_payment = JSON.parse(restaurant.form_payment);
-        var restaurantPayment = form_payment.allPayments;
-        var status = false;
+        var restaurantPayment = JSON.parse(restaurant.form_payment);
         for (var k in restaurantPayment) {
             var pay = restaurantPayment[k];
-            var value = 'hash' + id;
-            if (pay[value]) {
-                status = true;
+            if (pay.id === id) {
+                return pay.status;
             }
         }
-        return status;
+        return false;
     };
     PaymentComponent.prototype.updatePayment = function () {
         var _this = this;
-        this.paymentService.updatePayment(this.updateDetailsForm.value).subscribe(function (result) {
+        var allPayments = this.updateDetailsForm.value.allPayments;
+        for (var i = 0; i < allPayments.length; i++) {
+            var pay = allPayments[i];
+            this.payments[i].status = pay[i + 1];
+        }
+        this.paymentService.updatePayment(this.payments).subscribe(function (result) {
             if (result.status) {
                 _this.toastr.success(result.message, '');
             }
