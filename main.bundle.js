@@ -1313,8 +1313,7 @@ var PaymentService = (function () {
         var _this = this;
         this.http = http;
         this.restaurantService = restaurantService;
-        //url: string = 'https://uaifomemaster.com';
-        this.url = 'http://localhost:3000';
+        this.url = 'https://uaifomemaster.com';
         this.populate().subscribe(function (result) {
             _this.payment = result.data;
         });
