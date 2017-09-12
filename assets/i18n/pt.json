@@ -27,6 +27,7 @@
     "clear":"Limpar",
     "yes":"Sim",
     "no":"Não",
+    "activated":"Ativado",
     "date":"Data",
     "history":"Historico",
     "change.status":"Mudar",
@@ -58,6 +59,7 @@
     "remove":"Remover",
     "closed":"Fechar",
     "deliver":"Entregar",
+    "list.coupons":"Lista de cupons",
     "page.not.found":"404 - Página não encontrada",
     "page.not.exist":"Esta página não existe.",
     "name.required":"Nome é obrigatório",
@@ -68,5 +70,7 @@
     "orders.detail":"Detalhes do pedido",
     "form.payment":"Forma de Pagamento",
     "time.required":"Horario de funcionamento é obrigatória.",
-    "example.time":"Exemplo: 10:00 a 23:00  ou  fechado"
+    "example.time":"Exemplo: 10:00 a 23:00  ou  fechado",
+    "price.required":"Preço é obrigatório. Apenas valor numérico",
+    "price.placeholder":"Apenas valores numérico"
 }

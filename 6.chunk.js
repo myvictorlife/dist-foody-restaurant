@@ -1,13 +1,13 @@
 webpackJsonp([6],{
 
-/***/ "../../../../../src/app/layout/history/history-routing.module.ts":
+/***/ "../../../../../src/app/layout/orders/orders-routing.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__history_component__ = __webpack_require__("../../../../../src/app/layout/history/history.component.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HistoryRoutingModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__orders_component__ = __webpack_require__("../../../../../src/app/layout/orders/orders.component.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrdersRoutingModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,32 +18,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var routes = [
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_2__history_component__["a" /* HistoryComponent */] }
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_2__orders_component__["a" /* OrdersComponent */] }
 ];
-var HistoryRoutingModule = (function () {
-    function HistoryRoutingModule() {
+var OrdersRoutingModule = (function () {
+    function OrdersRoutingModule() {
     }
-    return HistoryRoutingModule;
+    return OrdersRoutingModule;
 }());
-HistoryRoutingModule = __decorate([
+OrdersRoutingModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* NgModule */])({
         imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */].forChild(routes)],
         exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */]]
     })
-], HistoryRoutingModule);
+], OrdersRoutingModule);
 
-//# sourceMappingURL=history-routing.module.js.map
+//# sourceMappingURL=orders-routing.module.js.map
 
 /***/ }),
 
-/***/ "../../../../../src/app/layout/history/history.component.html":
+/***/ "../../../../../src/app/layout/orders/orders.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<table class=\"table table-hover table-bordered\">\n  <thead>\n    <tr>\n      <th>{{ 'client' | translate }}</th>\n      <th>{{ 'orders' | translate }}</th>\n      <th>{{ 'status' | translate }}</th>\n      <th>{{ 'deliver' | translate }}</th>\n      <th>Horario</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let order of orders\">\n      <th (click)=\"details(modalDetails, order)\">{{order.orders.user.first_name}} {{order.orders.user.last_name}}</th>\n      <td (click)=\"details(modalDetails, order)\">{{formatItem(order.orders.items)}}</td>\n      <td (click)=\"details(modalDetails, order)\" >{{getStatusById(order.status)}}</td>\n      <td>{{order.flag_delivery ? 'SIM' : 'NÂO'}}</td>\n      <td>{{order.createdAt | date:\"dd/MM/yyyy hh:mm a\"}}</td>      \n    </tr>\n  </tbody>\n</table>\n\n<ng-template #modalDetails let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{ 'orders.detail' | translate }}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    \n      <div class=\"card text-center\">\n        <div class=\"card-block\">\n          {{ 'name' | translate }}: {{orderSelected.orders.user.first_name}} {{orderSelected.orders.user.last_name}} <br/>\n          {{ 'email' | translate }}: {{orderSelected.orders.user.email}}<br/>\n          {{ 'phone' | translate }}: {{orderSelected.orders.user.phone}}\n        </div>\n      </div>\n      <br/>\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h5 class=\"media-heading\">{{ 'orders' | translate }}</h5>\n        </div>\n      </div>\n      <br/>\n      <div *ngFor=\"let item of orderSelected.orders.items\">\n        <div class=\"media\" >\n          <div class=\"media-left\">\n            <img class=\"media-object\" src=\"{{item.thumb}}\" width=\"64\" height=\"64\">\n          </div>\n          <div class=\"media-body\" style=\"margin-left: 10px;\">\n            <h5 class=\"media-heading\">{{item.name}}</h5>\n            <div *ngIf=\"item.options && item.options.required && item.options.required.name\" style=\"color:coral\">\n              {{item.options.required.name}} - R$ {{item.options.required.price}}\n            </div>\n             {{item.ingredients}}\n            <div *ngIf=\"item.options && item.options.optional && item.options.optional.length\" style=\"color: darkgreen\">\n              <div *ngFor=\"let optional of item.options.optional\">\n                {{optional.name}} - R$ {{optional.price}}\n              </div>\n            </div>\n            <h6 class=\"media-heading\" style=\"color: #449d44; float: right;\" >Total: R$ {{item.total | number:'1.2'}}</h6>\n          </div>\n        </div>\n        <hr/>\n      </div>\n\n      <br/>\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h5 class=\"media-heading\">{{ 'deliver' | translate }}</h5>\n        </div>\n        <div class=\"card-block\">\n          <div *ngIf=\"orderSelected.flag_delivery > 0\">\n            {{ 'address' | translate }}: {{orderSelected.orders.address.street}} Nº: {{orderSelected.orders.address.number}}<br/>\n            {{ 'complement' | translate }}: {{orderSelected.orders.address.complement}}<br/>\n            {{ 'neighborhood' | translate }}: {{orderSelected.orders.address.neighborhood}} <br/>\n            {{ 'cep' | translate }}: {{orderSelected.orders.address.cep}}\n          </div>\n          <div *ngIf=\"orderSelected.flag_delivery < 1\">Cliente vai buscar</div>\n        </div>\n      </div>\n      <br/>\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h5 class=\"media-heading\">{{ 'form.payment' | translate }}</h5>\n        </div>\n        <div class=\"card-block\">\n          {{orderSelected.orders.payment.name}}  {{orderSelected.orders.payment.card}}\n        </div>\n      </div>\n      <br/>\n      <div class=\"card text-center\">\n        <div class=\"card-header\">\n          <h4 class=\"media-heading\" style=\"color: #449d44;\" >Total: R$ {{orderSelected.total | number:'1.2'}}</h4>\n        </div>\n      </div>\n\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('no')\">{{ 'closed' | translate }}</button>\n  </div>\n</ng-template>"
+module.exports = "\n<div class=\"row\">\n  <label for=\"inputTime\" class=\"col-12\">\n    ESTIMATIVA DE ENTREGA DO PEDIDO: \n  </label>\n  <div class=\"col-2\">\n    <input id=\"inputTime\" [(ngModel)]=\"delivery_min\" name=\"inputTime\" class=\"form-control\" type=\"text\" placeholder=\"10 MIN\" >\n  </div>\n  <div class=\"col-2\">\n    <input id=\"inputTime\" [(ngModel)]=\"delivery_max\" name=\"inputTime\" class=\"form-control\" type=\"text\" placeholder=\"2 HORAS\" >\n  </div>\n  <div class=\"col-2\">\n    <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"editDeliveryTime()\">Atualizar</button>\n  </div>\n</div>\n\n\n<br/>\n<button type=\"button\" class=\"btn\" [ngClass]=\"{'btn-outline-warning': !status['pendente'], 'btn-primary': status['pendente']}\" (click)=\"changeStatus('pendente')\">PENDENTE</button>\n<!-- <button type=\"button\" class=\"btn\" [ngClass]=\"{'btn-outline-warning': !status['naFila'], 'btn-primary': status['naFila']}\" (click)=\"changeStatus('naFila')\">NA FILA</button> -->\n<button type=\"button\" class=\"btn\" [ngClass]=\"{'btn-outline-warning': !status['emPreparo'], 'btn-primary': status['emPreparo']}\" (click)=\"changeStatus('emPreparo')\">EM PREPARO</button>\n<!-- <button type=\"button\" class=\"btn\" [ngClass]=\"{'btn-outline-warning': !status['pronto'], 'btn-primary': status['pronto']}\" (click)=\"changeStatus('pronto')\">PRONTO</button> -->\n<button type=\"button\" class=\"btn\" [ngClass]=\"{'btn-outline-warning': !status['saiuEntrega'\t], 'btn-primary': status['saiuEntrega']}\" (click)=\"changeStatus('saiuEntrega')\">SAIU PARA ENTREGA</button>\n\n\n<br/><br/>\n<table class=\"table table-hover table-bordered\">\n  <thead>\n    <tr>\n      <th>{{ 'client' | translate }}</th>\n      <th>{{ 'orders' | translate }}</th>\n      <th>{{ 'status' | translate }}</th>\n      <th>{{ 'deliver' | translate }}</th>\n      <th>Horario</th>\n      <th>{{ 'orders.detail' | translate }}</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let order of orders\">\n      <th (click)=\"details(modalDetails, order)\">{{order.orders.user.first_name}} {{order.orders.user.last_name}}</th>\n      <td (click)=\"details(modalDetails, order)\">{{formatItem(order.orders.items)}}</td>\n      <td (click)=\"changeOrderStatus(modalChangeOrderStatus, order)\" >{{getStatusById(order.status)}}</td>\n      <td>{{order.flag_delivery ? 'SIM' : 'NÂO'}}</td>\n      <td>{{order.createdAt | date:\"hh:mm a\"}}</td>\n      <td (click)=\"details(modalDetails, order)\"> + detalhes</td>\n    </tr>\n  </tbody>\n</table>\n\n<ng-template #modalChangeOrderStatus let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{ 'orders.detail' | translate }}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\" >\n      <div class=\"list-group\">\n        <div class=\"mouse-hover\" *ngFor=\"let name of statusName; let i = index\">\n        <a class=\"list-group-item\" [ngClass]=\"{'color-selected': modalButtonSelected === i}\" *ngIf=\"!!name\" style=\"margin-bottom: 15px;\" (click)=\"setStatus(i)\" >\n          {{name}}\n        </a>\n        </div>\n      </div>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('no')\">{{ 'cancel' | translate }}</button>\n    <button type=\"button\" class=\"btn btn-outline-danger\" (click)=\"c('yes')\">{{ 'change.status' | translate }}</button>\n  </div>\n</ng-template>\n\n<ng-template #modalDetails let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{ 'orders.detail' | translate }}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    \n      <div class=\"card text-center\">\n        <div class=\"card-block\">\n          {{ 'name' | translate }}: {{orderSelected.orders.user.first_name}} {{orderSelected.orders.user.last_name}} <br/>\n          {{ 'email' | translate }}: {{orderSelected.orders.user.email}}<br/>\n          {{ 'phone' | translate }}: {{orderSelected.orders.user.phone}}\n        </div>\n      </div>\n      <br/>\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h5 class=\"media-heading\">{{ 'orders' | translate }}</h5>\n        </div>\n      </div>\n      <br/>\n      <div *ngFor=\"let item of orderSelected.orders.items\">\n        <div class=\"media\" >\n          <div class=\"media-left\">\n            <img class=\"media-object\" src=\"{{item.thumb}}\" width=\"64\" height=\"64\">\n          </div>\n          <div class=\"media-body\" style=\"margin-left: 10px;\">\n            <h5 class=\"media-heading\">{{item.name}}</h5>\n            <div *ngIf=\"item.options && item.options.required && item.options.required.name\" style=\"color:coral\">\n              {{item.options.required.name}} - R$ {{item.options.required.price}}\n            </div>\n             {{item.ingredients}}\n            <div *ngIf=\"item.options && item.options.optional && item.options.optional.length\" style=\"color: darkgreen\">\n              <div *ngFor=\"let optional of item.options.optional\">\n                {{optional.name}} - R$ {{optional.price}}\n              </div>\n            </div>\n            <h6 class=\"media-heading\" style=\"color: #449d44; float: right;\" >Total: R$ {{item.total | number:'1.2'}}</h6>\n          </div>\n        </div>\n        <hr/>\n      </div>\n\n      <br/>\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h5 class=\"media-heading\">{{ 'deliver' | translate }}</h5>\n        </div>\n        <div class=\"card-block\">\n          <div *ngIf=\"orderSelected.flag_delivery > 0\">\n            {{ 'address' | translate }}: {{orderSelected.orders.address.street}} Nº: {{orderSelected.orders.address.number}}<br/>\n            {{ 'complement' | translate }}: {{orderSelected.orders.address.complement}}<br/>\n            {{ 'neighborhood' | translate }}: {{orderSelected.orders.address.neighborhood}} <br/>\n            {{ 'cep' | translate }}: {{orderSelected.orders.address.cep}}\n          </div>\n          <div *ngIf=\"orderSelected.flag_delivery < 1\">Cliente vai buscar</div>\n        </div>\n      </div>\n      <br/>\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h5 class=\"media-heading\">{{ 'form.payment' | translate }}</h5>\n        </div>\n        <div class=\"card-block\">\n          {{orderSelected.orders.payment.name}}  {{orderSelected.orders.payment.card}}\n        </div>\n      </div>\n      <br/>\n      <div class=\"card text-center\">\n        <div class=\"card-header\">\n          <h4 class=\"media-heading\" style=\"color: #449d44;\" >Total: R$ {{orderSelected.total | number:'1.2'}}</h4>\n        </div>\n      </div>\n\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('no')\">{{ 'closed' | translate }}</button>\n  </div>\n</ng-template>"
 
 /***/ }),
 
-/***/ "../../../../../src/app/layout/history/history.component.scss":
+/***/ "../../../../../src/app/layout/orders/orders.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -51,7 +51,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".mouse-hover {\n  cursor: pointer; }\n\n.list-group a:hover {\n  background-color: #31b0d5; }\n\n.color-selected {\n  background-color: #31b0d5; }\n", ""]);
 
 // exports
 
@@ -61,7 +61,7 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../../src/app/layout/history/history.component.ts":
+/***/ "../../../../../src/app/layout/orders/orders.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70,7 +70,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_orders_service__ = __webpack_require__("../../../../../src/app/shared/services/orders.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/index.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HistoryComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrdersComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -85,8 +85,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var HistoryComponent = (function () {
-    function HistoryComponent(ordersService, restaurantService, toastr, modalService) {
+var OrdersComponent = (function () {
+    function OrdersComponent(ordersService, restaurantService, toastr, modalService) {
         var _this = this;
         this.ordersService = ordersService;
         this.restaurantService = restaurantService;
@@ -98,13 +98,60 @@ var HistoryComponent = (function () {
         this.indexStatus = ['', 'pendente', 'emPreparo', 'saiuEntrega', 'entregue'];
         this.statusName = ['', 'PENDENTE', 'EM PREPARO', 'SAIU PARA ENTREGA', 'ENTREGUE'];
         this.orderSelected = {};
-        this.ordersService.findByStatus("4").subscribe(function (result) {
-            _this.orders = result.data;
-        });
+        this.bkpOrders = this.ordersService.getAll();
+        if (!this.bkpOrders || !this.bkpOrders.length) {
+            this.ordersService.populate().subscribe(function (result) {
+                _this.bkpOrders = result.data;
+                _this.selectOrders('pendente');
+                var restaurant = _this.restaurantService.getAll();
+                _this.delivery_min = restaurant.delivery_min;
+                _this.delivery_max = restaurant.delivery_max;
+            });
+        }
     }
-    HistoryComponent.prototype.ngOnInit = function () {
+    OrdersComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        setInterval(function () {
+            _this.ordersService.findByStatus("1").subscribe(function (result) {
+                var orders = result.data;
+                for (var i = 0; i < orders.length; i++) {
+                    if (!_this.ordersService.contains(orders[i])) {
+                        _this.ordersService.addOrder(orders[i]);
+                        _this.orders.push(orders[i]);
+                        _this.bkpOrders.push(orders[i]);
+                    }
+                }
+            });
+        }, 120000);
     };
-    HistoryComponent.prototype.formatItem = function (items) {
+    OrdersComponent.prototype.changeStatus = function (status) {
+        this.bkpOrders = this.ordersService.getAll();
+        if (!this.status[status]) {
+            this.status[status] = !this.status[status];
+            for (var key in this.status) {
+                if (status !== key) {
+                    this.status[key] = false;
+                }
+            }
+        }
+        this.selectOrders(status);
+    };
+    OrdersComponent.prototype.selectOrders = function (status) {
+        var position = 0;
+        for (var key in this.status) {
+            position++;
+            if (status === key) {
+                break;
+            }
+        }
+        this.orders = [];
+        for (var i = 0; i < this.bkpOrders.length; i++) {
+            if (parseInt(this.bkpOrders[i].status) === position) {
+                this.orders.push(this.bkpOrders[i]);
+            }
+        }
+    };
+    OrdersComponent.prototype.formatItem = function (items) {
         if (items.length > 1) {
             return items.length + " pedidos";
         }
@@ -112,10 +159,30 @@ var HistoryComponent = (function () {
             return items[0].name;
         }
     };
-    HistoryComponent.prototype.getStatusById = function (position) {
+    OrdersComponent.prototype.getStatusById = function (position) {
         return this.statusName[position];
     };
-    HistoryComponent.prototype.details = function (content, order) {
+    OrdersComponent.prototype.changeOrderStatus = function (content, order) {
+        var _this = this;
+        this.orderSelected = order;
+        this.modalService.open(content).result.then(function (result) {
+            if (result === 'yes') {
+                var json = {
+                    pushUserId: _this.orderSelected.push_user_id,
+                    status: _this.statusSelected.status,
+                    statusName: _this.getStatusById(_this.statusSelected.status),
+                    thumb: _this.orderSelected.orders.restaurant.img,
+                    restaurantName: _this.orderSelected.orders.restaurant.name,
+                    id: _this.orderSelected.id
+                };
+                _this.ordersService.editStatus(json).subscribe(function (result) {
+                    _this.changeStatus(_this.indexStatus[_this.statusSelected.status]);
+                });
+            }
+        }, function (reason) {
+        });
+    };
+    OrdersComponent.prototype.details = function (content, order) {
         var options = {
             size: 'lg'
         };
@@ -126,38 +193,60 @@ var HistoryComponent = (function () {
         }, function (reason) {
         });
     };
-    return HistoryComponent;
+    OrdersComponent.prototype.editDeliveryTime = function () {
+        var _this = this;
+        var json = {
+            delivery_min: this.delivery_min,
+            delivery_max: this.delivery_max
+        };
+        this.restaurantService.editDeliveryTime(json).subscribe(function (result) {
+            if (result.status) {
+                _this.toastr.success(result.message, '');
+            }
+            else {
+                _this.toastr.warning('', result.message);
+            }
+        });
+    };
+    OrdersComponent.prototype.setStatus = function (status) {
+        this.modalButtonSelected = status;
+        this.statusSelected = {
+            id: this.orderSelected.id,
+            status: status
+        };
+    };
+    return OrdersComponent;
 }());
-HistoryComponent = __decorate([
+OrdersComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
-        selector: 'app-history',
-        template: __webpack_require__("../../../../../src/app/layout/history/history.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/layout/history/history.component.scss")]
+        selector: 'app-orders',
+        template: __webpack_require__("../../../../../src/app/layout/orders/orders.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/layout/orders/orders.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_orders_service__["a" /* OrdersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_orders_service__["a" /* OrdersService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ngx_toastr__["b" /* ToastrService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__ng_bootstrap_ng_bootstrap__["b" /* NgbModal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__ng_bootstrap_ng_bootstrap__["b" /* NgbModal */]) === "function" && _d || Object])
-], HistoryComponent);
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_orders_service__["a" /* OrdersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_orders_service__["a" /* OrdersService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ngx_toastr__["b" /* ToastrService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__ng_bootstrap_ng_bootstrap__["c" /* NgbModal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__ng_bootstrap_ng_bootstrap__["c" /* NgbModal */]) === "function" && _d || Object])
+], OrdersComponent);
 
 var _a, _b, _c, _d;
-//# sourceMappingURL=history.component.js.map
+//# sourceMappingURL=orders.component.js.map
 
 /***/ }),
 
-/***/ "../../../../../src/app/layout/history/history.module.ts":
+/***/ "../../../../../src/app/layout/orders/orders.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__history_component__ = __webpack_require__("../../../../../src/app/layout/history/history.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__history_routing_module__ = __webpack_require__("../../../../../src/app/layout/history/history-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__orders_component__ = __webpack_require__("../../../../../src/app/layout/orders/orders.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__orders_routing_module__ = __webpack_require__("../../../../../src/app/layout/orders/orders-routing.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_shared_module__ = __webpack_require__("../../../../../src/app/shared/shared.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__ = __webpack_require__("../../../../@ngx-translate/core/index.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HistoryModule", function() { return HistoryModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrdersModule", function() { return OrdersModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -174,16 +263,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var HistoryModule = (function () {
-    function HistoryModule() {
+var OrdersModule = (function () {
+    function OrdersModule() {
     }
-    return HistoryModule;
+    return OrdersModule;
 }());
-HistoryModule = __decorate([
+OrdersModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* NgModule */])({
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["i" /* CommonModule */],
-            __WEBPACK_IMPORTED_MODULE_3__history_routing_module__["a" /* HistoryRoutingModule */],
+            __WEBPACK_IMPORTED_MODULE_3__orders_routing_module__["a" /* OrdersRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_4__shared__["b" /* PageHeaderModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_forms__["b" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_forms__["a" /* ReactiveFormsModule */],
@@ -192,11 +281,11 @@ HistoryModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_7__shared_shared_module__["a" /* SharedModule */],
             __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__["a" /* TranslateModule */],
         ],
-        declarations: [__WEBPACK_IMPORTED_MODULE_2__history_component__["a" /* HistoryComponent */]]
+        declarations: [__WEBPACK_IMPORTED_MODULE_2__orders_component__["a" /* OrdersComponent */]]
     })
-], HistoryModule);
+], OrdersModule);
 
-//# sourceMappingURL=history.module.js.map
+//# sourceMappingURL=orders.module.js.map
 
 /***/ }),
 
@@ -262,10 +351,10 @@ var AdditionalComponent = (function () {
     AdditionalComponent.prototype.ngOnInit = function () {
         this.formularioAdditional = this.formBuilder.group({
             id: [null, []],
-            name: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].minLength(3)]],
-            price: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].minLength(3)]],
-            item_id: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
-            required: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
+            name: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].minLength(3)]],
+            price: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].minLength(3)]],
+            item_id: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
+            required: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
         });
         this.formularioAdditional.controls['item_id'].setValue(this.item_id);
         this.formularioAdditional.controls['required'].setValue(this.options);
@@ -370,7 +459,7 @@ AdditionalComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/shared/components/additional/additional.component.html"),
         styles: [__webpack_require__("../../../../../src/app/shared/components/additional/additional.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_toastr__["b" /* ToastrService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["b" /* NgbModal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["b" /* NgbModal */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__services_category_service__["a" /* CategoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_category_service__["a" /* CategoryService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_additional_item_service__["a" /* AdditionalItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_additional_item_service__["a" /* AdditionalItemService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* FormBuilder */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_toastr__["b" /* ToastrService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["c" /* NgbModal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["c" /* NgbModal */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__services_category_service__["a" /* CategoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_category_service__["a" /* CategoryService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_additional_item_service__["a" /* AdditionalItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_additional_item_service__["a" /* AdditionalItemService */]) === "function" && _e || Object])
 ], AdditionalComponent);
 
 var _a, _b, _c, _d, _e;
@@ -814,7 +903,7 @@ var NgbAlert = (function () {
 NgbAlert.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */], args: [{
                 selector: 'ngb-alert',
-                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ChangeDetectionStrategy */].OnPush,
+                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ChangeDetectionStrategy */].OnPush,
                 template: "\n    <div [class]=\"'alert alert-' + type + (dismissible ? ' alert-dismissible' : '')\" role=\"alert\">\n      <button *ngIf=\"dismissible\" type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"closeHandler()\">\n            <span aria-hidden=\"true\">&times;</span>\n      </button>\n      <ng-content></ng-content>\n    </div>\n    "
             },] },
 ];
@@ -913,8 +1002,8 @@ NgbButtonsModule.ctorParameters = function () { return []; };
 
 
 var NGB_CHECKBOX_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* NG_VALUE_ACCESSOR */],
-    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* forwardRef */])(function () { return NgbCheckBox; }),
+    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* NG_VALUE_ACCESSOR */],
+    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* forwardRef */])(function () { return NgbCheckBox; }),
     multi: true
 };
 /**
@@ -1033,8 +1122,8 @@ NgbButtonLabel.ctorParameters = function () { return []; };
 
 
 var NGB_RADIO_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* NG_VALUE_ACCESSOR */],
-    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* forwardRef */])(function () { return NgbRadioGroup; }),
+    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* NG_VALUE_ACCESSOR */],
+    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* forwardRef */])(function () { return NgbRadioGroup; }),
     multi: true
 };
 var nextId = 0;
@@ -1181,7 +1270,7 @@ NgbRadio.decorators = [
 NgbRadio.ctorParameters = function () { return [
     { type: NgbRadioGroup, },
     { type: __WEBPACK_IMPORTED_MODULE_2__label__["a" /* NgbButtonLabel */], },
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* Renderer2 */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_18" /* Renderer2 */], },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* ElementRef */], },
 ]; };
 NgbRadio.propDecorators = {
@@ -1564,7 +1653,7 @@ var NgbDatepickerDayView = (function () {
 NgbDatepickerDayView.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */], args: [{
                 selector: '[ngbDatepickerDayView]',
-                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ChangeDetectionStrategy */].OnPush,
+                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ChangeDetectionStrategy */].OnPush,
                 styles: ["\n    :host {\n      text-align: center;\n      width: 2rem;\n      height: 2rem;\n      line-height: 2rem;\n      border-radius: 0.25rem;\n      background: transparent;\n    }\n    :host.outside {\n      opacity: 0.5;\n    }\n  "],
                 host: {
                     'class': 'btn-light',
@@ -1666,13 +1755,13 @@ NgbDatepickerI18nDefault.ctorParameters = function () { return []; };
 
 
 var NGB_DATEPICKER_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* NG_VALUE_ACCESSOR */],
-    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* forwardRef */])(function () { return NgbInputDatepicker; }),
+    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* NG_VALUE_ACCESSOR */],
+    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* forwardRef */])(function () { return NgbInputDatepicker; }),
     multi: true
 };
 var NGB_DATEPICKER_VALIDATOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["i" /* NG_VALIDATORS */],
-    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* forwardRef */])(function () { return NgbInputDatepicker; }),
+    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* NG_VALIDATORS */],
+    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* forwardRef */])(function () { return NgbInputDatepicker; }),
     multi: true
 };
 /**
@@ -1859,7 +1948,7 @@ NgbInputDatepicker.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_4__ngb_date_parser_formatter__["a" /* NgbDateParserFormatter */], },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* ElementRef */], },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ViewContainerRef */], },
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* Renderer2 */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_18" /* Renderer2 */], },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ComponentFactoryResolver */], },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["W" /* NgZone */], },
     { type: __WEBPACK_IMPORTED_MODULE_7__datepicker_service__["a" /* NgbDatepickerService */], },
@@ -2083,7 +2172,7 @@ var NgbDatepickerNavigationSelect = (function () {
 NgbDatepickerNavigationSelect.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */], args: [{
                 selector: 'ngb-datepicker-navigation-select',
-                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ChangeDetectionStrategy */].OnPush,
+                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ChangeDetectionStrategy */].OnPush,
                 styles: ["\n    select {\n      /* to align with btn-sm */\n      padding: 0.25rem 0.5rem;\n      font-size: 0.875rem;      \n      line-height: 1.25;\n      /* to cancel the custom height set by custom-select */\n      height: inherit;\n      width: 50%;\n    }\n  "],
                 template: "\n    <select\n      [disabled]=\"disabled\"\n      class=\"custom-select d-inline-block\"\n      [value]=\"date?.month\"\n      (change)=\"changeMonth($event.target.value)\"\n      tabindex=\"-1\">\n        <option *ngFor=\"let m of months\" [value]=\"m\">{{ i18n.getMonthShortName(m) }}</option>\n    </select><select\n      [disabled]=\"disabled\"\n      class=\"custom-select d-inline-block\"\n      [value]=\"date?.year\"\n      (change)=\"changeYear($event.target.value)\"\n      tabindex=\"-1\">\n        <option *ngFor=\"let y of years\" [value]=\"y\">{{ y }}</option>\n    </select> \n  "
             },] },
@@ -2140,7 +2229,7 @@ var NgbDatepickerNavigation = (function () {
 NgbDatepickerNavigation.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */], args: [{
                 selector: 'ngb-datepicker-navigation',
-                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ChangeDetectionStrategy */].OnPush,
+                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ChangeDetectionStrategy */].OnPush,
                 host: { 'class': 'd-flex justify-content-between', '[class.collapsed]': '!showSelect' },
                 styles: ["\n    :host {\n      height: 2rem;\n      line-height: 1.85rem;\n    }\n    :host.collapsed {\n      margin-bottom: -2rem;        \n    }\n    .ngb-dp-navigation-chevron::before {\n      border-style: solid;\n      border-width: 0.2em 0.2em 0 0;\n      content: '';\n      display: inline-block;\n      height: 0.75em;\n      transform: rotate(-135deg);\n      -webkit-transform: rotate(-135deg);\n      -ms-transform: rotate(-135deg);\n      width: 0.75em;\n      margin: 0 0 0 0.5rem;\n    }    \n    .ngb-dp-navigation-chevron.right:before {\n      -webkit-transform: rotate(45deg);\n      -ms-transform: rotate(45deg);\n      transform: rotate(45deg);\n      margin: 0 0.5rem 0 0;\n    }\n    .btn-link {\n      cursor: pointer;\n      outline: 0;\n    }\n    .btn-link[disabled] {\n      cursor: not-allowed;\n      opacity: .65;\n    }    \n  "],
                 template: "\n    <button type=\"button\" class=\"btn-link\" (click)=\"!!doNavigate(navigation.PREV)\" [disabled]=\"prevDisabled()\" tabindex=\"-1\">\n      <span class=\"ngb-dp-navigation-chevron\"></span>    \n    </button>\n    \n    <ngb-datepicker-navigation-select *ngIf=\"showSelect\" class=\"d-block\" [style.width.rem]=\"months * 9\"\n      [date]=\"date\"\n      [minDate]=\"minDate\"\n      [maxDate]=\"maxDate\"\n      [disabled] = \"disabled\"\n      (select)=\"selectDate($event)\">\n    </ngb-datepicker-navigation-select>\n    \n    <button type=\"button\" class=\"btn-link\" (click)=\"!!doNavigate(navigation.NEXT)\" [disabled]=\"nextDisabled()\" tabindex=\"-1\">\n      <span class=\"ngb-dp-navigation-chevron right\"></span>\n    </button>\n  "
@@ -2548,8 +2637,8 @@ var NavigationEvent;
 
 
 var NGB_DATEPICKER_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* NG_VALUE_ACCESSOR */],
-    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* forwardRef */])(function () { return NgbDatepicker; }),
+    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* NG_VALUE_ACCESSOR */],
+    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* forwardRef */])(function () { return NgbDatepicker; }),
     multi: true
 };
 /**
@@ -2684,7 +2773,7 @@ NgbDatepicker.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */], args: [{
                 exportAs: 'ngbDatepicker',
                 selector: 'ngb-datepicker',
-                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ChangeDetectionStrategy */].OnPush,
+                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ChangeDetectionStrategy */].OnPush,
                 host: {
                     'class': 'd-inline-block rounded',
                     'tabindex': '0',
@@ -3333,7 +3422,7 @@ NgbDropdownMenu.decorators = [
 ];
 /** @nocollapse */
 NgbDropdownMenu.ctorParameters = function () { return [
-    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Inject */], args: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* forwardRef */])(function () { return NgbDropdown; }),] },] },
+    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Inject */], args: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* forwardRef */])(function () { return NgbDropdown; }),] },] },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* ElementRef */], },
 ]; };
 /**
@@ -3362,7 +3451,7 @@ NgbDropdownToggle.decorators = [
 ];
 /** @nocollapse */
 NgbDropdownToggle.ctorParameters = function () { return [
-    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Inject */], args: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* forwardRef */])(function () { return NgbDropdown; }),] },] },
+    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Inject */], args: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* forwardRef */])(function () { return NgbDropdown; }),] },] },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* ElementRef */], },
 ]; };
 /**
@@ -3552,10 +3641,10 @@ NgbDropdownModule.ctorParameters = function () { return []; };
 /* unused harmony reexport NgbDropdownConfig */
 /* unused harmony reexport NgbDropdown */
 /* unused harmony reexport NgbModalModule */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["a"]; });
 /* unused harmony reexport NgbActiveModal */
 /* unused harmony reexport NgbModalRef */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["c"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["b"]; });
 /* unused harmony reexport NgbPaginationModule */
 /* unused harmony reexport NgbPaginationConfig */
 /* unused harmony reexport NgbPagination */
@@ -3621,7 +3710,7 @@ NgbDropdownModule.ctorParameters = function () { return []; };
 
 var NGB_MODULES = [
     __WEBPACK_IMPORTED_MODULE_1__accordion_accordion_module__["a" /* NgbAccordionModule */], __WEBPACK_IMPORTED_MODULE_2__alert_alert_module__["a" /* NgbAlertModule */], __WEBPACK_IMPORTED_MODULE_3__buttons_buttons_module__["a" /* NgbButtonsModule */], __WEBPACK_IMPORTED_MODULE_4__carousel_carousel_module__["a" /* NgbCarouselModule */], __WEBPACK_IMPORTED_MODULE_5__collapse_collapse_module__["a" /* NgbCollapseModule */], __WEBPACK_IMPORTED_MODULE_6__datepicker_datepicker_module__["a" /* NgbDatepickerModule */],
-    __WEBPACK_IMPORTED_MODULE_7__dropdown_dropdown_module__["a" /* NgbDropdownModule */], __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["b" /* NgbModalModule */], __WEBPACK_IMPORTED_MODULE_9__pagination_pagination_module__["a" /* NgbPaginationModule */], __WEBPACK_IMPORTED_MODULE_10__popover_popover_module__["a" /* NgbPopoverModule */], __WEBPACK_IMPORTED_MODULE_11__progressbar_progressbar_module__["a" /* NgbProgressbarModule */], __WEBPACK_IMPORTED_MODULE_12__rating_rating_module__["a" /* NgbRatingModule */],
+    __WEBPACK_IMPORTED_MODULE_7__dropdown_dropdown_module__["a" /* NgbDropdownModule */], __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["c" /* NgbModalModule */], __WEBPACK_IMPORTED_MODULE_9__pagination_pagination_module__["a" /* NgbPaginationModule */], __WEBPACK_IMPORTED_MODULE_10__popover_popover_module__["a" /* NgbPopoverModule */], __WEBPACK_IMPORTED_MODULE_11__progressbar_progressbar_module__["a" /* NgbProgressbarModule */], __WEBPACK_IMPORTED_MODULE_12__rating_rating_module__["a" /* NgbRatingModule */],
     __WEBPACK_IMPORTED_MODULE_13__tabset_tabset_module__["a" /* NgbTabsetModule */], __WEBPACK_IMPORTED_MODULE_14__timepicker_timepicker_module__["a" /* NgbTimepickerModule */], __WEBPACK_IMPORTED_MODULE_15__tooltip_tooltip_module__["a" /* NgbTooltipModule */], __WEBPACK_IMPORTED_MODULE_16__typeahead_typeahead_module__["a" /* NgbTypeaheadModule */]
 ];
 var NgbRootModule = (function () {
@@ -3635,7 +3724,7 @@ NgbRootModule.decorators = [
                 imports: [
                     __WEBPACK_IMPORTED_MODULE_2__alert_alert_module__["a" /* NgbAlertModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_3__buttons_buttons_module__["a" /* NgbButtonsModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_5__collapse_collapse_module__["a" /* NgbCollapseModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_11__progressbar_progressbar_module__["a" /* NgbProgressbarModule */].forRoot(),
                     __WEBPACK_IMPORTED_MODULE_15__tooltip_tooltip_module__["a" /* NgbTooltipModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_16__typeahead_typeahead_module__["a" /* NgbTypeaheadModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_1__accordion_accordion_module__["a" /* NgbAccordionModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_4__carousel_carousel_module__["a" /* NgbCarouselModule */].forRoot(),
-                    __WEBPACK_IMPORTED_MODULE_6__datepicker_datepicker_module__["a" /* NgbDatepickerModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_7__dropdown_dropdown_module__["a" /* NgbDropdownModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["b" /* NgbModalModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_9__pagination_pagination_module__["a" /* NgbPaginationModule */].forRoot(),
+                    __WEBPACK_IMPORTED_MODULE_6__datepicker_datepicker_module__["a" /* NgbDatepickerModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_7__dropdown_dropdown_module__["a" /* NgbDropdownModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["c" /* NgbModalModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_9__pagination_pagination_module__["a" /* NgbPaginationModule */].forRoot(),
                     __WEBPACK_IMPORTED_MODULE_10__popover_popover_module__["a" /* NgbPopoverModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_11__progressbar_progressbar_module__["a" /* NgbProgressbarModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_12__rating_rating_module__["a" /* NgbRatingModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_13__tabset_tabset_module__["a" /* NgbTabsetModule */].forRoot(),
                     __WEBPACK_IMPORTED_MODULE_14__timepicker_timepicker_module__["a" /* NgbTimepickerModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_15__tooltip_tooltip_module__["a" /* NgbTooltipModule */].forRoot()
                 ],
@@ -3974,7 +4063,7 @@ NgbModalWindow.decorators = [
 /** @nocollapse */
 NgbModalWindow.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* ElementRef */], },
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* Renderer2 */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_18" /* Renderer2 */], },
 ]; };
 NgbModalWindow.propDecorators = {
     'backdrop': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Input */] },],
@@ -4046,8 +4135,8 @@ NgbModal.ctorParameters = function () { return [
 /* unused harmony reexport NgbModalRef */
 /* unused harmony reexport NgbActiveModal */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modal_dismiss_reasons__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/modal/modal-dismiss-reasons.js");
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_6__modal_dismiss_reasons__["a"]; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return NgbModalModule; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_6__modal_dismiss_reasons__["a"]; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return NgbModalModule; });
 
 
 
@@ -4252,7 +4341,7 @@ var NgbPagination = (function () {
 NgbPagination.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */], args: [{
                 selector: 'ngb-pagination',
-                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ChangeDetectionStrategy */].OnPush,
+                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ChangeDetectionStrategy */].OnPush,
                 host: { 'role': 'navigation' },
                 template: "\n    <ul [class]=\"'pagination' + (size ? ' pagination-' + size : '')\">\n      <li *ngIf=\"boundaryLinks\" class=\"page-item\"\n        [class.disabled]=\"!hasPrevious() || disabled\">\n        <a aria-label=\"First\" class=\"page-link\" href (click)=\"!!selectPage(1)\" [attr.tabindex]=\"(hasPrevious() ? null : '-1')\">\n          <span aria-hidden=\"true\">&laquo;&laquo;</span>\n        </a>\n      </li>\n\n      <li *ngIf=\"directionLinks\" class=\"page-item\"\n        [class.disabled]=\"!hasPrevious() || disabled\">\n        <a aria-label=\"Previous\" class=\"page-link\" href (click)=\"!!selectPage(page-1)\" [attr.tabindex]=\"(hasPrevious() ? null : '-1')\">\n          <span aria-hidden=\"true\">&laquo;</span>\n        </a>\n      </li>\n      <li *ngFor=\"let pageNumber of pages\" class=\"page-item\" [class.active]=\"pageNumber === page\"\n        [class.disabled]=\"isEllipsis(pageNumber) || disabled\">\n        <a *ngIf=\"isEllipsis(pageNumber)\" class=\"page-link\">...</a>\n        <a *ngIf=\"!isEllipsis(pageNumber)\" class=\"page-link\" href (click)=\"!!selectPage(pageNumber)\">\n          {{pageNumber}}\n          <span *ngIf=\"pageNumber === page\" class=\"sr-only\">(current)</span>\n        </a>\n      </li>\n      <li *ngIf=\"directionLinks\" class=\"page-item\" [class.disabled]=\"!hasNext() || disabled\">\n        <a aria-label=\"Next\" class=\"page-link\" href (click)=\"!!selectPage(page+1)\" [attr.tabindex]=\"(hasNext() ? null : '-1')\">\n          <span aria-hidden=\"true\">&raquo;</span>\n        </a>\n      </li>\n\n      <li *ngIf=\"boundaryLinks\" class=\"page-item\" [class.disabled]=\"!hasNext() || disabled\">\n        <a aria-label=\"Last\" class=\"page-link\" href (click)=\"!!selectPage(pageCount)\" [attr.tabindex]=\"(hasNext() ? null : '-1')\">\n          <span aria-hidden=\"true\">&raquo;&raquo;</span>\n        </a>\n      </li>\n    </ul>\n  "
             },] },
@@ -4367,7 +4456,7 @@ var NgbPopoverWindow = (function () {
 NgbPopoverWindow.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */], args: [{
                 selector: 'ngb-popover-window',
-                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ChangeDetectionStrategy */].OnPush,
+                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ChangeDetectionStrategy */].OnPush,
                 host: { '[class]': '"popover bs-popover-" + placement', 'role': 'tooltip', '[id]': 'id' },
                 template: "\n    <div class=\"arrow\"></div>\n    <h3 class=\"popover-header\">{{title}}</h3><div class=\"popover-body\"><ng-content></ng-content></div>",
                 styles: ["\n    :host.bs-popover-top .arrow, :host.bs-popover-bottom .arrow {\n      left: 50%;\n    }\n\n    :host.bs-popover-left .arrow, :host.bs-popover-right .arrow {\n      top: 50%;\n    }\n  "]
@@ -4472,7 +4561,7 @@ NgbPopover.decorators = [
 /** @nocollapse */
 NgbPopover.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* ElementRef */], },
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* Renderer2 */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_18" /* Renderer2 */], },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injector */], },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ComponentFactoryResolver */], },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ViewContainerRef */], },
@@ -4588,7 +4677,7 @@ var NgbProgressbar = (function () {
 NgbProgressbar.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */], args: [{
                 selector: 'ngb-progressbar',
-                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ChangeDetectionStrategy */].OnPush,
+                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ChangeDetectionStrategy */].OnPush,
                 template: "\n    <div class=\"progress\">\n      <div class=\"progress-bar{{type ? ' bg-' + type : ''}}{{animated ? ' progress-bar-animated' : ''}}{{striped ?\n    ' progress-bar-striped' : ''}}\" role=\"progressbar\" [style.width.%]=\"getPercentValue()\"\n    [attr.aria-valuenow]=\"getValue()\" aria-valuemin=\"0\" [attr.aria-valuemax]=\"max\">\n        <span *ngIf=\"showValue\">{{getPercentValue()}}%</span><ng-content></ng-content>\n      </div>\n    </div>\n  "
             },] },
 ];
@@ -4694,8 +4783,8 @@ var Key;
     Key[Key["ArrowDown"] = 40] = "ArrowDown";
 })(Key || (Key = {}));
 var NGB_RATING_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_3__angular_forms__["h" /* NG_VALUE_ACCESSOR */],
-    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* forwardRef */])(function () { return NgbRating; }),
+    provide: __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* NG_VALUE_ACCESSOR */],
+    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* forwardRef */])(function () { return NgbRating; }),
     multi: true
 };
 /**
@@ -4810,7 +4899,7 @@ var NgbRating = (function () {
 NgbRating.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */], args: [{
                 selector: 'ngb-rating',
-                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ChangeDetectionStrategy */].OnPush,
+                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ChangeDetectionStrategy */].OnPush,
                 host: {
                     'class': 'd-inline-flex',
                     'tabindex': '0',
@@ -5202,8 +5291,8 @@ NgbTimepickerConfig.ctorParameters = function () { return []; };
 
 
 var NGB_TIMEPICKER_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* NG_VALUE_ACCESSOR */],
-    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* forwardRef */])(function () { return NgbTimepicker; }),
+    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* NG_VALUE_ACCESSOR */],
+    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* forwardRef */])(function () { return NgbTimepicker; }),
     multi: true
 };
 /**
@@ -5420,7 +5509,7 @@ var NgbTooltipWindow = (function () {
 NgbTooltipWindow.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */], args: [{
                 selector: 'ngb-tooltip-window',
-                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ChangeDetectionStrategy */].OnPush,
+                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ChangeDetectionStrategy */].OnPush,
                 host: { '[class]': '"tooltip show bs-tooltip-" + placement', 'role': 'tooltip', '[id]': 'id' },
                 template: "<div class=\"arrow\"></div><div class=\"tooltip-inner\"><ng-content></ng-content></div>",
                 styles: ["\n    :host.bs-tooltip-top .arrow, :host.bs-tooltip-bottom .arrow {\n      left: 50%;\n    }\n\n    :host.bs-tooltip-left .arrow, :host.bs-tooltip-right .arrow {\n      top: 50%;\n    }\n  "]
@@ -5537,7 +5626,7 @@ NgbTooltip.decorators = [
 /** @nocollapse */
 NgbTooltip.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* ElementRef */], },
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* Renderer2 */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_18" /* Renderer2 */], },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injector */], },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ComponentFactoryResolver */], },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ViewContainerRef */], },
@@ -5622,7 +5711,7 @@ var NgbHighlight = (function () {
 NgbHighlight.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */], args: [{
                 selector: 'ngb-highlight',
-                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ChangeDetectionStrategy */].OnPush,
+                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ChangeDetectionStrategy */].OnPush,
                 template: "<ng-template ngFor [ngForOf]=\"parts\" let-part let-isOdd=\"odd\">" +
                     "<span *ngIf=\"isOdd\" class=\"{{highlightClass}}\">{{part}}</span><ng-template [ngIf]=\"!isOdd\">{{part}}</ng-template>" +
                     "</ng-template>",
@@ -5801,8 +5890,8 @@ var Key;
     Key[Key["ArrowDown"] = 40] = "ArrowDown";
 })(Key || (Key = {}));
 var NGB_TYPEAHEAD_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* NG_VALUE_ACCESSOR */],
-    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* forwardRef */])(function () { return NgbTypeahead; }),
+    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* NG_VALUE_ACCESSOR */],
+    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* forwardRef */])(function () { return NgbTypeahead; }),
     multi: true
 };
 var nextWindowId = 0;
@@ -6017,7 +6106,7 @@ NgbTypeahead.decorators = [
 NgbTypeahead.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* ElementRef */], },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ViewContainerRef */], },
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* Renderer2 */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_18" /* Renderer2 */], },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injector */], },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ComponentFactoryResolver */], },
     { type: __WEBPACK_IMPORTED_MODULE_11__typeahead_config__["a" /* NgbTypeaheadConfig */], },

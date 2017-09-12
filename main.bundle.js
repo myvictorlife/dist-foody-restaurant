@@ -1,4 +1,4 @@
-webpackJsonp([12],{
+webpackJsonp([13],{
 
 /***/ "../../../../../src async recursive":
 /***/ (function(module, exports, __webpack_require__) {
@@ -6,6 +6,10 @@ webpackJsonp([12],{
 var map = {
 	"./config/config.module": [
 		"../../../../../src/app/layout/config/config.module.ts",
+		5
+	],
+	"./cupons/cupons.module": [
+		"../../../../../src/app/layout/cupons/cupons.module.ts",
 		4
 	],
 	"./dashboard/dashboard.module": [
@@ -18,23 +22,23 @@ var map = {
 	],
 	"./history/history.module": [
 		"../../../../../src/app/layout/history/history.module.ts",
-		6
+		7
 	],
 	"./layout/layout.module": [
 		"../../../../../src/app/layout/layout.module.ts",
-		7
+		8
 	],
 	"./login/login.module": [
 		"../../../../../src/app/login/login.module.ts",
-		8
+		9
 	],
 	"./not-found/not-found.module": [
 		"../../../../../src/app/not-found/not-found.module.ts",
-		10
+		11
 	],
 	"./orders/orders.module": [
 		"../../../../../src/app/layout/orders/orders.module.ts",
-		5
+		6
 	],
 	"./payment/payment.module": [
 		"../../../../../src/app/layout/payment/payment.module.ts",
@@ -46,7 +50,7 @@ var map = {
 	],
 	"./signup/signup.module": [
 		"../../../../../src/app/signup/signup.module.ts",
-		9
+		10
 	]
 };
 function webpackAsyncContext(req) {
@@ -200,6 +204,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_services_orders_service__ = __webpack_require__("../../../../../src/app/shared/services/orders.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shared_services_additional_item_service__ = __webpack_require__("../../../../../src/app/shared/services/additional-item.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__shared_services_payment_service__ = __webpack_require__("../../../../../src/app/shared/services/payment.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__shared_services_cupon_service__ = __webpack_require__("../../../../../src/app/shared/services/cupon.service.ts");
 /* unused harmony export HttpLoaderFactory */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -220,6 +225,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 // AoT requires an exported function for factories
 // Services
+
 
 
 
@@ -262,7 +268,7 @@ AppModule = __decorate([
             })
         ],
         exports: [],
-        providers: [__WEBPACK_IMPORTED_MODULE_9__shared__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_10__shared_services_login_service__["a" /* LoginService */], __WEBPACK_IMPORTED_MODULE_11__shared_services_dashboard_service__["a" /* DashboardService */], __WEBPACK_IMPORTED_MODULE_12__shared_services_restaurant_service__["a" /* RestaurantService */], __WEBPACK_IMPORTED_MODULE_13__shared_services_category_service__["a" /* CategoryService */], __WEBPACK_IMPORTED_MODULE_14__shared_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_15__shared_services_upload_service__["a" /* UploadService */], __WEBPACK_IMPORTED_MODULE_16__shared_services_item_service__["a" /* ItemService */], __WEBPACK_IMPORTED_MODULE_18__shared_services_additional_item_service__["a" /* AdditionalItemService */], __WEBPACK_IMPORTED_MODULE_17__shared_services_orders_service__["a" /* OrdersService */], __WEBPACK_IMPORTED_MODULE_19__shared_services_payment_service__["a" /* PaymentService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_9__shared__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_10__shared_services_login_service__["a" /* LoginService */], __WEBPACK_IMPORTED_MODULE_11__shared_services_dashboard_service__["a" /* DashboardService */], __WEBPACK_IMPORTED_MODULE_12__shared_services_restaurant_service__["a" /* RestaurantService */], __WEBPACK_IMPORTED_MODULE_13__shared_services_category_service__["a" /* CategoryService */], __WEBPACK_IMPORTED_MODULE_14__shared_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_15__shared_services_upload_service__["a" /* UploadService */], __WEBPACK_IMPORTED_MODULE_16__shared_services_item_service__["a" /* ItemService */], __WEBPACK_IMPORTED_MODULE_18__shared_services_additional_item_service__["a" /* AdditionalItemService */], __WEBPACK_IMPORTED_MODULE_17__shared_services_orders_service__["a" /* OrdersService */], __WEBPACK_IMPORTED_MODULE_19__shared_services_payment_service__["a" /* PaymentService */], __WEBPACK_IMPORTED_MODULE_20__shared_services_cupon_service__["a" /* CuponService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -379,7 +385,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/shared/components/sidebar/sidebar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"sidebar\" [ngClass]=\"{sidebarPushRight: isActive}\">\n    <ul class=\"list-group\">\n         <a routerLink=\"/dashboard\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-fw fa-dashboard\"></i>&nbsp;{{ 'dashboard' | translate }}\n        </a> \n        <a [routerLink]=\"['/orders']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-cutlery\"></i>&nbsp;{{ 'orders' | translate }}\n        </a>\n        <a [routerLink]=\"['/employee']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-users\"></i>&nbsp;{{ 'employees' | translate }}\n        </a>\n        <a [routerLink]=\"['/product']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-product-hunt\"></i>&nbsp;{{ 'product' | translate }}\n        </a>\n        <a [routerLink]=\"['/config']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-pencil\"></i>&nbsp;{{ 'config' | translate }}\n        </a>\n        <a [routerLink]=\"['/history']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-history\"></i>&nbsp;{{ 'history' | translate }}\n        </a>\n        <a [routerLink]=\"['/payment']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-credit-card\"></i>&nbsp;{{ 'form.payment' | translate }}\n        </a>\n    </ul>\n</nav>\n"
+module.exports = "<nav class=\"sidebar\" [ngClass]=\"{sidebarPushRight: isActive}\">\n    <ul class=\"list-group\">\n         <a routerLink=\"/dashboard\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-fw fa-dashboard\"></i>&nbsp;{{ 'dashboard' | translate }}\n        </a> \n        <a [routerLink]=\"['/orders']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-cutlery\"></i>&nbsp;{{ 'orders' | translate }}\n        </a>\n        <a [routerLink]=\"['/employee']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-users\"></i>&nbsp;{{ 'employees' | translate }}\n        </a>\n        <a [routerLink]=\"['/product']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-product-hunt\"></i>&nbsp;{{ 'product' | translate }}\n        </a>\n        <a [routerLink]=\"['/config']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-pencil\"></i>&nbsp;{{ 'config' | translate }}\n        </a>\n        <a [routerLink]=\"['/history']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-history\"></i>&nbsp;{{ 'history' | translate }}\n        </a>\n        <a [routerLink]=\"['/payment']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-credit-card\"></i>&nbsp;{{ 'form.payment' | translate }}\n        </a>\n        <a [routerLink]=\"['/cupons']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-gift\"></i>&nbsp;{{ 'cupons' | translate }}\n        </a>\n    </ul>\n</nav>\n"
 
 /***/ }),
 
@@ -795,6 +801,7 @@ SharedPipesModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdditionalItemService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -808,11 +815,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-//import { CONFIG } from "./config.service";
+
 var AdditionalItemService = (function () {
     function AdditionalItemService(http) {
         this.http = http;
-        this.url = 'https://uaifomemaster.com';
+        //url: string = 'https://uaifomemaster.com';
+        this.url = __WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url;
     }
     AdditionalItemService.prototype.register = function (additionalItem) {
         return this.http.post(this.url + "/items-additional", additionalItem)
@@ -852,11 +860,12 @@ var _a;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__item_service__ = __webpack_require__("../../../../../src/app/shared/services/item.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__item_service__ = __webpack_require__("../../../../../src/app/shared/services/item.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CategoryService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -868,7 +877,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-//import { CONFIG } from "./config.service";
+
 
 
 
@@ -879,7 +888,8 @@ var CategoryService = (function () {
         this.http = http;
         this.itemService = itemService;
         this.restaurantService = restaurantService;
-        this.url = 'https://uaifomemaster.com';
+        //url: string = 'https://uaifomemaster.com';
+        this.url = __WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* CONFIG */].url;
         this.categories = [];
         this.getCategories().subscribe(function (result) {
             _this.categories = result.data;
@@ -988,11 +998,124 @@ var CategoryService = (function () {
 }());
 CategoryService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__item_service__["a" /* ItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__item_service__["a" /* ItemService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__item_service__["a" /* ItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__item_service__["a" /* ItemService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__restaurant_service__["a" /* RestaurantService */]) === "function" && _c || Object])
 ], CategoryService);
 
 var _a, _b, _c;
 //# sourceMappingURL=category.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/services/config.service.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CONFIG; });
+let CONFIG = {
+    url: "https://uaifomemaster.com"
+    //url: "http://localhost:4000"
+}  
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/services/cupon.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CuponService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var CuponService = (function () {
+    function CuponService(http, restaurantService) {
+        this.http = http;
+        this.restaurantService = restaurantService;
+        this.cupons = [];
+    }
+    CuponService.prototype.populate = function () {
+        var _this = this;
+        var restaurant = this.restaurantService.getAll();
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url + "/coupon/restaurant/" + restaurant.id)
+            .map(function (res) {
+            _this.cupons = res.json().data;
+            return res.json();
+        })
+            .catch(function (error) { return error.json(); });
+    };
+    CuponService.prototype.getAll = function () {
+        return this.cupons;
+    };
+    CuponService.prototype.register = function (cupon) {
+        var _this = this;
+        var restaurant = this.restaurantService.getAll();
+        cupon.restaurants_id = restaurant.id;
+        var json = {
+            img: restaurant.img,
+            name: restaurant.name
+        };
+        cupon.json = JSON.stringify(json);
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url + "/coupon", cupon)
+            .map(function (res) {
+            _this.cupons.push(res.json().data);
+            return res.json();
+        })
+            .catch(function (error) { return error.json(); });
+    };
+    CuponService.prototype.edit = function (cupon) {
+        var _this = this;
+        var restaurant = this.restaurantService.getAll();
+        cupon.restaurants_id = restaurant.id;
+        var json = {
+            img: restaurant.img,
+            name: restaurant.name
+        };
+        cupon.json = JSON.stringify(json);
+        return this.http.put(__WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url + "/coupon", cupon)
+            .map(function (res) {
+            for (var i = 0; i < _this.cupons.length; i++) {
+                if (_this.cupons[i].id === cupon.id) {
+                    _this.cupons[i] = cupon;
+                }
+            }
+            return res.json();
+        })
+            .catch(function (error) { return error.json(); });
+    };
+    CuponService.prototype.remove = function (id) {
+        var _this = this;
+        return this.http.delete(__WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url + "/coupon/" + id)
+            .map(function (res) {
+            _this.cupons = _this.cupons.filter(function (item) { return item.id !== id; });
+            return res.json();
+        })
+            .catch(function (error) { return error.json(); });
+    };
+    return CuponService;
+}());
+CuponService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object])
+], CuponService);
+
+var _a, _b;
+//# sourceMappingURL=cupon.service.js.map
 
 /***/ }),
 
@@ -1004,7 +1127,8 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1018,13 +1142,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-//import { CONFIG } from "./config.service";
+
 
 var DashboardService = (function () {
+    //url:string = 'https://uaifomemaster.com';
     function DashboardService(http, restaurantService) {
         this.http = http;
         this.restaurantService = restaurantService;
-        this.url = 'https://uaifomemaster.com';
+        this.url = __WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url;
     }
     DashboardService.prototype.calculateByDates = function (start, end) {
         var send = {
@@ -1042,7 +1167,7 @@ var DashboardService = (function () {
 }());
 DashboardService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object])
 ], DashboardService);
 
 var _a, _b;
@@ -1059,6 +1184,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ItemService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1073,13 +1199,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-//import { CONFIG } from "./config.service";
+
 var ItemService = (function () {
     function ItemService(http, loginService) {
         var _this = this;
         this.http = http;
         this.loginService = loginService;
-        this.url = 'https://uaifomemaster.com';
+        this.url = __WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url;
         this.restaurantId = loginService.getUser().restaurants_id;
         this.items = [];
         this.populate().subscribe(function (result) {
@@ -1143,9 +1269,10 @@ var _a, _b;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1157,13 +1284,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-//import { CONFIG } from "./config.service";
+
 
 
 var LoginService = (function () {
     function LoginService(http) {
         this.http = http;
-        this.url = 'https://uaifomemaster.com';
+        //url:string = 'https://uaifomemaster.com';
+        this.url = __WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* CONFIG */].url;
         this.profile = localStorage.getItem('isUserLogged') ? JSON.parse(localStorage.getItem('isUserLogged')) : {};
     }
     LoginService.prototype.authenticate = function (profile) {
@@ -1182,7 +1310,7 @@ var LoginService = (function () {
 }());
 LoginService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object])
 ], LoginService);
 
 var _a;
@@ -1199,6 +1327,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrdersService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1213,13 +1342,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-//import { CONFIG } from "./config.service";
+
 var OrdersService = (function () {
     function OrdersService(http, loginService) {
         var _this = this;
         this.http = http;
         this.loginService = loginService;
-        this.url = 'https://uaifomemaster.com';
+        this.url = __WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url;
         this.restaurantId = loginService.getUser().restaurants_id;
         this.orders = [];
         this.populate().subscribe(function (result) {
@@ -1292,7 +1421,8 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1304,7 +1434,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-//import { CONFIG } from "./config";
+
 
 
 
@@ -1313,7 +1443,9 @@ var PaymentService = (function () {
         var _this = this;
         this.http = http;
         this.restaurantService = restaurantService;
-        this.url = 'https://uaifomemaster.com';
+        //url: string = 'https://uaifomemaster.com';
+        //url: string = 'http://localhost:3000';
+        this.url = __WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url;
         this.populate().subscribe(function (result) {
             _this.payment = result.data;
         });
@@ -1343,7 +1475,7 @@ var PaymentService = (function () {
 }());
 PaymentService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object])
 ], PaymentService);
 
 var _a, _b;
@@ -1360,6 +1492,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RestaurantService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1374,13 +1507,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-//import { CONFIG } from "./config.service";
+
 var RestaurantService = (function () {
     function RestaurantService(http, loginService) {
         var _this = this;
         this.http = http;
         this.loginService = loginService;
-        this.url = 'https://uaifomemaster.com';
+        //url:string = 'https://uaifomemaster.com';
+        this.url = __WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url;
         this.restaurantId = loginService.getUser().restaurants_id;
         this.restaurant = {};
         this.populate().subscribe(function (result) {
@@ -1442,9 +1576,10 @@ var _a, _b;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UploadService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1456,13 +1591,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-//import { CONFIG } from "./config.service";
+
 
 
 var UploadService = (function () {
+    //url:string = 'https://uaifomemaster.com';
     function UploadService(http) {
         this.http = http;
-        this.url = 'https://uaifomemaster.com';
+        this.url = __WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* CONFIG */].url;
     }
     UploadService.prototype.getUrl = function (image) {
         var _this = this;
@@ -1487,7 +1623,7 @@ var UploadService = (function () {
 }());
 UploadService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object])
 ], UploadService);
 
 var _a;
@@ -1504,6 +1640,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1518,13 +1655,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-//import { CONFIG } from "./config.service";
+
 var UserService = (function () {
     function UserService(http, loginService) {
         var _this = this;
         this.http = http;
         this.loginService = loginService;
-        this.url = 'https://uaifomemaster.com';
+        this.url = __WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url;
         this.profile = loginService.getUser();
         this.users = [];
         this.populate().subscribe(function (result) {
