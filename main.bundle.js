@@ -1071,6 +1071,8 @@ var CuponService = (function () {
             name: restaurant.name
         };
         cupon.json = JSON.stringify(json);
+        cupon.latitude = restaurant.latitude;
+        cupon.longitude = restaurant.longitude;
         return this.http.post(__WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url + "/coupon", cupon)
             .map(function (res) {
             _this.cupons.push(res.json().data);
@@ -1087,6 +1089,8 @@ var CuponService = (function () {
             name: restaurant.name
         };
         cupon.json = JSON.stringify(json);
+        cupon.latitude = restaurant.latitude;
+        cupon.longitude = restaurant.longitude;
         return this.http.put(__WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url + "/coupon", cupon)
             .map(function (res) {
             for (var i = 0; i < _this.cupons.length; i++) {
