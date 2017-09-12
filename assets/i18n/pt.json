@@ -52,6 +52,7 @@
     "product":"Produto",
     "ingredients":"Ingredientes",
     "price":"Preço",
+    "discount":"Desconto",
     "add":"Adicionar",
     "additional":"Adicionais",
     "required":"obrigatório",
