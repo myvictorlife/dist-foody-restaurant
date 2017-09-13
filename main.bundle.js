@@ -1551,6 +1551,15 @@ var RestaurantService = (function () {
         })
             .catch(function (error) { return error.json(); });
     };
+    RestaurantService.prototype.editPriceFrete = function (restaurant) {
+        restaurant.id = this.restaurantId;
+        console.log(restaurant);
+        return this.http.put(this.url + "/restaurant/frete", restaurant)
+            .map(function (res) {
+            return res.json();
+        })
+            .catch(function (error) { return error.json(); });
+    };
     RestaurantService.prototype.getAll = function () {
         return this.restaurant;
     };
