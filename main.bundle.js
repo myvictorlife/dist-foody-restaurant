@@ -1,4 +1,4 @@
-webpackJsonp([13],{
+webpackJsonp([14],{
 
 /***/ "../../../../../src async recursive":
 /***/ (function(module, exports, __webpack_require__) {
@@ -6,58 +6,70 @@ webpackJsonp([13],{
 var map = {
 	"./config/config.module": [
 		"../../../../../src/app/layout/config/config.module.ts",
-		5
+		12,
+		0
 	],
 	"./cupons/cupons.module": [
 		"../../../../../src/app/layout/cupons/cupons.module.ts",
-		4
+		11,
+		0
 	],
 	"./dashboard/dashboard.module": [
 		"../../../../../src/app/layout/dashboard/dashboard.module.ts",
+		1,
 		0
 	],
 	"./employee/employee.module": [
 		"../../../../../src/app/layout/employee/employee.module.ts",
-		3
+		10,
+		0
 	],
 	"./history/history.module": [
 		"../../../../../src/app/layout/history/history.module.ts",
-		7
+		9,
+		0
 	],
 	"./layout/layout.module": [
 		"../../../../../src/app/layout/layout.module.ts",
-		8
+		8,
+		0
 	],
 	"./login/login.module": [
 		"../../../../../src/app/login/login.module.ts",
-		9
+		4,
+		0
 	],
 	"./not-found/not-found.module": [
 		"../../../../../src/app/not-found/not-found.module.ts",
-		11
+		3,
+		0
 	],
 	"./orders/orders.module": [
 		"../../../../../src/app/layout/orders/orders.module.ts",
-		6
+		7,
+		0
 	],
 	"./payment/payment.module": [
 		"../../../../../src/app/layout/payment/payment.module.ts",
-		2
+		6,
+		0
 	],
 	"./product/product.module": [
 		"../../../../../src/app/layout/product/product.module.ts",
-		1
+		5,
+		0
 	],
 	"./signup/signup.module": [
 		"../../../../../src/app/signup/signup.module.ts",
-		10
+		2,
+		0
 	]
 };
 function webpackAsyncContext(req) {
 	var ids = map[req];
 	if(!ids)
 		return Promise.reject(new Error("Cannot find module '" + req + "'."));
-	return __webpack_require__.e(ids[1]).then(function() {
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
 		return __webpack_require__(ids[0]);
 	});
 };
@@ -280,7 +292,7 @@ AppModule = __decorate([
 /***/ "../../../../../src/app/shared/components/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"pos-f-t fixed-top header\">\n    <nav class=\"navbar navbar-inverse bg-inverse navbar-toggleable-md\">\n        <button class=\"navbar-toggler navbar-toggler-right\" (click)=\"toggleSidebar()\">\n            <span class=\"navbar-toggler-icon\"></span>\n        </button>\n        <a class=\"navbar-brand\" href=\"javascript:void(0)\">UaiFome</a>\n        <div class=\"collapse navbar-collapse\">\n            \n            <ul class=\"navbar-nav ml-auto mt-2 mt-md-0\">\n                \n                <li class=\"nav-item dropdown\" ngbDropdown>\n                    <!-- <a href=\"javascript:void(0)\" class=\"nav-link\" ngbDropdownToggle>\n                        <i class=\"fa fa-language\"></i> {{ 'language' | translate }} <b class=\"caret\"></b>\n                    </a> -->\n                    <div class=\"dropdown-menu dropdown-menu-right\">\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('en')\">English</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('fr')\">French</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('ur')\">Urdu</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('es')\">Spanish</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('pt')\">Portugues</a>\n                    </div>\n                </li>\n                <li class=\"nav-item dropdown\" ngbDropdown>\n                    <a href=\"javascript:void(0)\" class=\"nav-link\" ngbDropdownToggle>\n                        <i class=\"fa fa-user\"></i> {{profile.name}} <b class=\"caret\"></b>\n                    </a>\n                    <div class=\"dropdown-menu dropdown-menu-right\">\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\"><i class=\"fa fa-fw fa-user\"></i> {{ 'profile' | translate }}</a>\n                        <a class=\"dropdown-item\" [routerLink]=\"['/login']\" (click)=\"onLoggedout()\"><i class=\"fa fa-fw fa-power-off\"></i> {{ 'logout' | translate }}</a>\n                    </div>\n                </li>\n            </ul>\n        </div>\n    </nav>\n</div>\n"
+module.exports = "<div class=\"pos-f-t fixed-top header\">\n    <nav class=\"navbar navbar-inverse bg-inverse navbar-toggleable-md\">\n        <button class=\"navbar-toggler navbar-toggler-right\" (click)=\"toggleSidebar()\">\n            <span class=\"navbar-toggler-icon\"></span>\n        </button>\n        <a class=\"navbar-brand\" href=\"javascript:void(0)\">UaiFoody</a>\n        <div class=\"collapse navbar-collapse\">\n            \n            <ul class=\"navbar-nav ml-auto mt-2 mt-md-0\">\n                \n                <li class=\"nav-item dropdown\" ngbDropdown>\n                    <!-- <a href=\"javascript:void(0)\" class=\"nav-link\" ngbDropdownToggle>\n                        <i class=\"fa fa-language\"></i> {{ 'language' | translate }} <b class=\"caret\"></b>\n                    </a> -->\n                    <div class=\"dropdown-menu dropdown-menu-right\">\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('en')\">English</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('fr')\">French</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('ur')\">Urdu</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('es')\">Spanish</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('pt')\">Portugues</a>\n                    </div>\n                </li>\n                <li class=\"nav-item dropdown\" ngbDropdown>\n                    <a href=\"javascript:void(0)\" class=\"nav-link\" ngbDropdownToggle>\n                        <i class=\"fa fa-user\"></i> {{profile.name}} <b class=\"caret\"></b>\n                    </a>\n                    <div class=\"dropdown-menu dropdown-menu-right\">\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\"><i class=\"fa fa-fw fa-user\"></i> {{ 'profile' | translate }}</a>\n                        <a class=\"dropdown-item\" [routerLink]=\"['/login']\" (click)=\"onLoggedout()\"><i class=\"fa fa-fw fa-power-off\"></i> {{ 'logout' | translate }}</a>\n                    </div>\n                </li>\n            </ul>\n        </div>\n    </nav>\n</div>\n"
 
 /***/ }),
 
@@ -626,7 +638,7 @@ var PageHeaderModule = (function () {
 PageHeaderModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* NgModule */])({
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1__angular_common__["i" /* CommonModule */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_common__["k" /* CommonModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* RouterModule */]
         ],
         declarations: [__WEBPACK_IMPORTED_MODULE_3__page_header_component__["a" /* PageHeaderComponent */]],
@@ -749,7 +761,7 @@ var StatModule = (function () {
 StatModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* NgModule */])({
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1__angular_common__["i" /* CommonModule */]
+            __WEBPACK_IMPORTED_MODULE_1__angular_common__["k" /* CommonModule */]
         ],
         declarations: [__WEBPACK_IMPORTED_MODULE_2__stat_component__["a" /* StatComponent */]],
         exports: [__WEBPACK_IMPORTED_MODULE_2__stat_component__["a" /* StatComponent */]]
@@ -783,7 +795,7 @@ var SharedPipesModule = (function () {
 SharedPipesModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* NgModule */])({
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1__angular_common__["i" /* CommonModule */]
+            __WEBPACK_IMPORTED_MODULE_1__angular_common__["k" /* CommonModule */]
         ],
         declarations: []
     })
@@ -1012,7 +1024,7 @@ var _a, _b, _c;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CONFIG; });
 let CONFIG = {
-    url: "https://uaifomemaster.com"
+    url: "https://subdominio.uaifoody.info"
     //url: "http://localhost:4000"
 }  
 

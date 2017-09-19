@@ -1,4 +1,4 @@
-webpackJsonp([15],{
+webpackJsonp([16],{
 
 /***/ "../../../../raw-loader/index.js!../../../../chart.js/dist/Chart.js":
 /***/ (function(module, exports) {
@@ -15,10 +15,17 @@ module.exports = "/*!\n * Chart.js\n * http://chartjs.org/\n * Version: 2.6.0\n 
 	Author Tobias Koppers @sokra
 */
 module.exports = function(src) {
-	if (typeof execScript !== "undefined")
-		execScript(src);
-	else
-		eval.call(null, src);
+	try {
+		if (typeof eval !== "undefined") {
+			eval.call(null, src);
+		} else if (typeof execScript !== "undefined") {
+			execScript(src);
+		} else {
+			console.error("[Script Loader] EvalError: No eval function available");
+		}
+	} catch (error) {
+		console.error("[Script Loader] ", error.message);
+	}
 }
 
 

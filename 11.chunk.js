@@ -1,13 +1,13 @@
 webpackJsonp([11],{
 
-/***/ "../../../../../src/app/not-found/not-found-routing.module.ts":
+/***/ "../../../../../src/app/layout/cupons/cupons-routing.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__not_found_component__ = __webpack_require__("../../../../../src/app/not-found/not-found.component.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NotFoundRoutingModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cupons_component__ = __webpack_require__("../../../../../src/app/layout/cupons/cupons.component.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CuponsRoutingModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,32 +18,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var routes = [
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_2__not_found_component__["a" /* NotFoundComponent */] }
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_2__cupons_component__["a" /* CuponsComponent */] }
 ];
-var NotFoundRoutingModule = (function () {
-    function NotFoundRoutingModule() {
+var CuponsRoutingModule = (function () {
+    function CuponsRoutingModule() {
     }
-    return NotFoundRoutingModule;
+    return CuponsRoutingModule;
 }());
-NotFoundRoutingModule = __decorate([
+CuponsRoutingModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* NgModule */])({
         imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */].forChild(routes)],
         exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */]]
     })
-], NotFoundRoutingModule);
+], CuponsRoutingModule);
 
-//# sourceMappingURL=not-found-routing.module.js.map
+//# sourceMappingURL=cupons-routing.module.js.map
 
 /***/ }),
 
-/***/ "../../../../../src/app/not-found/not-found.component.html":
+/***/ "../../../../../src/app/layout/cupons/cupons.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"welcome-page\" [@routerTransition]>\n    <div class=\"row\">\n        <div class=\"col-md-10 push-md-1\">\n            <h1>{{ 'page.not.found' | translate }}</h1>\n            <p class=\"lead\">{{ 'page.not.exist' | translate }}</p>\n            <p class=\"lead\">\n                <a class=\"btn rounded-btn\" [routerLink]=\"['/']\">{{ 'back' | translate }}</a>\n            </p>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div [@routerTransition]>\n    <app-page-header [heading]=\"'Cupoms'\" [icon]=\"'fa-edit'\"></app-page-header>\n\n    <div class=\"row\">\n            <div class=\"col col-xl-6 col-lg-10\">\n                <div class=\"card mb-3\">\n                    <div class=\"card-header\">\n                        {{ 'list.coupons' | translate }}\n                    </div>\n                    <div class=\"card-block table-responsive\">\n                        <table class=\"table table-hover table-bordered\">\n                            <thead>\n                            <tr>\n                                <th>{{ 'name' | translate }}</th>\n                                <th>{{ 'price' | translate }}</th>\n                                <th>{{ 'activated' | translate }}</th>\n                                <th>{{ 'options' | translate }}</th>\n                            </tr>\n                            </thead>\n                            <tbody>\n                                <tr *ngFor=\"let cupon of cupons\" (click)=\"populate(cupon)\" >\n                                    <td>{{cupon.name}}</td>\n                                    <td>{{cupon.price}}%</td>\n                                    <td>{{cupon.activated == 0 ? 'Não': 'Sim'}}</td>\n                                    <td (click)=\"remove(content, cupon)\">Remover</td>\n                                </tr>\n                            </tbody>\n                        </table>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-lg-4\">\n\n                <form class=\"form-horizontal\" [formGroup]=\"formulario\">\n                    <div class=\"form-group\" [ngClass]=\"aplicaCssErro('name')\" >\n                        <fieldset class=\"form-group\">\n                            <label>{{ 'name' | translate }}*</label>\n                            <input type=\"text\" class=\"form-control\"\n                                formControlName=\"name\"\n                                id=\"name\" placeholder=\"{{ 'name' | translate }}\" >\n\n                            <app-campo-control-erro\n                              [mostrarErro]=\"verificaValidTouched('name')\"\n                              msgErro=\"{{ 'name.required' | translate }}\">\n                            </app-campo-control-erro>\n                        </fieldset>\n                    </div>\n\n                    <div class=\"form-group\" [ngClass]=\"aplicaCssErro('price')\" >\n                        <fieldset class=\"form-group\">\n                            <label>{{ 'price' | translate }}*</label>\n                            <input type=\"text\" class=\"form-control\"\n                                formControlName=\"price\"\n                                id=\"l\" placeholder=\"{{ 'price.placeholder' | translate }}\" >\n\n                            <app-campo-control-erro\n                              [mostrarErro]=\"verificaValidTouched('price')\"\n                              msgErro=\"{{ 'price.required' | translate }}\">\n                            </app-campo-control-erro>\n                        </fieldset>\n                    </div>\n\n                    <fieldset class=\"form-group text-center\">\n                        <label>Ativar*</label>\n                        <div class=\"radio\">\n                            <label>\n                                <input type=\"radio\" formControlName=\"activated\" [(ngModel)]=\"activated\" id=\"optionsRadios1\" value=\"1\" checked=\"\"> Sim\n                            </label> &nbsp;&nbsp;&nbsp;\n                            <label>\n                                <input type=\"radio\" formControlName=\"activated\" [(ngModel)]=\"activated\" id=\"optionsRadios2\" value=\"0\"> Não\n                            </label>\n                        </div>\n                    </fieldset>\n\n                    <div class=\"text-center margin-col\">\n                        <button type=\"submit\" class=\"btn btn-default\" (click)=\"reset()\" >Limpar</button>\n                        <button type=\"submit\" [disabled]=\"!formulario.valid\" class=\"btn btn-primary\" (click)=\"register()\" >Salvar</button>\n                    </div> \n \n                </form>\n\n            </div>\n        </div>\n\n        <ng-template #content let-c=\"close\" let-d=\"dismiss\">\n          <div class=\"modal-header\">\n            <h4 class=\"modal-title\">{{ 'user.remove' | translate }}</h4>\n            <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body\">\n            <p>{{cupon.name}}</p>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('no')\">{{ 'no' | translate }}</button>\n            <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('yes')\">{{ 'yes' | translate }}</button>\n          </div>\n        </ng-template>\n\n</div>\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/not-found/not-found.component.scss":
+/***/ "../../../../../src/app/layout/cupons/cupons.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -51,7 +51,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ":host {\n  display: block; }\n\n.welcome-page {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  overflow: auto;\n  background: #ed8b0b;\n  text-align: center;\n  color: #fff;\n  padding: 10em; }\n  .welcome-page .col-lg-8 {\n    padding: 0; }\n  .welcome-page .rounded-btn {\n    border-radius: 50px;\n    color: rgba(255, 255, 255, 0.8);\n    background: #ed8b0b;\n    border: 2px solid rgba(255, 255, 255, 0.8);\n    font-size: 18px;\n    line-height: 40px;\n    padding: 0 25px; }\n  .welcome-page .rounded-btn:hover, .welcome-page .rounded-btn:focus, .welcome-page .rounded-btn:active, .welcome-page .rounded-btn:visited {\n    color: white;\n    border: 2px solid white;\n    outline: none; }\n  .welcome-page h1 {\n    font-weight: 300;\n    margin-top: 20px;\n    margin-bottom: 10px;\n    font-size: 36px; }\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -61,50 +61,200 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../../src/app/not-found/not-found.component.ts":
+/***/ "../../../../../src/app/layout/cupons/cupons.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__router_animations__ = __webpack_require__("../../../../../src/app/router.animations.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NotFoundComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_cupon_service__ = __webpack_require__("../../../../../src/app/shared/services/cupon.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CuponsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 
-var NotFoundComponent = (function () {
-    function NotFoundComponent() {
+
+
+
+
+
+var CuponsComponent = (function () {
+    function CuponsComponent(formBuilder, cuponService, restaurantService, toastr, modalService) {
+        this.formBuilder = formBuilder;
+        this.cuponService = cuponService;
+        this.restaurantService = restaurantService;
+        this.toastr = toastr;
+        this.modalService = modalService;
+        var restaurant = this.restaurantService.getAll();
+        if (restaurant && restaurant.id) {
+            this.find();
+        }
+        else {
+            var env_1 = this;
+            setTimeout(function () {
+                env_1.find();
+            }, 1000);
+        }
     }
-    return NotFoundComponent;
+    CuponsComponent.prototype.find = function () {
+        var _this = this;
+        this.cupons = this.cuponService.getAll();
+        if (!this.cupons.length) {
+            this.cuponService.populate()
+                .subscribe(function (result) {
+                _this.cupons = result.data;
+            });
+        }
+    };
+    CuponsComponent.prototype.ngOnInit = function () {
+        this.formulario = this.formBuilder.group({
+            id: [null, []],
+            name: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required]],
+            price: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required]],
+            activated: [null, []]
+        });
+    };
+    CuponsComponent.prototype.populate = function (cupon) {
+        this.formulario.setValue({
+            id: cupon.id,
+            name: cupon.name,
+            price: cupon.price,
+            activated: cupon.activated == 1 ? "1" : "0"
+        });
+    };
+    CuponsComponent.prototype.register = function () {
+        var _this = this;
+        if (this.formulario.valid) {
+            if (this.formulario.value.id) {
+                this.cuponService.edit(this.formulario.value)
+                    .subscribe(function (result) {
+                    if (result.status) {
+                        _this.cupons = _this.cuponService.getAll();
+                        _this.toastr.success(result.message, '');
+                        _this.reset();
+                    }
+                    else {
+                        _this.toastr.warning('', result.message);
+                    }
+                });
+            }
+            else {
+                this.cuponService.register(this.formulario.value)
+                    .subscribe(function (result) {
+                    if (result.status) {
+                        _this.cupons = _this.cuponService.getAll();
+                        _this.toastr.success(result.message, '');
+                        _this.reset();
+                    }
+                    else {
+                        _this.toastr.warning('', result.message);
+                    }
+                });
+            }
+        }
+        else {
+            this.verificaValidacoesForm(this.formulario);
+        }
+    };
+    CuponsComponent.prototype.verificaValidTouched = function (campo) {
+        return (!this.formulario.get(campo).valid &&
+            (this.formulario.get(campo).touched || this.formulario.get(campo).dirty));
+    };
+    CuponsComponent.prototype.reset = function () {
+        this.formulario.reset();
+    };
+    CuponsComponent.prototype.aplicaCssErro = function (campo) {
+        return {
+            'has-error': this.verificaValidTouched(campo),
+            'has-feedback': this.verificaValidTouched(campo)
+        };
+    };
+    CuponsComponent.prototype.verificaValidacoesForm = function (formGroup) {
+        var _this = this;
+        Object.keys(formGroup.controls).forEach(function (campo) {
+            console.log(campo);
+            var controle = formGroup.get(campo);
+            controle.markAsDirty();
+            if (controle instanceof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["d" /* FormGroup */]) {
+                _this.verificaValidacoesForm(controle);
+            }
+        });
+    };
+    CuponsComponent.prototype.remove = function (content, cupon) {
+        var _this = this;
+        this.cupon = cupon;
+        this.modalService.open(content).result.then(function (result) {
+            if (result === 'yes') {
+                _this.cuponService.remove(cupon.id)
+                    .subscribe(function (result) {
+                    if (result.status) {
+                        _this.cupons = _this.cuponService.getAll();
+                        _this.toastr.success(result.message, '');
+                        _this.reset();
+                    }
+                    else {
+                        _this.toastr.warning('', result.message);
+                    }
+                });
+            }
+        }, function (reason) {
+        });
+    };
+    CuponsComponent.prototype.getDismissReason = function (reason) {
+        if (reason === __WEBPACK_IMPORTED_MODULE_6__ng_bootstrap_ng_bootstrap__["b" /* ModalDismissReasons */].ESC) {
+            return 'by pressing ESC';
+        }
+        else if (reason === __WEBPACK_IMPORTED_MODULE_6__ng_bootstrap_ng_bootstrap__["b" /* ModalDismissReasons */].BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        }
+        else {
+            return "with: " + reason;
+        }
+    };
+    return CuponsComponent;
 }());
-NotFoundComponent = __decorate([
+CuponsComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
-        selector: 'app-not-found',
-        template: __webpack_require__("../../../../../src/app/not-found/not-found.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/not-found/not-found.component.scss")],
+        selector: 'app-cupons',
+        template: __webpack_require__("../../../../../src/app/layout/cupons/cupons.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/layout/cupons/cupons.component.scss")],
         animations: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__router_animations__["a" /* routerTransition */])()]
-    })
-], NotFoundComponent);
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* FormBuilder */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_cupon_service__["a" /* CuponService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_cupon_service__["a" /* CuponService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_restaurant_service__["a" /* RestaurantService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__["b" /* ToastrService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__ng_bootstrap_ng_bootstrap__["c" /* NgbModal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__ng_bootstrap_ng_bootstrap__["c" /* NgbModal */]) === "function" && _e || Object])
+], CuponsComponent);
 
-//# sourceMappingURL=not-found.component.js.map
+var _a, _b, _c, _d, _e;
+//# sourceMappingURL=cupons.component.js.map
 
 /***/ }),
 
-/***/ "../../../../../src/app/not-found/not-found.module.ts":
+/***/ "../../../../../src/app/layout/cupons/cupons.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__not_found_component__ = __webpack_require__("../../../../../src/app/not-found/not-found.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__not_found_routing_module__ = __webpack_require__("../../../../../src/app/not-found/not-found-routing.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__("../../../../@ngx-translate/core/index.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotFoundModule", function() { return NotFoundModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cupons_component__ = __webpack_require__("../../../../../src/app/layout/cupons/cupons.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cupons_routing_module__ = __webpack_require__("../../../../../src/app/layout/cupons/cupons-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_shared_module__ = __webpack_require__("../../../../../src/app/shared/shared.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__ = __webpack_require__("../../../../@ngx-translate/core/index.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CuponsModule", function() { return CuponsModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -116,97 +266,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var NotFoundModule = (function () {
-    function NotFoundModule() {
+
+
+
+
+
+var CuponsModule = (function () {
+    function CuponsModule() {
     }
-    return NotFoundModule;
+    return CuponsModule;
 }());
-NotFoundModule = __decorate([
+CuponsModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* NgModule */])({
         imports: [
-            __WEBPACK_IMPORTED_MODULE_3__not_found_routing_module__["a" /* NotFoundRoutingModule */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */],
-            __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__["a" /* TranslateModule */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_common__["k" /* CommonModule */],
+            __WEBPACK_IMPORTED_MODULE_3__cupons_routing_module__["a" /* CuponsRoutingModule */],
+            __WEBPACK_IMPORTED_MODULE_4__shared__["b" /* PageHeaderModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_forms__["b" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_forms__["a" /* ReactiveFormsModule */],
+            __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__["a" /* ToastrModule */].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_8__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_7__shared_shared_module__["a" /* SharedModule */],
+            __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__["a" /* TranslateModule */],
         ],
-        declarations: [__WEBPACK_IMPORTED_MODULE_2__not_found_component__["a" /* NotFoundComponent */]]
+        declarations: [__WEBPACK_IMPORTED_MODULE_2__cupons_component__["a" /* CuponsComponent */]]
     })
-], NotFoundModule);
+], CuponsModule);
 
-//# sourceMappingURL=not-found.module.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/router.animations.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_animations__ = __webpack_require__("../../../animations/@angular/animations.es5.js");
-/* harmony export (immutable) */ __webpack_exports__["a"] = routerTransition;
-/* unused harmony export slideToRight */
-/* unused harmony export slideToLeft */
-/* unused harmony export slideToBottom */
-/* unused harmony export slideToTop */
-
-function routerTransition() {
-    return slideToTop();
-}
-function slideToRight() {
-    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["a" /* trigger */])('routerTransition', [
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["b" /* state */])('void', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({})),
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["b" /* state */])('*', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({})),
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["d" /* transition */])(':enter', [
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateX(-100%)' }),
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["e" /* animate */])('0.5s ease-in-out', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateX(0%)' }))
-        ]),
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["d" /* transition */])(':leave', [
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateX(0%)' }),
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["e" /* animate */])('0.5s ease-in-out', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateX(100%)' }))
-        ])
-    ]);
-}
-function slideToLeft() {
-    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["a" /* trigger */])('routerTransition', [
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["b" /* state */])('void', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({})),
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["b" /* state */])('*', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({})),
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["d" /* transition */])(':enter', [
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateX(100%)' }),
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["e" /* animate */])('0.5s ease-in-out', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateX(0%)' }))
-        ]),
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["d" /* transition */])(':leave', [
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateX(0%)' }),
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["e" /* animate */])('0.5s ease-in-out', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateX(-100%)' }))
-        ])
-    ]);
-}
-function slideToBottom() {
-    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["a" /* trigger */])('routerTransition', [
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["b" /* state */])('void', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({})),
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["b" /* state */])('*', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({})),
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["d" /* transition */])(':enter', [
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateY(-100%)' }),
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["e" /* animate */])('0.5s ease-in-out', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateY(0%)' }))
-        ]),
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["d" /* transition */])(':leave', [
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateY(0%)' }),
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["e" /* animate */])('0.5s ease-in-out', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateY(100%)' }))
-        ])
-    ]);
-}
-function slideToTop() {
-    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["a" /* trigger */])('routerTransition', [
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["b" /* state */])('void', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({})),
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["b" /* state */])('*', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({})),
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["d" /* transition */])(':enter', [
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateY(100%)' }),
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["e" /* animate */])('0.5s ease-in-out', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateY(0%)' }))
-        ]),
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["d" /* transition */])(':leave', [
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateY(0%)' }),
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["e" /* animate */])('0.5s ease-in-out', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({ transform: 'translateY(-100%)' }))
-        ])
-    ]);
-}
-//# sourceMappingURL=router.animations.js.map
+//# sourceMappingURL=cupons.module.js.map
 
 /***/ })
 
