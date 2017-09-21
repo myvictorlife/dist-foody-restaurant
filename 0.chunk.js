@@ -195,7 +195,7 @@ var AdditionalComponent = (function () {
                 if (result.status) {
                     _this.toastr.success(result.message, '');
                     _this.items.push(result.data);
-                    _this.categoryService.refresh(_this.category_id, _this.items);
+                    //this.categoryService.refresh(this.category_id, this.items);
                 }
                 else {
                     _this.toastr.warning('', result.message);

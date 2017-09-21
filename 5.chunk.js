@@ -186,7 +186,14 @@ var ProductComponent = (function () {
         this.options = "1";
         this.item_id = item.id;
         this.category_id = categoryId;
-        this.additional = JSON.stringify(item.options.required);
+        if (!item.options) {
+            item.options = {};
+            item.options.required = [];
+            this.additional = "[]";
+        }
+        else {
+            this.additional = JSON.stringify(item.options.required);
+        }
         this.modalService.open(contentAdditional).result.then(function (result) {
             if (result === 'yes') {
                 _this.categories = _this.categoryService.getAll(true);
@@ -196,7 +203,14 @@ var ProductComponent = (function () {
     };
     ProductComponent.prototype.addOptional = function (contentAdditional, item, categoryId) {
         var _this = this;
-        this.additional = JSON.stringify(item.options.optional);
+        if (!item.options) {
+            item.options = {};
+            item.options.additional = [];
+            this.additional = "[]";
+        }
+        else {
+            this.additional = JSON.stringify(item.options.optional);
+        }
         this.options = "0";
         this.item_id = item.id;
         this.category_id = categoryId;
