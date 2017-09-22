@@ -51,7 +51,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".category {\n  font-size: 20px; }\n\n.margin-button {\n  margin-bottom: 20px; }\n\n.table-responsive {\n  display: table; }\n", ""]);
+exports.push([module.i, ".category {\n  font-size: 20px; }\n\n.margin-button {\n  margin-bottom: 20px; }\n", ""]);
 
 // exports
 
