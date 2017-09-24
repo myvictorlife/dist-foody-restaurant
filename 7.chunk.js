@@ -97,8 +97,8 @@ var OrdersComponent = (function () {
         this.status = {
             pendente: true, emPreparo: false, saiuEntrega: false
         };
-        this.indexStatus = ['', 'pendente', 'emPreparo', 'saiuEntrega', 'entregue'];
-        this.statusName = ['', 'PENDENTE', 'EM PREPARO', 'SAIU PARA ENTREGA', 'ENTREGUE'];
+        this.indexStatus = ['', 'pendente', 'emPreparo', 'saiuEntrega', 'entregue', 'cancelado'];
+        this.statusName = ['', 'PENDENTE', 'EM PREPARO', 'SAIU PARA ENTREGA', 'ENTREGUE', 'CANCELADO'];
         this.orderSelected = {};
         this.bkpOrders = this.ordersService.getAll();
         if (!this.bkpOrders || !this.bkpOrders.length) {
