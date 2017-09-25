@@ -1,4 +1,6 @@
 {
+    "version":"Versão",
+    "app.version":"Versões do Aplicativo",
     "dashboard": "Principal",
     "form.payment":"Tipo de Pagamento",
     "login": "Entrar",
@@ -29,6 +31,7 @@
     "no":"Não",
     "activated":"Ativado",
     "date":"Data",
+    "date_created":"Data de Criação",
     "history":"Historico",
     "change.status":"Mudar",
     "description":"Descrição",
@@ -63,6 +66,7 @@
     "amount":"Quantidade",
     "frete":"Frete",
     "porcentage":"Porcentagem",
+    "geral":"Geral",
     "list.coupons":"Lista de cupons",
     "page.not.found":"404 - Página não encontrada",
     "page.not.exist":"Esta página não existe.",
@@ -76,5 +80,6 @@
     "time.required":"Horario de funcionamento é obrigatória.",
     "example.time":"Exemplo: 10:00 a 23:00  ou  fechado",
     "price.required":"Preço é obrigatório. Apenas valor numérico",
-    "price.placeholder":"Apenas valores numérico"
+    "price.placeholder":"Apenas valores numérico",
+    "version.required":"Versão é obrigatória"
 }
