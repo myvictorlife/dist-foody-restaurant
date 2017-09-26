@@ -26,7 +26,7 @@ var ConfigRoutingModule = (function () {
     return ConfigRoutingModule;
 }());
 ConfigRoutingModule = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* NgModule */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */].forChild(routes)],
         exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */]]
     })
@@ -203,7 +203,7 @@ var ConfigComponent = (function () {
     return ConfigComponent;
 }());
 ConfigComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-config',
         template: __webpack_require__("../../../../../src/app/layout/config/config.component.html"),
         styles: [__webpack_require__("../../../../../src/app/layout/config/config.component.scss")],
@@ -253,9 +253,9 @@ var ConfigModule = (function () {
     return ConfigModule;
 }());
 ConfigModule = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* NgModule */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1__angular_common__["k" /* CommonModule */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
             __WEBPACK_IMPORTED_MODULE_3__config_routing_module__["a" /* ConfigRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_4__shared__["b" /* PageHeaderModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_forms__["b" /* FormsModule */],
