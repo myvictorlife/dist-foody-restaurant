@@ -297,7 +297,7 @@ AppModule = __decorate([
 /***/ "../../../../../src/app/shared/components/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"pos-f-t fixed-top header\">\n    <nav class=\"navbar navbar-inverse bg-inverse navbar-toggleable-md\">\n        <button class=\"navbar-toggler navbar-toggler-right\" (click)=\"toggleSidebar()\">\n            <span class=\"navbar-toggler-icon\"></span>\n        </button>\n        <a class=\"navbar-brand\" href=\"javascript:void(0)\">UaiFoody</a>\n        <div class=\"collapse navbar-collapse\">\n            \n            <ul class=\"navbar-nav ml-auto mt-2 mt-md-0\">\n                \n                <li class=\"nav-item dropdown\" ngbDropdown>\n                    <!-- <a href=\"javascript:void(0)\" class=\"nav-link\" ngbDropdownToggle>\n                        <i class=\"fa fa-language\"></i> {{ 'language' | translate }} <b class=\"caret\"></b>\n                    </a> -->\n                    <div class=\"dropdown-menu dropdown-menu-right\">\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('en')\">English</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('fr')\">French</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('ur')\">Urdu</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('es')\">Spanish</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('pt')\">Portugues</a>\n                    </div>\n                </li>\n                <li class=\"nav-item dropdown\" ngbDropdown>\n                    <a href=\"javascript:void(0)\" class=\"nav-link\" ngbDropdownToggle>\n                        <i class=\"fa fa-user\"></i> {{profile.name}} <b class=\"caret\"></b>\n                    </a>\n                    <div class=\"dropdown-menu dropdown-menu-right\">\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\"><i class=\"fa fa-fw fa-user\"></i> {{ 'profile' | translate }}</a>\n                        <a class=\"dropdown-item\" [routerLink]=\"['/login']\" (click)=\"onLoggedout()\"><i class=\"fa fa-fw fa-power-off\"></i> {{ 'logout' | translate }}</a>\n                    </div>\n                </li>\n            </ul>\n        </div>\n    </nav>\n</div>\n"
+module.exports = "<div class=\"pos-f-t fixed-top header\">\n    <nav class=\"navbar navbar-inverse bg-inverse navbar-toggleable-md\">\n        <button class=\"navbar-toggler navbar-toggler-right\" (click)=\"toggleSidebar()\">\n            <span class=\"navbar-toggler-icon\"></span>\n        </button>\n        <a class=\"navbar-brand\" href=\"javascript:void(0)\">Sacia Fome</a>\n        <div class=\"collapse navbar-collapse\">\n            \n            <ul class=\"navbar-nav ml-auto mt-2 mt-md-0\">\n                \n                <li class=\"nav-item dropdown\" ngbDropdown>\n                    <!-- <a href=\"javascript:void(0)\" class=\"nav-link\" ngbDropdownToggle>\n                        <i class=\"fa fa-language\"></i> {{ 'language' | translate }} <b class=\"caret\"></b>\n                    </a> -->\n                    <div class=\"dropdown-menu dropdown-menu-right\">\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('en')\">English</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('fr')\">French</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('ur')\">Urdu</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('es')\">Spanish</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\" (click)=\"changeLang('pt')\">Portugues</a>\n                    </div>\n                </li>\n                <li class=\"nav-item dropdown\" ngbDropdown>\n                    <a href=\"javascript:void(0)\" class=\"nav-link\" ngbDropdownToggle>\n                        <i class=\"fa fa-user\"></i> {{profile.name}} <b class=\"caret\"></b>\n                    </a>\n                    <div class=\"dropdown-menu dropdown-menu-right\">\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\"><i class=\"fa fa-fw fa-user\"></i> {{ 'profile' | translate }}</a>\n                        <a class=\"dropdown-item\" [routerLink]=\"['/login']\" (click)=\"onLoggedout()\"><i class=\"fa fa-fw fa-power-off\"></i> {{ 'logout' | translate }}</a>\n                    </div>\n                </li>\n            </ul>\n        </div>\n    </nav>\n</div>\n"
 
 /***/ }),
 
@@ -939,7 +939,7 @@ var CategoryService = (function () {
     CategoryService.prototype.getItems = function (find) {
         var _this = this;
         var items = this.itemService.getAll();
-        if (!items || find) {
+        if ((!items || !items.length) || find) {
             this.itemService.populate().subscribe(function (result) {
                 _this.populateWithItems(result.data);
             });
@@ -1029,8 +1029,8 @@ var _a, _b, _c;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CONFIG; });
 let CONFIG = {
-    url: "https://subdominio.uaifoody.info"
-    //url: "http://localhost:4000"
+    //url: "https://subdominio.uaifoody.info"
+    url: "http://localhost:4000"
 }  
 
 /***/ }),
@@ -1043,8 +1043,9 @@ let CONFIG = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CuponService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1060,16 +1061,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CuponService = (function () {
-    function CuponService(http, restaurantService) {
+    function CuponService(http, restaurantService, loginService) {
         this.http = http;
         this.restaurantService = restaurantService;
+        this.loginService = loginService;
         this.cupons = [];
     }
     CuponService.prototype.populate = function () {
         var _this = this;
         var restaurant = this.restaurantService.getAll();
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url + "/coupon/restaurant/" + restaurant.id)
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url + "/coupon/restaurant/" + restaurant.id)
             .map(function (res) {
             _this.cupons = res.json().data;
             return res.json();
@@ -1090,7 +1093,8 @@ var CuponService = (function () {
         cupon.json = JSON.stringify(json);
         cupon.latitude = restaurant.latitude;
         cupon.longitude = restaurant.longitude;
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url + "/coupon", cupon)
+        cupon.createdBy = this.loginService.getUser().email;
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url + "/coupon", cupon)
             .map(function (res) {
             _this.cupons.push(res.json().data);
             return res.json();
@@ -1108,7 +1112,8 @@ var CuponService = (function () {
         cupon.json = JSON.stringify(json);
         cupon.latitude = restaurant.latitude;
         cupon.longitude = restaurant.longitude;
-        return this.http.put(__WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url + "/coupon", cupon)
+        cupon.updatedBy = this.loginService.getUser().email;
+        return this.http.put(__WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url + "/coupon", cupon)
             .map(function (res) {
             for (var i = 0; i < _this.cupons.length; i++) {
                 if (_this.cupons[i].id === cupon.id) {
@@ -1121,7 +1126,7 @@ var CuponService = (function () {
     };
     CuponService.prototype.remove = function (id) {
         var _this = this;
-        return this.http.delete(__WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url + "/coupon/" + id)
+        return this.http.delete(__WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url + "/coupon/" + id)
             .map(function (res) {
             _this.cupons = _this.cupons.filter(function (item) { return item.id !== id; });
             return res.json();
@@ -1132,10 +1137,10 @@ var CuponService = (function () {
 }());
 CuponService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__login_service__["a" /* LoginService */]) === "function" && _c || Object])
 ], CuponService);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=cupon.service.js.map
 
 /***/ }),
@@ -1242,6 +1247,7 @@ var ItemService = (function () {
     };
     ItemService.prototype.register = function (items) {
         var _this = this;
+        items.createdBy = this.loginService.getUser().email;
         return this.http.post(this.url + "/items", items)
             .map(function (res) {
             _this.items.push(res.json().data);
@@ -1251,6 +1257,7 @@ var ItemService = (function () {
     };
     ItemService.prototype.edit = function (items) {
         var _this = this;
+        items.updatedBy = this.loginService.getUser().email;
         return this.http.put(this.url + "/items", items)
             .map(function (res) {
             var item = res.json().data;
@@ -1442,8 +1449,9 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1459,14 +1467,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PaymentService = (function () {
-    function PaymentService(http, restaurantService) {
+    function PaymentService(http, restaurantService, loginService) {
         var _this = this;
         this.http = http;
         this.restaurantService = restaurantService;
+        this.loginService = loginService;
         //url: string = 'https://uaifomemaster.com';
         //url: string = 'http://localhost:3000';
-        this.url = __WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url;
+        this.url = __WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url;
         this.populate().subscribe(function (result) {
             _this.payment = result.data;
         });
@@ -1481,7 +1491,8 @@ var PaymentService = (function () {
     PaymentService.prototype.updatePayment = function (payments) {
         var json = {
             id: this.restaurantService.getRestaurantId(),
-            form_payment: JSON.stringify(payments)
+            form_payment: JSON.stringify(payments),
+            updatedBy: this.loginService.getUser().email
         };
         return this.http.put(this.url + "/restaurant/payment", json)
             .map(function (res) {
@@ -1496,10 +1507,10 @@ var PaymentService = (function () {
 }());
 PaymentService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__login_service__["a" /* LoginService */]) === "function" && _c || Object])
 ], PaymentService);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=payment.service.js.map
 
 /***/ }),
@@ -1551,6 +1562,7 @@ var RestaurantService = (function () {
     };
     RestaurantService.prototype.edit = function (restaurant) {
         var _this = this;
+        restaurant.updatedBy = this.loginService.getUser().email;
         return this.http.put(this.url + "/restaurant", restaurant)
             .map(function (res) {
             if (res.json() && res.json().status && res.json().data) {
@@ -1562,6 +1574,7 @@ var RestaurantService = (function () {
     };
     RestaurantService.prototype.editDeliveryTime = function (restaurant) {
         restaurant.id = this.restaurantId;
+        restaurant.updatedBy = this.loginService.getUser().email;
         return this.http.put(this.url + "/restaurant/deliverytime", restaurant)
             .map(function (res) {
             return res.json();
@@ -1570,7 +1583,7 @@ var RestaurantService = (function () {
     };
     RestaurantService.prototype.editPriceFrete = function (restaurant) {
         restaurant.id = this.restaurantId;
-        console.log(restaurant);
+        restaurant.updatedBy = this.loginService.getUser().email;
         return this.http.put(this.url + "/restaurant/frete", restaurant)
             .map(function (res) {
             return res.json();
@@ -1708,6 +1721,7 @@ var UserService = (function () {
     UserService.prototype.register = function (users) {
         var _this = this;
         users.restaurants_id = this.profile.restaurants_id;
+        users.createdBy = this.loginService.getUser().email;
         return this.http.post(this.url + "/users-restaurant", users)
             .map(function (res) {
             _this.users.push(res.json().data);
@@ -1717,6 +1731,7 @@ var UserService = (function () {
     };
     UserService.prototype.edit = function (users) {
         var _this = this;
+        users.updatedBy = this.loginService.getUser().email;
         return this.http.put(this.url + "/users-restaurant", users)
             .map(function (res) {
             for (var i = 0; i < _this.users.length; i++) {
@@ -1729,7 +1744,6 @@ var UserService = (function () {
             .catch(function (error) { return error.json(); });
     };
     UserService.prototype.existEmail = function (email) {
-        console.log(email);
         return this.http.get(this.url + "/users-restaurant/email/" + email)
             .map(function (res) {
             return res.json();
