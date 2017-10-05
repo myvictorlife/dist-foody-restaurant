@@ -21,7 +21,7 @@ var routes = [
     {
         path: '', component: __WEBPACK_IMPORTED_MODULE_2__layout_component__["a" /* LayoutComponent */],
         children: [
-            { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+            { path: 'report', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'orders', loadChildren: './orders/orders.module#OrdersModule' },
             { path: 'employee', loadChildren: './employee/employee.module#EmployeeModule' },
             { path: 'config', loadChildren: './config/config.module#ConfigModule' },
@@ -97,7 +97,7 @@ var LayoutComponent = (function () {
     }
     LayoutComponent.prototype.ngOnInit = function () {
         if (this.router.url === '/') {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/orders']);
         }
     };
     return LayoutComponent;

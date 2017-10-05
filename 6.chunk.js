@@ -39,7 +39,7 @@ PaymentRoutingModule = __decorate([
 /***/ "../../../../../src/app/layout/payment/payment.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div [@routerTransition]>\n    <app-page-header [heading]=\"'Tipos de Pagamento'\" [icon]=\"'fa-edit'\"></app-page-header>\n</div>\n<form [formGroup]=\"updateDetailsForm\" *ngIf=\"payments && payments.length\">\n    <div class=\"row\" formArrayName=\"allPayments\">\n        \n            <div class=\"card mb-3\">\n                <div class=\"card-block table-responsive\">\n                    <table class=\"table table-hover table-bordered\">\n                        <thead>\n                        <tr>\n                            <th>#</th>\n                            <th>Tipo</th>\n                            <th>Cartao</th>\n                            <th>Online</th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                            <tr *ngFor=\"let payment of payments; let i = index\">\n                                <td formGroupName=\"{{i}}\">\n                                    <input type=\"checkbox\" formControlName=\"{{payment.id}}\">\n                                </td>\n                                <td>{{payment.name}}</td>\n                                <td>{{payment.card}}</td>\n                                <td>{{payment.online == 0 ? 'SIM' : 'NÂO'}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        \n    </div>\n</form>\n<button *ngIf=\"payments && payments.length\" type=\"submit\" class=\"btn btn-primary\" (click)=\"updatePayment()\" >{{ 'save' | translate }}</button>\n\n\n<!-- <pre>{{updateDetailsForm.value | json}}</pre> -->"
+module.exports = "<div [@routerTransition]>\n    <app-page-header [heading]=\"'Tipos de Pagamento'\" [icon]=\"'fa-edit'\"></app-page-header>\n</div>\n<form [formGroup]=\"updateDetailsForm\" *ngIf=\"payments && payments.length\">\n    <div class=\"row\" formArrayName=\"allPayments\">\n        \n            <div class=\"card mb-3\">\n                <div class=\"card-block table-responsive\">\n                    <table class=\"table table-hover table-bordered\">\n                        <thead>\n                        <tr>\n                            <th>#</th>\n                            <th>Tipo</th>\n                            <th>Cartao</th>\n                            <th>Online</th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                            <tr *ngFor=\"let payment of payments; let i = index\">\n                                <td formGroupName=\"{{i}}\">\n                                    <input type=\"checkbox\" formControlName=\"{{payment.id}}\">\n                                </td>\n                                <td>{{payment.name}}</td>\n                                <td>{{payment.card}}</td>\n                                <td>{{payment.online == 0 ? 'SIM' : 'NÂO'}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        \n    </div>\n</form>\n\n<button *ngIf=\"payments && payments.length\" type=\"submit\" class=\"btn btn-primary\" (click)=\"updatePayment()\" >{{ 'save' | translate }}</button>\n\n\n<!-- <pre>{{updateDetailsForm.value | json}}</pre> -->"
 
 /***/ }),
 
@@ -130,12 +130,15 @@ var PaymentComponent = (function () {
         }
         return false;
     };
+    // Autaliza os tipos de pagamento que o restaurante aceita
     PaymentComponent.prototype.updatePayment = function () {
         var _this = this;
         var allPayments = this.updateDetailsForm.value.allPayments;
         for (var i = 0; i < allPayments.length; i++) {
             var pay = allPayments[i];
-            this.payments[i].status = pay[i + 1];
+            // Value é o id inserido no formArrayName (fg.addControl)
+            var value = this.payments[i].id;
+            this.payments[i].status = pay[value] === null ? false : pay[value];
         }
         this.paymentService.updatePayment(this.payments).subscribe(function (result) {
             if (result.status) {

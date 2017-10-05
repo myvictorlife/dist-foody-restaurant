@@ -77,7 +77,7 @@ function slideToTop() {
 /***/ "../../../../../src/app/shared/components/additional/additional.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formularioAdditional\">\n\n    <fieldset class=\"form-group\">\n        <label>Adicionais*</label>\n        <input type=\"text\" class=\"form-control\"\n            formControlName=\"name\"\n            id=\"name\" placeholder=\"adicional\" >\n    </fieldset>\n\n    <fieldset class=\"form-group\">\n        <label>Preço*</label>\n        <input type=\"price\" class=\"form-control\"\n            formControlName=\"price\"\n            id=\"l\" placeholder=\"0.00\" >\n    </fieldset>\n\n    <div class=\"text-center margin-button\">\n        <button type=\"submit\" class=\"btn btn-default\" (click)=\"reset()\" >Limpar</button>\n        <button type=\"submit\" [disabled]=\"!formularioAdditional.valid\" class=\"btn btn-primary\" (click)=\"saveOrEdit()\" >Salvar</button>\n    </div>\n    \n</form>\n\n<table class=\"table\">\n  <thead>\n    <tr>\n      <th>Adicional</th>\n      <th>Preço</th>\n      <th>Opção</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let item of getItems()\">\n      <td (click)=\"populate(item)\">{{ item.name }}</td>\n      <td (click)=\"populate(item)\">{{ item.price }}</td>\n      <td (click)=\"removeAdditionalItem(content, item)\"><button type=\"button\" class=\"btn btn-outline-primary\">Remover</button></td>\n    </tr>\n  </tbody>\n</table>\n\n<ng-template #content let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Deseja remover item adicional?</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <p>{{itemName}}</p>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('no')\">Não</button>\n    <button type=\"button\" class=\"btn btn-warning\" (click)=\"c('yes')\">Sim</button>\n  </div>\n</ng-template>\n"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formularioAdditional\">\n\n    <fieldset class=\"form-group\">\n        <label>Adicionais*</label>\n        <input type=\"text\" class=\"form-control\"\n            formControlName=\"name\"\n            id=\"name\" placeholder=\"adicional\" >\n    </fieldset>\n\n    <fieldset class=\"form-group\">\n        <label>Preço*</label>\n        <input type=\"price\" class=\"form-control\"\n            formControlName=\"price\"\n            id=\"l\" placeholder=\"0.00\" >\n    </fieldset>\n\n    <div class=\"text-center margin-button\">\n        <button type=\"submit\" class=\"btn btn-default\" (click)=\"reset()\" >Novo</button>\n        <button type=\"submit\" [disabled]=\"!formularioAdditional.valid\" class=\"btn btn-primary\" (click)=\"saveOrEdit()\" >Salvar</button>\n    </div>\n    \n</form>\n\n<table class=\"table\">\n  <thead>\n    <tr>\n      <th>Adicional</th>\n      <th>Preço</th>\n      <th>Opção</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr style=\"cursor:pointer\" *ngFor=\"let item of getItems()\">\n      <td (click)=\"populate(item)\">{{ item.name }}</td>\n      <td (click)=\"populate(item)\">{{ item.price }}</td>\n      <td (click)=\"removeAdditionalItem(content, item)\"><button type=\"button\" class=\"btn btn-outline-primary\">Remover</button></td>\n    </tr>\n  </tbody>\n</table>\n\n<ng-template #content let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Deseja remover item adicional?</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <p>{{itemName}}</p>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('no')\">Não</button>\n    <button type=\"button\" class=\"btn btn-warning\" (click)=\"c('yes')\">Sim</button>\n  </div>\n</ng-template>\n"
 
 /***/ }),
 
@@ -136,14 +136,13 @@ var AdditionalComponent = (function () {
     AdditionalComponent.prototype.ngOnInit = function () {
         this.formularioAdditional = this.formBuilder.group({
             id: [null, []],
-            name: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].minLength(3)]],
-            price: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].minLength(3)]],
+            name: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
+            price: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
             item_id: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
             required: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
         });
         this.formularioAdditional.controls['item_id'].setValue(this.item_id);
         this.formularioAdditional.controls['required'].setValue(this.options);
-        console.log(this.formularioAdditional.value);
     };
     AdditionalComponent.prototype.getItems = function () {
         if (typeof this.items === 'string') {
@@ -177,6 +176,8 @@ var AdditionalComponent = (function () {
     };
     AdditionalComponent.prototype.reset = function () {
         this.formularioAdditional.reset();
+        this.formularioAdditional.controls['item_id'].setValue(this.item_id);
+        this.formularioAdditional.controls['required'].setValue(this.options);
     };
     AdditionalComponent.prototype.populate = function (item) {
         this.formularioAdditional.setValue({
@@ -195,7 +196,7 @@ var AdditionalComponent = (function () {
                 if (result.status) {
                     _this.toastr.success(result.message, '');
                     _this.items.push(result.data);
-                    //this.categoryService.refresh(this.category_id, this.items);
+                    _this.reset();
                 }
                 else {
                     _this.toastr.warning('', result.message);
@@ -211,8 +212,8 @@ var AdditionalComponent = (function () {
                             _this.items[i] = item;
                         }
                     }
-                    _this.categoryService.refresh(_this.category_id, _this.items);
                     _this.toastr.success(result.message, '');
+                    _this.reset();
                 }
                 else {
                     _this.toastr.warning('', result.message);

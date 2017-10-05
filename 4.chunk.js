@@ -105,7 +105,7 @@ var LoginComponent = (function () {
                     var day = 1000 * 60 * 60 * 24;
                     user.expires = now + day;
                     localStorage.setItem('isUserLogged', JSON.stringify(user));
-                    _this.router.navigate(['/dashboard']);
+                    _this.router.navigate(['/orders']);
                 }
                 else {
                     _this.toastr.warning('', result.message);
