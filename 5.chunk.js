@@ -1,13 +1,13 @@
 webpackJsonp([5],{
 
-/***/ "../../../../../src/app/login/login-routing.module.ts":
+/***/ "../../../../../src/app/layout/product/product-routing.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_component__ = __webpack_require__("../../../../../src/app/login/login.component.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginRoutingModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__product_component__ = __webpack_require__("../../../../../src/app/layout/product/product.component.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductRoutingModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,32 +18,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var routes = [
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_2__login_component__["a" /* LoginComponent */] }
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_2__product_component__["a" /* ProductComponent */] }
 ];
-var LoginRoutingModule = (function () {
-    function LoginRoutingModule() {
+var ProductRoutingModule = (function () {
+    function ProductRoutingModule() {
     }
-    return LoginRoutingModule;
+    return ProductRoutingModule;
 }());
-LoginRoutingModule = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* NgModule */])({
+ProductRoutingModule = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */].forChild(routes)],
         exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */]]
     })
-], LoginRoutingModule);
+], ProductRoutingModule);
 
-//# sourceMappingURL=login-routing.module.js.map
+//# sourceMappingURL=product-routing.module.js.map
 
 /***/ }),
 
-/***/ "../../../../../src/app/login/login.component.html":
+/***/ "../../../../../src/app/layout/product/product.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-page\" [@routerTransition]>\n    <div class=\"row\">\n        <div class=\"col-md-4 push-md-4\">\n            <img src=\"assets/images/logo.png\" width=\"150px\" class=\"user-avatar\" />\n            <h1>UaiFoody</h1>\n            <h4>Master</h4>\n            <form role=\"form\">\n                <div class=\"form-content\">\n                    <div class=\"form-group\">\n                        <input type=\"text\" [(ngModel)]=\"profile.email\"\n                        name=\"email\"\n                        class=\"form-control input-underline input-lg\" id=\"\" placeholder=\"Email\">\n                    </div>\n\n                    <div class=\"form-group\">\n                        <input type=\"password\" \n                        [(ngModel)]=\"profile.password\"\n                        name=\"password\"\n                        class=\"form-control input-underline input-lg\" id=\"\" placeholder=\"Senha\">\n                    </div>\n                </div>\n                <a class=\"btn rounded-btn\" (click)=\"onLoggedin()\"> Log in </a>\n            </form>\n        </div>\n    </div>\n</div>"
+module.exports = "<div [@routerTransition]>\n    <app-page-header [heading]=\"'Pedidos'\" [icon]=\"'fa-edit'\"></app-page-header>\n</div>  \n  <!--list of categories-->\n  <div *ngFor=\"let cat of categories\" >\n    \n    <ol class=\"breadcrumb\">\n\t  <li class=\"breadcrumb-item category\">{{ cat.name }}</li>\n\t</ol>\t\n\t\n\t<div class=\"table-responsive\">\n    <table class=\"table \" *ngIf=\"cat.items && cat.items.length\">\n\t  <thead>\n\t    <tr>\n\t      <th>{{ 'img' | translate }}</th>\n\t      <th>{{ 'product' | translate }}</th>\n\t      <th>{{ 'ingredients' | translate }}</th>\n\t      <th>{{ 'price' | translate }}</th>\n        <th>{{ 'required' | translate }}</th>\n        <th>{{ 'additional' | translate }}</th>\n        <th>{{ 'remove' | translate }}</th>\n        <th>{{ 'duplicate' | translate }}</th>\n\t    </tr>\n\t  </thead>\n\t  <tbody>\n\t    <tr *ngFor=\"let item of cat.items\">\n\t      <td *ngIf=\"item.thumb\" (click)=\"editItem(content, cat, item)\"><img src=\"{{ item.thumb }}\" alt=\"\" width=\"40\" height=\"30\"></td>\n        <td *ngIf=\"!item.thumb\" (click)=\"editItem(content, cat, item)\"><img src=\"assets/images/250x250.png\" alt=\"\" width=\"40\" height=\"30\"></td>\n\t      <td (click)=\"editItem(content, cat, item)\">{{ item.name }}</td>\n\t      <td (click)=\"editItem(content, cat, item)\">{{ item.ingredients }}</td>\n\t      <td (click)=\"editItem(content, cat, item)\">R$ {{ item.price }}</td>\n        <td (click)=\"addRequired(contentAdditional, item, cat.id)\" ><button type=\"button\" class=\"btn btn-outline-primary\">{{ 'required' | translate }}</button></td>\n        <td (click)=\"addOptional(contentAdditional, item, cat.id)\"><button type=\"button\" class=\"btn btn-outline-primary\">{{ 'additional' | translate }}</button></td>\n        <td (click)=\"removeItem(contentRemove, item, cat.id)\"><button type=\"button\" class=\"btn btn-outline-danger\">{{ 'remove' | translate }}</button></td>\n        <td (click)=\"duplicateItem(item)\"><button type=\"button\" class=\"btn btn-outline-success\">{{ 'duplicate' | translate }}</button></td>\n\t    </tr>\n\t  </tbody>\n\t</table>\n\t</div>\n\t<button type=\"button\" class=\"btn btn-outline-info btn-lg btn-block margin-button\" (click)=\"add(content, cat)\">\n\t\tAdicionar  {{cat.name}}\n\t</button>\n  </div>\n\n  <ng-template #content let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{title}}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n\n  \t<form class=\"form-horizontal\" [formGroup]=\"formulario\">\n\n  \t\t\t<div class=\"row\">\n  \t\t\t\t<div class=\"col-lg-3\">\n  \t\t\t\t</div>\n\t\t    \t<div class=\"col-lg-5\">\n\t\t    \t\t<!-- <img src=\"assets/images/r3.jpg\" class=\"rounded float-left\" width=\"350\" height=\"200\" > -->\n\t\t            <img *ngIf=\"!formulario.get('thumb').value\" src=\"assets/images/250x250.png  \" class=\"rounded float-left\" width=\"200\" height=\"150\" >\n\t\t            <img *ngIf=\"formulario.get('thumb').value\" [src]=\"formulario.get('thumb').value\" class=\"rounded float-left\" width=\"150\" height=\"150\" >\n                <div style=\"cursor: pointer;\" *ngIf=\"formulario.get('thumb').value\" (click)=\"removeImg()\">Remover imagem</div>\n\n\t\t    \t\t<label class=\"custom-file size-input-file\" >\n\t\t\t\t\t  <input type=\"file\" id=\"file\" class=\"custom-file-input\" accept=\"image/*\" (change)=\"changeListener($event, 'imgFile')\"  >\n\t\t\t\t\t  <span class=\"custom-file-control\"></span>\n\t\t\t\t\t</label>\n\t\t    \t</div> \n\t\t    </div>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'name' | translate }}</label>\n                <input type=\"text\" class=\"form-control\"\n                    formControlName=\"name\"\n                    id=\"name\" placeholder=\"{{ 'name' | translate }}\" >\n\n                <app-campo-control-erro\n                  [mostrarErro]=\"verificaValidTouched('name')\"\n                  msgErro=\"{{ 'name.required' | translate }}\">\n                </app-campo-control-erro>\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'ingredients' | translate }}</label>\n                <input type=\"text\" class=\"form-control\"\n                    formControlName=\"ingredients\"\n                    id=\"l\" placeholder=\"{{ 'ingredients' | translate }}\" >\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'price' | translate }}</label>\n                <input type=\"price\" class=\"form-control\"\n                    formControlName=\"price\"\n                    id=\"l\" placeholder=\"{{ 'price' | translate }}\" >\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'amount' | translate }}</label>\n                <input type=\"price\" class=\"form-control\"\n                    formControlName=\"amount\"\n                    id=\"l\" placeholder=\"0\" >\n            </fieldset>\n\n            <fieldset class=\"form-group text-center\">\n                <label>Ativar*</label>\n                <div class=\"radio\">\n                    <label>\n                        <input type=\"radio\" formControlName=\"disponible\" id=\"optionsRadios1\" value=\"1\" checked=\"\"> Sim\n                    </label> &nbsp;&nbsp;&nbsp;\n                    <label>\n                        <input type=\"radio\" formControlName=\"disponible\" id=\"optionsRadios2\" value=\"0\"> Não\n                    </label>\n                </div>\n            </fieldset>\n        \n    </form>\n    \n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-danger\" (click)=\"c('no')\">{{ 'cancel' | translate }}</button>\n    <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"c('yes')\">{{ 'save' | translate }}</button>\n  </div>\n</ng-template>\n\n\n <ng-template #contentAdditional let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{ 'additional' | translate }}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n\n    <app-additional\n      item_id={{item_id}}\n      options={{options}}\n      category_id={{category_id}}\n      items=\"{{additional}}\">\n    </app-additional>\n    \n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"c('yes')\">{{ 'closed' | translate }}</button>\n  </div>\n</ng-template>\n\n\n<ng-template #contentRemove let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{ 'product.remove' | translate }}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <p>{{itemSelected.name}}</p>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('no')\">{{ 'no' | translate }}</button>\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('yes')\">{{ 'yes' | translate }}</button>\n  </div>\n</ng-template>"
 
 /***/ }),
 
-/***/ "../../../../../src/app/login/login.component.scss":
+/***/ "../../../../../src/app/layout/product/product.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -51,7 +51,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ":host {\n  display: block; }\n\n.login-page {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  overflow: auto;\n  background: #222;\n  text-align: center;\n  color: #fff;\n  padding: 3em; }\n  .login-page .col-lg-4 {\n    padding: 0; }\n  .login-page .input-lg {\n    height: 46px;\n    padding: 10px 16px;\n    font-size: 18px;\n    line-height: 1.3333333;\n    border-radius: 0; }\n  .login-page .input-underline {\n    background: 0 0;\n    border: none;\n    box-shadow: none;\n    border-bottom: 2px solid rgba(255, 255, 255, 0.5);\n    color: #FFF;\n    border-radius: 0; }\n  .login-page .input-underline:focus {\n    border-bottom: 2px solid #fff;\n    box-shadow: none; }\n  .login-page .rounded-btn {\n    border-radius: 50px;\n    color: rgba(255, 255, 255, 0.8);\n    background: #222;\n    border: 2px solid rgba(255, 255, 255, 0.8);\n    font-size: 18px;\n    line-height: 40px;\n    padding: 0 25px; }\n  .login-page .rounded-btn:hover, .login-page .rounded-btn:focus, .login-page .rounded-btn:active, .login-page .rounded-btn:visited {\n    color: white;\n    border: 2px solid white;\n    outline: none; }\n  .login-page h1 {\n    font-weight: 300;\n    margin-top: 20px;\n    margin-bottom: 10px;\n    font-size: 36px; }\n    .login-page h1 small {\n      color: rgba(255, 255, 255, 0.7); }\n  .login-page .form-group {\n    padding: 8px 0; }\n    .login-page .form-group input::-webkit-input-placeholder {\n      color: rgba(255, 255, 255, 0.6) !important; }\n    .login-page .form-group input:-moz-placeholder {\n      /* Firefox 18- */\n      color: rgba(255, 255, 255, 0.6) !important; }\n    .login-page .form-group input::-moz-placeholder {\n      /* Firefox 19+ */\n      color: rgba(255, 255, 255, 0.6) !important; }\n    .login-page .form-group input:-ms-input-placeholder {\n      color: rgba(255, 255, 255, 0.6) !important; }\n  .login-page .form-content {\n    padding: 40px 0; }\n  .login-page .user-avatar {\n    border-radius: 50%;\n    border: 2px solid #FFF; }\n", ""]);
+exports.push([module.i, ".category {\n  font-size: 20px; }\n\n.margin-button {\n  margin-bottom: 20px; }\n", ""]);
 
 // exports
 
@@ -61,16 +61,20 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../../src/app/login/login.component.ts":
+/***/ "../../../../../src/app/layout/product/product.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__router_animations__ = __webpack_require__("../../../../../src/app/router.animations.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/toastr.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__router_animations__ = __webpack_require__("../../../../../src/app/router.animations.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_category_service__ = __webpack_require__("../../../../../src/app/shared/services/category.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_upload_service__ = __webpack_require__("../../../../../src/app/shared/services/upload.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services_restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_services_item_service__ = __webpack_require__("../../../../../src/app/shared/services/item.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -85,66 +89,263 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LoginComponent = (function () {
-    function LoginComponent(router, loginService, toastr) {
-        this.router = router;
-        this.loginService = loginService;
+
+
+
+
+var ProductComponent = (function () {
+    function ProductComponent(formBuilder, toastr, modalService, uploadService, restaurantService, itemService, categoryService) {
+        this.formBuilder = formBuilder;
         this.toastr = toastr;
-        this.profile = {};
+        this.modalService = modalService;
+        this.uploadService = uploadService;
+        this.restaurantService = restaurantService;
+        this.itemService = itemService;
+        this.categoryService = categoryService;
+        this.title = '';
+        this.categories = [];
     }
-    LoginComponent.prototype.ngOnInit = function () {
-    };
-    LoginComponent.prototype.onLoggedin = function () {
+    ProductComponent.prototype.ngOnInit = function () {
         var _this = this;
-        if (this.profile.email && this.profile.password) {
-            this.loginService.authenticate(this.profile).subscribe(function (result) {
-                if (result.status) {
-                    _this.toastr.success('Seja bem vindo, ' + result.data.name + '!', 'Logado com sucesso');
-                    var user = result.data;
-                    var now = (new Date()).getTime();
-                    var day = 1000 * 60 * 60 * 24;
-                    user.expires = now + day;
-                    localStorage.setItem('isUserLogged', JSON.stringify(user));
-                    _this.router.navigate(['/dashboard']);
-                }
-                else {
-                    _this.toastr.warning('', result.message);
-                }
+        this.formulario = this.formBuilder.group({
+            id: [null, []],
+            thumb: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].minLength(3)]],
+            name: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].minLength(3)]],
+            ingredients: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required]],
+            price: [null, []],
+            restaurants_id: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required]],
+            category_id: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required]],
+            amount: [null],
+            disponible: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required]],
+        });
+        this.categories = this.categoryService.getAll(false);
+        if (!this.categories || !this.categories.length) {
+            this.categoryService.getCategories().subscribe(function (result) {
+                _this.categoryService.getItems(false);
+                _this.categories = _this.categoryService.getAll(false);
             });
         }
-        else {
-            this.toastr.warning('Os campos devem ser preenchidos', 'Alerta');
-        }
     };
-    return LoginComponent;
+    ProductComponent.prototype.add = function (content, category) {
+        var _this = this;
+        this.title = 'Adicionar ' + category.name;
+        var values = {
+            id: null,
+            thumb: null,
+            name: null,
+            ingredients: null,
+            price: '0.00',
+            restaurants_id: this.restaurantService.getRestaurantId(),
+            category_id: category.id,
+            amount: 0,
+            disponible: "1"
+        };
+        this.populate(values);
+        this.modalService.open(content).result.then(function (result) {
+            if (result === 'yes') {
+                _this.itemService.register(_this.formulario.value).subscribe(function (result) {
+                    if (result.status) {
+                        _this.categoryService.addItem(result.data);
+                        _this.categories = _this.categoryService.getAll(false);
+                        _this.toastr.success(result.message, '');
+                    }
+                    else {
+                        _this.toastr.warning('', result.message);
+                    }
+                });
+            }
+        }, function (reason) {
+        });
+    };
+    ProductComponent.prototype.editItem = function (content, category, item) {
+        var _this = this;
+        this.title = 'Editar ' + category.name;
+        var values = {
+            id: item.id,
+            thumb: item.thumb,
+            name: item.name,
+            ingredients: item.ingredients,
+            price: item.price,
+            restaurants_id: this.restaurantService.getRestaurantId(),
+            category_id: category.id,
+            amount: item.amount,
+            disponible: item.disponible == 1 ? "1" : "0"
+        };
+        this.populate(values);
+        this.modalService.open(content).result.then(function (result) {
+            if (result === 'yes') {
+                _this.itemService.edit(_this.formulario.value).subscribe(function (result) {
+                    if (result.status) {
+                        _this.categories = _this.categoryService.getAll(false);
+                        _this.toastr.success(result.message, '');
+                    }
+                    else {
+                        _this.toastr.warning('', result.message);
+                    }
+                });
+            }
+        }, function (reason) {
+        });
+    };
+    ProductComponent.prototype.addRequired = function (contentAdditional, item, categoryId) {
+        var _this = this;
+        this.options = "1";
+        this.item_id = item.id;
+        this.category_id = categoryId;
+        if (!item.options) {
+            item.options = {};
+            item.options.required = [];
+            this.additional = "[]";
+        }
+        else {
+            this.additional = JSON.stringify(item.options.required);
+        }
+        this.modalService.open(contentAdditional).result.then(function (result) {
+            if (result === 'yes') {
+                _this.categories = _this.categoryService.getAll(true);
+            }
+        }, function (reason) {
+        });
+    };
+    ProductComponent.prototype.addOptional = function (contentAdditional, item, categoryId) {
+        var _this = this;
+        if (!item.options) {
+            item.options = {};
+            item.options.additional = [];
+            this.additional = "[]";
+        }
+        else {
+            this.additional = JSON.stringify(item.options.optional);
+        }
+        this.options = "0";
+        this.item_id = item.id;
+        this.category_id = categoryId;
+        this.modalService.open(contentAdditional).result.then(function (result) {
+            if (result === 'yes') {
+                _this.categories = _this.categoryService.getAll(true);
+            }
+        }, function (reason) {
+        });
+    };
+    ProductComponent.prototype.removeImg = function () {
+        this.formulario.controls['thumb'].setValue(null);
+    };
+    ProductComponent.prototype.verificaValidTouched = function (campo) {
+        return (!this.formulario.get(campo).valid &&
+            (this.formulario.get(campo).touched || this.formulario.get(campo).dirty));
+    };
+    ProductComponent.prototype.changeListener = function ($event) {
+        this.readThis($event.target);
+    };
+    ProductComponent.prototype.readThis = function (inputValue) {
+        var _this = this;
+        var file = inputValue.files[0];
+        var myReader = new FileReader();
+        myReader.onloadend = function (e) {
+            var base64 = myReader.result.substring(myReader.result.indexOf(",") + 1, myReader.result.length);
+            var jsonImage = {
+                filename: file.name,
+                type: file.type,
+                size: file.size,
+                base64: base64
+            };
+            _this.uploadService.getUrl(jsonImage).subscribe(function (result) {
+                _this.formulario.controls['thumb'].setValue(result.url);
+            });
+        };
+        myReader.readAsDataURL(file);
+    };
+    ProductComponent.prototype.populate = function (value) {
+        this.formulario.setValue({
+            id: value.id,
+            thumb: value.thumb,
+            name: value.name,
+            ingredients: value.ingredients,
+            price: value.price,
+            restaurants_id: value.restaurants_id,
+            category_id: value.category_id,
+            amount: value.amount,
+            disponible: value.disponible
+        });
+    };
+    ProductComponent.prototype.removeItem = function (content, item) {
+        var _this = this;
+        this.itemSelected = item;
+        this.modalService.open(content).result.then(function (result) {
+            if (result === 'yes') {
+                _this.itemService.remove(item.id)
+                    .subscribe(function (result) {
+                    if (result.status) {
+                        _this.toastr.success(result.message, '');
+                        _this.categories = _this.categoryService.getAll(true);
+                    }
+                    else {
+                        _this.toastr.warning('', result.message);
+                    }
+                });
+            }
+        }, function (reason) {
+        });
+    };
+    ProductComponent.prototype.duplicateItem = function (item) {
+        var _this = this;
+        var itemDuplicate = Object.assign({}, item);
+        itemDuplicate.options = undefined;
+        itemDuplicate.additionals = [];
+        if (item.options && item.options.optional && item.options.optional.length) {
+            for (var i = 0; i < item.options.optional.length; i++) {
+                itemDuplicate.additionals.push(item.options.optional[i]);
+            }
+        }
+        if (item.options && item.options.required && item.options.required.length) {
+            for (var i = 0; i < item.options.required.length; i++) {
+                itemDuplicate.additionals.push(item.options.required[i]);
+            }
+        }
+        this.itemService.duplicate(itemDuplicate)
+            .subscribe(function (result) {
+            if (result.status) {
+                _this.toastr.success(result.message, '');
+                _this.categories = _this.categoryService.getAll(true);
+            }
+            else {
+                _this.toastr.warning('', result.message);
+            }
+        });
+    };
+    return ProductComponent;
 }());
-LoginComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
-        selector: 'app-login',
-        template: __webpack_require__("../../../../../src/app/login/login.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/login/login.component.scss")],
-        animations: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__router_animations__["a" /* routerTransition */])()]
+ProductComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-product',
+        template: __webpack_require__("../../../../../src/app/layout/product/product.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/layout/product/product.component.scss")],
+        animations: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__router_animations__["a" /* routerTransition */])()]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_login_service__["a" /* LoginService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__["b" /* ToastrService */]) === "function" && _c || Object])
-], LoginComponent);
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* FormBuilder */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__["b" /* ToastrService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__["c" /* NgbModal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__["c" /* NgbModal */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_upload_service__["a" /* UploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_upload_service__["a" /* UploadService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_restaurant_service__["a" /* RestaurantService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_8__shared_services_item_service__["a" /* ItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_services_item_service__["a" /* ItemService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_category_service__["a" /* CategoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_category_service__["a" /* CategoryService */]) === "function" && _g || Object])
+], ProductComponent);
 
-var _a, _b, _c;
-//# sourceMappingURL=login.component.js.map
+var _a, _b, _c, _d, _e, _f, _g;
+//# sourceMappingURL=product.component.js.map
 
 /***/ }),
 
-/***/ "../../../../../src/app/login/login.module.ts":
+/***/ "../../../../../src/app/layout/product/product.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_routing_module__ = __webpack_require__("../../../../../src/app/login/login-routing.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_component__ = __webpack_require__("../../../../../src/app/login/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/toastr.es5.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginModule", function() { return LoginModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__product_component__ = __webpack_require__("../../../../../src/app/layout/product/product.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__product_routing_module__ = __webpack_require__("../../../../../src/app/layout/product/product-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_shared_module__ = __webpack_require__("../../../../../src/app/shared/shared.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__ = __webpack_require__("../../../../@ngx-translate/core/index.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductModule", function() { return ProductModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -157,24 +358,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var LoginModule = (function () {
-    function LoginModule() {
-    }
-    return LoginModule;
-}());
-LoginModule = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["b" /* NgModule */])({
-        imports: [
-            __WEBPACK_IMPORTED_MODULE_0__angular_common__["k" /* CommonModule */],
-            __WEBPACK_IMPORTED_MODULE_2__login_routing_module__["a" /* LoginRoutingModule */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__["a" /* ToastrModule */].forRoot(),
-        ],
-        declarations: [__WEBPACK_IMPORTED_MODULE_3__login_component__["a" /* LoginComponent */]]
-    })
-], LoginModule);
 
-//# sourceMappingURL=login.module.js.map
+
+
+
+var ProductModule = (function () {
+    function ProductModule() {
+    }
+    return ProductModule;
+}());
+ProductModule = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
+            __WEBPACK_IMPORTED_MODULE_3__product_routing_module__["a" /* ProductRoutingModule */],
+            __WEBPACK_IMPORTED_MODULE_4__shared__["b" /* PageHeaderModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_forms__["b" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_forms__["a" /* ReactiveFormsModule */],
+            __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__["a" /* ToastrModule */].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_8__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_7__shared_shared_module__["a" /* SharedModule */],
+            __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__["a" /* TranslateModule */],
+        ],
+        declarations: [__WEBPACK_IMPORTED_MODULE_2__product_component__["a" /* ProductComponent */]]
+    })
+], ProductModule);
+
+//# sourceMappingURL=product.module.js.map
 
 /***/ })
 
