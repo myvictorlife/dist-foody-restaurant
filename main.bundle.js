@@ -1280,6 +1280,15 @@ var ItemService = (function () {
         })
             .catch(function (error) { return error.json(); });
     };
+    ItemService.prototype.duplicate = function (itemDuplicate) {
+        var _this = this;
+        return this.http.post(this.url + "/items/additional", itemDuplicate)
+            .map(function (res) {
+            _this.items.push(res.json().data);
+            return res.json();
+        })
+            .catch(function (error) { return error.json(); });
+    };
     return ItemService;
 }());
 ItemService = __decorate([
@@ -1573,19 +1582,26 @@ var RestaurantService = (function () {
             .catch(function (error) { return error.json(); });
     };
     RestaurantService.prototype.editDeliveryTime = function (restaurant) {
+        var _this = this;
         restaurant.id = this.restaurantId;
         restaurant.updatedBy = this.loginService.getUser().email;
         return this.http.put(this.url + "/restaurant/deliverytime", restaurant)
             .map(function (res) {
+            _this.restaurant.delivery_max = restaurant.delivery_max;
+            _this.restaurant.delivery_min = restaurant.delivery_min;
             return res.json();
         })
             .catch(function (error) { return error.json(); });
     };
     RestaurantService.prototype.editPriceFrete = function (restaurant) {
+        var _this = this;
         restaurant.id = this.restaurantId;
         restaurant.updatedBy = this.loginService.getUser().email;
         return this.http.put(this.url + "/restaurant/frete", restaurant)
             .map(function (res) {
+            _this.restaurant.frete = restaurant.frete;
+            _this.restaurant.km_normal = restaurant.km_normal;
+            _this.restaurant.frete_km = restaurant.frete_km;
             return res.json();
         })
             .catch(function (error) { return error.json(); });
