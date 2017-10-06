@@ -21,14 +21,12 @@ var routes = [
     {
         path: '', component: __WEBPACK_IMPORTED_MODULE_2__layout_component__["a" /* LayoutComponent */],
         children: [
-            { path: 'report', loadChildren: './dashboard/dashboard.module#DashboardModule' },
-            { path: 'orders', loadChildren: './orders/orders.module#OrdersModule' },
-            { path: 'employee', loadChildren: './employee/employee.module#EmployeeModule' },
-            { path: 'config', loadChildren: './config/config.module#ConfigModule' },
-            { path: 'product', loadChildren: './product/product.module#ProductModule' },
-            { path: 'history', loadChildren: './history/history.module#HistoryModule' },
+            { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+            { path: 'restaurant', loadChildren: './restaurant/restaurant.module#RestaurantModule' },
+            { path: 'category', loadChildren: './category/category.module#CategoryModule' },
+            { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
             { path: 'payment', loadChildren: './payment/payment.module#PaymentModule' },
-            { path: 'cupons', loadChildren: './cupons/cupons.module#CuponsModule' },
+            { path: 'geral', loadChildren: './geral/geral.module#GeralModule' },
         ]
     }
 ];
@@ -38,7 +36,7 @@ var LayoutRoutingModule = (function () {
     return LayoutRoutingModule;
 }());
 LayoutRoutingModule = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* NgModule */])({
         imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */].forChild(routes)],
         exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */]]
     })
@@ -97,13 +95,13 @@ var LayoutComponent = (function () {
     }
     LayoutComponent.prototype.ngOnInit = function () {
         if (this.router.url === '/') {
-            this.router.navigate(['/orders']);
+            this.router.navigate(['/dashboard']);
         }
     };
     return LayoutComponent;
 }());
 LayoutComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
         selector: 'app-layout',
         template: __webpack_require__("../../../../../src/app/layout/layout.component.html"),
         styles: [__webpack_require__("../../../../../src/app/layout/layout.component.scss")]
@@ -148,9 +146,9 @@ var LayoutModule = (function () {
     return LayoutModule;
 }());
 LayoutModule = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* NgModule */])({
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
+            __WEBPACK_IMPORTED_MODULE_1__angular_common__["k" /* CommonModule */],
             __WEBPACK_IMPORTED_MODULE_2__ng_bootstrap_ng_bootstrap__["f" /* NgbDropdownModule */].forRoot(),
             __WEBPACK_IMPORTED_MODULE_4__layout_routing_module__["a" /* LayoutRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["a" /* TranslateModule */]
