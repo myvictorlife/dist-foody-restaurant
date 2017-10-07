@@ -176,7 +176,7 @@ var ProductComponent = (function () {
             if (result === 'yes') {
                 _this.itemService.edit(_this.formulario.value).subscribe(function (result) {
                     if (result.status) {
-                        _this.categories = _this.categoryService.getAll(false);
+                        _this.categories = _this.categoryService.getAll(true);
                         _this.toastr.success(result.message, '');
                     }
                     else {
