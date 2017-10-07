@@ -939,7 +939,7 @@ var CategoryService = (function () {
     CategoryService.prototype.getItems = function (find) {
         var _this = this;
         var items = this.itemService.getAll();
-        if ((!items || !items.length) || find) {
+        if (find || (!items || !items.length)) {
             this.itemService.populate().subscribe(function (result) {
                 _this.populateWithItems(result.data);
             });
