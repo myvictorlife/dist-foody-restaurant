@@ -1274,8 +1274,14 @@ var ItemService = (function () {
         return this.items;
     };
     ItemService.prototype.remove = function (id) {
+        var _this = this;
         return this.http.delete(this.url + "/items/" + id)
             .map(function (res) {
+            for (var x = 0; x < _this.items.length; x++) {
+                if (_this.items[x].id === id) {
+                    _this.items.splice(x, 1);
+                }
+            }
             return res.json();
         })
             .catch(function (error) { return error.json(); });
