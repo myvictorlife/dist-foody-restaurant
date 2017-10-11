@@ -1,9 +1,14 @@
-webpackJsonp([14],{
+webpackJsonp([15],{
 
 /***/ "../../../../../src async recursive":
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./category/category.module": [
+		"../../../../../src/app/layout/category/category.module.ts",
+		13,
+		0
+	],
 	"./config/config.module": [
 		"../../../../../src/app/layout/config/config.module.ts",
 		12,
@@ -402,7 +407,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/shared/components/sidebar/sidebar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"sidebar\" [ngClass]=\"{sidebarPushRight: isActive}\">\n    <ul class=\"list-group\">\n         \n        <a [routerLink]=\"['/orders']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-cutlery\"></i>&nbsp;{{ 'orders' | translate }}\n        </a>\n        <a [routerLink]=\"['/employee']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-users\"></i>&nbsp;{{ 'employees' | translate }}\n        </a>\n        <a [routerLink]=\"['/product']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-product-hunt\"></i>&nbsp;{{ 'product' | translate }}\n        </a>\n        <a [routerLink]=\"['/config']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-pencil\"></i>&nbsp;{{ 'config' | translate }}\n        </a>\n        <a [routerLink]=\"['/history']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-history\"></i>&nbsp;{{ 'history' | translate }}\n        </a>\n        <a [routerLink]=\"['/payment']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-credit-card\"></i>&nbsp;{{ 'form.payment' | translate }}\n        </a>\n        <a [routerLink]=\"['/cupons']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-gift\"></i>&nbsp;{{ 'cupons' | translate }}\n        </a>\n        <a routerLink=\"/report\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-bar-chart\"></i>&nbsp;{{ 'report' | translate }}\n        </a> \n    </ul>\n</nav>\n"
+module.exports = "<nav class=\"sidebar\" [ngClass]=\"{sidebarPushRight: isActive}\">\n    <ul class=\"list-group\">\n         \n        <a [routerLink]=\"['/orders']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-cutlery\"></i>&nbsp;{{ 'orders' | translate }}\n        </a>\n        <a [routerLink]=\"['/employee']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-users\"></i>&nbsp;{{ 'employees' | translate }}\n        </a>\n        <a [routerLink]=\"['/product']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-product-hunt\"></i>&nbsp;{{ 'product' | translate }}\n        </a>\n        <a [routerLink]=\"['/config']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-pencil\"></i>&nbsp;{{ 'config' | translate }}\n        </a>\n        <a [routerLink]=\"['/history']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-history\"></i>&nbsp;{{ 'history' | translate }}\n        </a>\n        <a [routerLink]=\"['/payment']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-credit-card\"></i>&nbsp;{{ 'form.payment' | translate }}\n        </a>\n        <a [routerLink]=\"['/cupons']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-gift\"></i>&nbsp;{{ 'cupons' | translate }}\n        </a>\n        <a routerLink=\"/report\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-bar-chart\"></i>&nbsp;{{ 'report' | translate }}\n        </a>\n        <a routerLink=\"/category\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-tags\"></i>&nbsp;{{ 'categories' | translate }}\n        </a> \n    </ul>\n</nav>\n"
 
 /***/ }),
 
@@ -901,18 +906,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var CategoryService = (function () {
     function CategoryService(http, itemService, restaurantService) {
-        var _this = this;
         this.http = http;
         this.itemService = itemService;
         this.restaurantService = restaurantService;
         //url: string = 'https://uaifomemaster.com';
         this.url = __WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* CONFIG */].url;
         this.categories = [];
+        this.initCategories();
+    }
+    CategoryService.prototype.initCategories = function () {
+        var _this = this;
         this.getCategories().subscribe(function (result) {
             _this.categories = result.data;
             _this.getItems(false);
         });
-    }
+    };
+    CategoryService.prototype.getOnlyCategory = function () {
+        var _this = this;
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* CONFIG */].url + "/categories")
+            .map(function (res) {
+            _this.categories = res.json().data;
+            return res.json();
+        })
+            .catch(function (error) { return error.json(); });
+    };
     CategoryService.prototype.getCategories = function () {
         var _this = this;
         return this.http.get(this.url + "/categories")
@@ -952,6 +969,9 @@ var CategoryService = (function () {
         this.getItems(find);
         return this.categories;
     };
+    CategoryService.prototype.getOnlyCategories = function () {
+        return this.categories;
+    };
     CategoryService.prototype.register = function (category) {
         var _this = this;
         return this.http.post(this.url + "/categories", category)
@@ -974,6 +994,13 @@ var CategoryService = (function () {
         })
             .catch(function (error) { return error.json(); });
     };
+    CategoryService.prototype.updateCategories = function (restaurant) {
+        return this.http.put(this.url + "/restaurant/categories", restaurant)
+            .map(function (res) {
+            return res.json();
+        })
+            .catch(function (error) { return error.json(); });
+    };
     CategoryService.prototype.remove = function (name) {
         var _this = this;
         return this.http.delete(this.url + "/categories/" + name)
@@ -982,9 +1009,6 @@ var CategoryService = (function () {
             return res.json();
         })
             .catch(function (error) { return error.json(); });
-    };
-    CategoryService.prototype.setCategories = function (categories) {
-        this.categories = categories;
     };
     CategoryService.prototype.populateWithItems = function (items) {
         for (var j = 0; j < this.categories.length; j++) {
@@ -1619,10 +1643,13 @@ var RestaurantService = (function () {
         return this.restaurantId;
     };
     RestaurantService.prototype.setFormPayment = function (formPayment) {
-        return this.restaurant.form_payment = formPayment;
+        this.restaurant.form_payment = formPayment;
     };
     RestaurantService.prototype.getFormPayment = function () {
         return this.restaurant.form_payment;
+    };
+    RestaurantService.prototype.setCategories = function (categories) {
+        this.restaurant.category_ids = categories;
     };
     return RestaurantService;
 }());

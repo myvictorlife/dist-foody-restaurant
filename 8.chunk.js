@@ -29,6 +29,7 @@ var routes = [
             { path: 'history', loadChildren: './history/history.module#HistoryModule' },
             { path: 'payment', loadChildren: './payment/payment.module#PaymentModule' },
             { path: 'cupons', loadChildren: './cupons/cupons.module#CuponsModule' },
+            { path: 'category', loadChildren: './category/category.module#CategoryModule' },
         ]
     }
 ];

@@ -136,10 +136,10 @@ var AdditionalComponent = (function () {
     AdditionalComponent.prototype.ngOnInit = function () {
         this.formularioAdditional = this.formBuilder.group({
             id: [null, []],
-            name: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
-            price: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
-            item_id: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
-            required: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
+            name: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
+            price: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
+            item_id: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
+            required: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
         });
         this.formularioAdditional.controls['item_id'].setValue(this.item_id);
         this.formularioAdditional.controls['required'].setValue(this.options);
@@ -245,7 +245,7 @@ AdditionalComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/shared/components/additional/additional.component.html"),
         styles: [__webpack_require__("../../../../../src/app/shared/components/additional/additional.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* FormBuilder */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_toastr__["b" /* ToastrService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["c" /* NgbModal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["c" /* NgbModal */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__services_category_service__["a" /* CategoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_category_service__["a" /* CategoryService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_additional_item_service__["a" /* AdditionalItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_additional_item_service__["a" /* AdditionalItemService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_toastr__["b" /* ToastrService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["a" /* NgbModal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["a" /* NgbModal */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__services_category_service__["a" /* CategoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_category_service__["a" /* CategoryService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_additional_item_service__["a" /* AdditionalItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_additional_item_service__["a" /* AdditionalItemService */]) === "function" && _e || Object])
 ], AdditionalComponent);
 
 var _a, _b, _c, _d, _e;
@@ -788,7 +788,7 @@ NgbButtonsModule.ctorParameters = function () { return []; };
 
 
 var NGB_CHECKBOX_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* NG_VALUE_ACCESSOR */],
+    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* NG_VALUE_ACCESSOR */],
     useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return NgbCheckBox; }),
     multi: true
 };
@@ -908,7 +908,7 @@ NgbButtonLabel.ctorParameters = function () { return []; };
 
 
 var NGB_RADIO_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* NG_VALUE_ACCESSOR */],
+    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* NG_VALUE_ACCESSOR */],
     useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return NgbRadioGroup; }),
     multi: true
 };
@@ -1541,12 +1541,12 @@ NgbDatepickerI18nDefault.ctorParameters = function () { return []; };
 
 
 var NGB_DATEPICKER_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* NG_VALUE_ACCESSOR */],
+    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* NG_VALUE_ACCESSOR */],
     useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return NgbInputDatepicker; }),
     multi: true
 };
 var NGB_DATEPICKER_VALIDATOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* NG_VALIDATORS */],
+    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["i" /* NG_VALIDATORS */],
     useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return NgbInputDatepicker; }),
     multi: true
 };
@@ -2423,7 +2423,7 @@ var NavigationEvent;
 
 
 var NGB_DATEPICKER_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* NG_VALUE_ACCESSOR */],
+    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* NG_VALUE_ACCESSOR */],
     useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return NgbDatepicker; }),
     multi: true
 };
@@ -3427,10 +3427,10 @@ NgbDropdownModule.ctorParameters = function () { return []; };
 /* unused harmony reexport NgbDropdownConfig */
 /* unused harmony reexport NgbDropdown */
 /* unused harmony reexport NgbModalModule */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["a"]; });
 /* unused harmony reexport NgbActiveModal */
 /* unused harmony reexport NgbModalRef */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["c"]; });
 /* unused harmony reexport NgbPaginationModule */
 /* unused harmony reexport NgbPaginationConfig */
 /* unused harmony reexport NgbPagination */
@@ -3460,7 +3460,7 @@ NgbDropdownModule.ctorParameters = function () { return []; };
 /* unused harmony reexport NgbTypeaheadConfig */
 /* unused harmony reexport NgbTypeahead */
 /* unused harmony export NgbRootModule */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgbModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return NgbModule; });
 
 
 
@@ -3496,7 +3496,7 @@ NgbDropdownModule.ctorParameters = function () { return []; };
 
 var NGB_MODULES = [
     __WEBPACK_IMPORTED_MODULE_1__accordion_accordion_module__["a" /* NgbAccordionModule */], __WEBPACK_IMPORTED_MODULE_2__alert_alert_module__["a" /* NgbAlertModule */], __WEBPACK_IMPORTED_MODULE_3__buttons_buttons_module__["a" /* NgbButtonsModule */], __WEBPACK_IMPORTED_MODULE_4__carousel_carousel_module__["a" /* NgbCarouselModule */], __WEBPACK_IMPORTED_MODULE_5__collapse_collapse_module__["a" /* NgbCollapseModule */], __WEBPACK_IMPORTED_MODULE_6__datepicker_datepicker_module__["a" /* NgbDatepickerModule */],
-    __WEBPACK_IMPORTED_MODULE_7__dropdown_dropdown_module__["a" /* NgbDropdownModule */], __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["c" /* NgbModalModule */], __WEBPACK_IMPORTED_MODULE_9__pagination_pagination_module__["a" /* NgbPaginationModule */], __WEBPACK_IMPORTED_MODULE_10__popover_popover_module__["a" /* NgbPopoverModule */], __WEBPACK_IMPORTED_MODULE_11__progressbar_progressbar_module__["a" /* NgbProgressbarModule */], __WEBPACK_IMPORTED_MODULE_12__rating_rating_module__["a" /* NgbRatingModule */],
+    __WEBPACK_IMPORTED_MODULE_7__dropdown_dropdown_module__["a" /* NgbDropdownModule */], __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["b" /* NgbModalModule */], __WEBPACK_IMPORTED_MODULE_9__pagination_pagination_module__["a" /* NgbPaginationModule */], __WEBPACK_IMPORTED_MODULE_10__popover_popover_module__["a" /* NgbPopoverModule */], __WEBPACK_IMPORTED_MODULE_11__progressbar_progressbar_module__["a" /* NgbProgressbarModule */], __WEBPACK_IMPORTED_MODULE_12__rating_rating_module__["a" /* NgbRatingModule */],
     __WEBPACK_IMPORTED_MODULE_13__tabset_tabset_module__["a" /* NgbTabsetModule */], __WEBPACK_IMPORTED_MODULE_14__timepicker_timepicker_module__["a" /* NgbTimepickerModule */], __WEBPACK_IMPORTED_MODULE_15__tooltip_tooltip_module__["a" /* NgbTooltipModule */], __WEBPACK_IMPORTED_MODULE_16__typeahead_typeahead_module__["a" /* NgbTypeaheadModule */]
 ];
 var NgbRootModule = (function () {
@@ -3510,7 +3510,7 @@ NgbRootModule.decorators = [
                 imports: [
                     __WEBPACK_IMPORTED_MODULE_2__alert_alert_module__["a" /* NgbAlertModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_3__buttons_buttons_module__["a" /* NgbButtonsModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_5__collapse_collapse_module__["a" /* NgbCollapseModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_11__progressbar_progressbar_module__["a" /* NgbProgressbarModule */].forRoot(),
                     __WEBPACK_IMPORTED_MODULE_15__tooltip_tooltip_module__["a" /* NgbTooltipModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_16__typeahead_typeahead_module__["a" /* NgbTypeaheadModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_1__accordion_accordion_module__["a" /* NgbAccordionModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_4__carousel_carousel_module__["a" /* NgbCarouselModule */].forRoot(),
-                    __WEBPACK_IMPORTED_MODULE_6__datepicker_datepicker_module__["a" /* NgbDatepickerModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_7__dropdown_dropdown_module__["a" /* NgbDropdownModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["c" /* NgbModalModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_9__pagination_pagination_module__["a" /* NgbPaginationModule */].forRoot(),
+                    __WEBPACK_IMPORTED_MODULE_6__datepicker_datepicker_module__["a" /* NgbDatepickerModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_7__dropdown_dropdown_module__["a" /* NgbDropdownModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_8__modal_modal_module__["b" /* NgbModalModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_9__pagination_pagination_module__["a" /* NgbPaginationModule */].forRoot(),
                     __WEBPACK_IMPORTED_MODULE_10__popover_popover_module__["a" /* NgbPopoverModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_11__progressbar_progressbar_module__["a" /* NgbProgressbarModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_12__rating_rating_module__["a" /* NgbRatingModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_13__tabset_tabset_module__["a" /* NgbTabsetModule */].forRoot(),
                     __WEBPACK_IMPORTED_MODULE_14__timepicker_timepicker_module__["a" /* NgbTimepickerModule */].forRoot(), __WEBPACK_IMPORTED_MODULE_15__tooltip_tooltip_module__["a" /* NgbTooltipModule */].forRoot()
                 ],
@@ -3921,8 +3921,8 @@ NgbModal.ctorParameters = function () { return [
 /* unused harmony reexport NgbModalRef */
 /* unused harmony reexport NgbActiveModal */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modal_dismiss_reasons__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/modal/modal-dismiss-reasons.js");
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_6__modal_dismiss_reasons__["a"]; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return NgbModalModule; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_6__modal_dismiss_reasons__["a"]; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return NgbModalModule; });
 
 
 
@@ -4569,7 +4569,7 @@ var Key;
     Key[Key["ArrowDown"] = 40] = "ArrowDown";
 })(Key || (Key = {}));
 var NGB_RATING_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* NG_VALUE_ACCESSOR */],
+    provide: __WEBPACK_IMPORTED_MODULE_3__angular_forms__["h" /* NG_VALUE_ACCESSOR */],
     useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return NgbRating; }),
     multi: true
 };
@@ -5077,7 +5077,7 @@ NgbTimepickerConfig.ctorParameters = function () { return []; };
 
 
 var NGB_TIMEPICKER_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* NG_VALUE_ACCESSOR */],
+    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* NG_VALUE_ACCESSOR */],
     useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return NgbTimepicker; }),
     multi: true
 };
@@ -5676,7 +5676,7 @@ var Key;
     Key[Key["ArrowDown"] = 40] = "ArrowDown";
 })(Key || (Key = {}));
 var NGB_TYPEAHEAD_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* NG_VALUE_ACCESSOR */],
+    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* NG_VALUE_ACCESSOR */],
     useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return NgbTypeahead; }),
     multi: true
 };

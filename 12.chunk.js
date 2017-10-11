@@ -150,18 +150,18 @@ var ConfigComponent = (function () {
         var _this = this;
         this.formulario = this.formBuilder.group({
             id: [null, []],
-            img: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
+            img: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
             thumb: [null],
-            name: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].minLength(3)]],
-            description: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].minLength(3)]],
+            name: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].minLength(3)]],
+            description: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].minLength(3)]],
             about_us: [null],
-            monday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
-            tuesday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
-            wednesday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
-            thursday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
-            friday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
-            saturday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
-            sunday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
+            monday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
+            tuesday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
+            wednesday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
+            thursday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
+            friday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
+            saturday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
+            sunday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
             km_max: [null, []],
         });
         var restaurant = this.restaurantService.getAll();
@@ -217,7 +217,7 @@ ConfigComponent = __decorate([
         styles: [__webpack_require__("../../../../../src/app/layout/config/config.component.scss")],
         animations: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__router_animations__["a" /* routerTransition */])()]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_restaurant_service__["a" /* RestaurantService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_upload_service__["a" /* UploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_upload_service__["a" /* UploadService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__["b" /* ToastrService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* FormBuilder */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_restaurant_service__["a" /* RestaurantService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_upload_service__["a" /* UploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_upload_service__["a" /* UploadService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__["b" /* ToastrService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */]) === "function" && _d || Object])
 ], ConfigComponent);
 
 var _a, _b, _c, _d;
