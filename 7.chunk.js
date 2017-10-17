@@ -206,13 +206,19 @@ var OrdersComponent = (function () {
                     note: _this.orderSelected.note
                 };
                 _this.ordersService.editStatus(json).subscribe(function (result) {
-                    _this.selectOrders(_this.currentStatus);
-                    _this.ordersService.populate().subscribe(function (result) {
-                        _this.bkpOrders = result.data;
+                    if (result.status) {
                         _this.selectOrders(_this.currentStatus);
-                        // Precisa dessa funcionalidade a baixo??
-                        _this.updateVariables();
-                    });
+                        _this.ordersService.populate().subscribe(function (result) {
+                            _this.bkpOrders = result.data;
+                            _this.selectOrders(_this.currentStatus);
+                            // Precisa dessa funcionalidade a baixo??
+                            _this.updateVariables();
+                        });
+                    }
+                    else {
+                        _this.toastr.warning('', result.message);
+                        _this.selectOrders(_this.currentStatus);
+                    }
                 });
             }
         }, function (reason) {
