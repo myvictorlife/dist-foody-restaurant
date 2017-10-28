@@ -39,7 +39,7 @@ PaymentRoutingModule = __decorate([
 /***/ "../../../../../src/app/layout/payment/payment.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div [@routerTransition]>\n    <app-page-header [heading]=\"'Tipos de Pagamento'\" [icon]=\"'fa-edit'\"></app-page-header>\n</div>\n<form [formGroup]=\"updateDetailsForm\" *ngIf=\"payments && payments.length\">\n    <div class=\"row\" formArrayName=\"allPayments\">\n        \n            <div class=\"card mb-3\">\n                <div class=\"card-block table-responsive\">\n                    <table class=\"table table-hover table-bordered\">\n                        <thead>\n                        <tr>\n                            <th>#</th>\n                            <th>Tipo</th>\n                            <th>Cartao</th>\n                            <th>Online</th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                            <tr *ngFor=\"let payment of payments; let i = index\">\n                                <td formGroupName=\"{{i}}\">\n                                    <input type=\"checkbox\" formControlName=\"{{payment.id}}\">\n                                </td>\n                                <td>{{payment.name}}</td>\n                                <td>{{payment.card}}</td>\n                                <td>{{payment.online == 0 ? 'SIM' : 'NÂO'}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        \n    </div>\n</form>\n\n<button *ngIf=\"payments && payments.length\" type=\"submit\" class=\"btn btn-primary\" (click)=\"updatePayment()\" >{{ 'save' | translate }}</button>\n\n\n<!-- <pre>{{updateDetailsForm.value | json}}</pre> -->"
+module.exports = "<div [@routerTransition]>\n    <app-page-header [heading]=\"'Formas de Pagamento'\" [icon]=\"'fa-edit'\"></app-page-header>\n</div>\n<form>\n    <div class=\"row\">\n        \n            <div class=\"card mb-3\">\n                <div class=\"card-block table-responsive\">\n                    <table class=\"table table-hover table-bordered\">\n                        <thead>\n                        <tr>\n                            <th>#</th>\n                            <th>Imagem</th>\n                            <th>Tipo</th>\n                            <th>Cartao</th>\n                            <th>Online</th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                            <tr *ngFor=\"let payment of payments\" (click)=\"changeStatus(payment)\">\n                                <td>\n                                    <input type=\"checkbox\" [checked]=\"payment.status\" >\n                                </td>\n                                <td><img src=\"{{ payment.img }}\" alt=\"\" width=\"70\" height=\"50\"></td>\n                                <td>{{payment.name}} - {{payment.status}}</td>\n                                <td>{{payment.card}}</td>\n                                <td>{{payment.online == 0 ? 'SIM' : 'NÂO'}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        \n    </div>\n</form>\n\n<button *ngIf=\"payments && payments.length\" type=\"submit\" class=\"btn btn-primary\" (click)=\"updatePayment()\" >{{ 'save' | translate }}</button>\n\n\n<!-- <pre>{{updateDetailsForm.value | json}}</pre> -->"
 
 /***/ }),
 
@@ -69,8 +69,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__router_animations__ = __webpack_require__("../../../../../src/app/router.animations.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_payment_service__ = __webpack_require__("../../../../../src/app/shared/services/payment.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/index.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -86,61 +85,52 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var PaymentComponent = (function () {
-    function PaymentComponent(paymentService, restaurantService, toastr, formBuilder) {
+    function PaymentComponent(paymentService, restaurantService, toastr) {
         var _this = this;
         this.paymentService = paymentService;
         this.restaurantService = restaurantService;
         this.toastr = toastr;
-        this.formBuilder = formBuilder;
+        this.restaurant = {};
         this.payments = [];
+        this.restaurantPayments = [];
         this.restaurantService.populate().subscribe(function (result) {
-            var restaurant = result.data;
+            _this.restaurant = result.data;
+            _this.restaurantPayments = _this.restaurant.Payments;
             _this.paymentService.populate().subscribe(function (result) {
                 _this.payments = result.data;
-                _this.initForm(restaurant);
+                _this.paymentSelectByRestaurant(_this.restaurantPayments);
             });
         });
     }
     PaymentComponent.prototype.ngOnInit = function () {
-        this.updateDetailsForm = this.formBuilder.group({
-            'allPayments': []
-        });
     };
-    PaymentComponent.prototype.initForm = function (restaurant) {
-        var allPayments = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["c" /* FormArray */]([]);
+    // Seta no array as formas e pagamento que já estam selecionados pelo restaurante
+    PaymentComponent.prototype.paymentSelectByRestaurant = function (restaurantPayments) {
         for (var i = 0; i < this.payments.length; i++) {
-            var fg = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["d" /* FormGroup */]({});
-            var status = this.getRestaurantPayment(this.payments[i].id, restaurant);
-            fg.addControl(this.payments[i].id, new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["e" /* FormControl */](status));
-            allPayments.push(fg);
-        }
-        this.updateDetailsForm = this.formBuilder.group({
-            'allPayments': allPayments
-        });
-    };
-    PaymentComponent.prototype.getRestaurantPayment = function (id, restaurant) {
-        var restaurantPayment = JSON.parse(restaurant.form_payment);
-        for (var k in restaurantPayment) {
-            var pay = restaurantPayment[k];
-            if (pay.id === id) {
-                return pay.status;
+            for (var j = 0; j < restaurantPayments.length; j++) {
+                if (this.payments[i].id === restaurantPayments[j].id) {
+                    this.payments[i].status = true;
+                    break;
+                }
+                else {
+                    this.payments[i].status = false;
+                }
             }
         }
-        return false;
+    };
+    PaymentComponent.prototype.changeStatus = function (payment) {
+        payment.status = !payment.status;
     };
     // Autaliza os tipos de pagamento que o restaurante aceita
     PaymentComponent.prototype.updatePayment = function () {
         var _this = this;
-        var allPayments = this.updateDetailsForm.value.allPayments;
-        for (var i = 0; i < allPayments.length; i++) {
-            var pay = allPayments[i];
-            // Value é o id inserido no formArrayName (fg.addControl)
-            var value = this.payments[i].id;
-            this.payments[i].status = pay[value] === null ? false : pay[value];
-        }
-        this.paymentService.updatePayment(this.payments).subscribe(function (result) {
+        var json = {
+            id: this.restaurant.id,
+            addPayment: this.addPayment(),
+            rmPayment: this.rmPayment()
+        };
+        this.paymentService.updatePayment(json).subscribe(function (result) {
             if (result.status) {
                 _this.toastr.success(result.message, '');
             }
@@ -148,6 +138,33 @@ var PaymentComponent = (function () {
                 _this.toastr.warning(result.message, '');
             }
         });
+    };
+    PaymentComponent.prototype.addPayment = function () {
+        var _this = this;
+        var addPayment = [];
+        for (var i = 0; i < this.payments.length; i++) {
+            var position = this.restaurantPayments.findIndex(function (item) { return item.id === _this.payments[i].id; });
+            if (position > -1 && status && !this.payments[position].status) {
+                addPayment.push(this.payments[position].id);
+            }
+            else {
+                if (this.payments[i].status && position === -1) {
+                    addPayment.push(this.payments[i].id);
+                }
+            }
+        }
+        return addPayment;
+    };
+    PaymentComponent.prototype.rmPayment = function () {
+        var _this = this;
+        var rmPayment = [];
+        for (var i = 0; i < this.payments.length; i++) {
+            var position = this.restaurantPayments.findIndex(function (item) { return item.id === _this.payments[i].id; });
+            if (position > -1 && !this.payments[position].status) {
+                rmPayment.push(this.payments[position].id);
+            }
+        }
+        return rmPayment;
     };
     return PaymentComponent;
 }());
@@ -158,10 +175,10 @@ PaymentComponent = __decorate([
         styles: [__webpack_require__("../../../../../src/app/layout/payment/payment.component.scss")],
         animations: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__router_animations__["a" /* routerTransition */])()]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_payment_service__["a" /* PaymentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_payment_service__["a" /* PaymentService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__["b" /* ToastrService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* FormBuilder */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_payment_service__["a" /* PaymentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_payment_service__["a" /* PaymentService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ngx_toastr__["b" /* ToastrService */]) === "function" && _c || Object])
 ], PaymentComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c;
 //# sourceMappingURL=payment.component.js.map
 
 /***/ }),
@@ -212,7 +229,7 @@ PaymentModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_6__angular_forms__["b" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_forms__["a" /* ReactiveFormsModule */],
             __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__["a" /* ToastrModule */].forRoot(),
-            __WEBPACK_IMPORTED_MODULE_8__ng_bootstrap_ng_bootstrap__["b" /* NgbModule */].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_8__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
             __WEBPACK_IMPORTED_MODULE_7__shared_shared_module__["a" /* SharedModule */],
             __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__["a" /* TranslateModule */],
         ],

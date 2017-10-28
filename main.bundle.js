@@ -4,13 +4,13 @@ webpackJsonp([15],{
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./category/category.module": [
-		"../../../../../src/app/layout/category/category.module.ts",
+	"./config/config.module": [
+		"../../../../../src/app/layout/config/config.module.ts",
 		13,
 		0
 	],
-	"./config/config.module": [
-		"../../../../../src/app/layout/config/config.module.ts",
+	"./cuisines/cuisines.module": [
+		"../../../../../src/app/layout/cuisines/cuisines.module.ts",
 		12,
 		0
 	],
@@ -214,7 +214,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_services_login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__shared_services_dashboard_service__ = __webpack_require__("../../../../../src/app/shared/services/dashboard.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__shared_services_restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shared_services_category_service__ = __webpack_require__("../../../../../src/app/shared/services/category.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shared_services_cuisines_service__ = __webpack_require__("../../../../../src/app/shared/services/cuisines.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__shared_services_user_service__ = __webpack_require__("../../../../../src/app/shared/services/user.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__shared_services_upload_service__ = __webpack_require__("../../../../../src/app/shared/services/upload.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__shared_services_item_service__ = __webpack_require__("../../../../../src/app/shared/services/item.service.ts");
@@ -290,7 +290,7 @@ AppModule = __decorate([
             })
         ],
         exports: [],
-        providers: [__WEBPACK_IMPORTED_MODULE_9__shared__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_10__shared_services_login_service__["a" /* LoginService */], __WEBPACK_IMPORTED_MODULE_11__shared_services_dashboard_service__["a" /* DashboardService */], __WEBPACK_IMPORTED_MODULE_12__shared_services_restaurant_service__["a" /* RestaurantService */], __WEBPACK_IMPORTED_MODULE_13__shared_services_category_service__["a" /* CategoryService */], __WEBPACK_IMPORTED_MODULE_14__shared_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_15__shared_services_upload_service__["a" /* UploadService */], __WEBPACK_IMPORTED_MODULE_16__shared_services_item_service__["a" /* ItemService */], __WEBPACK_IMPORTED_MODULE_18__shared_services_additional_item_service__["a" /* AdditionalItemService */], __WEBPACK_IMPORTED_MODULE_17__shared_services_orders_service__["a" /* OrdersService */], __WEBPACK_IMPORTED_MODULE_19__shared_services_payment_service__["a" /* PaymentService */], __WEBPACK_IMPORTED_MODULE_20__shared_services_cupon_service__["a" /* CuponService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_9__shared__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_10__shared_services_login_service__["a" /* LoginService */], __WEBPACK_IMPORTED_MODULE_11__shared_services_dashboard_service__["a" /* DashboardService */], __WEBPACK_IMPORTED_MODULE_12__shared_services_restaurant_service__["a" /* RestaurantService */], __WEBPACK_IMPORTED_MODULE_13__shared_services_cuisines_service__["a" /* CuisinesService */], __WEBPACK_IMPORTED_MODULE_14__shared_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_15__shared_services_upload_service__["a" /* UploadService */], __WEBPACK_IMPORTED_MODULE_16__shared_services_item_service__["a" /* ItemService */], __WEBPACK_IMPORTED_MODULE_18__shared_services_additional_item_service__["a" /* AdditionalItemService */], __WEBPACK_IMPORTED_MODULE_17__shared_services_orders_service__["a" /* OrdersService */], __WEBPACK_IMPORTED_MODULE_19__shared_services_payment_service__["a" /* PaymentService */], __WEBPACK_IMPORTED_MODULE_20__shared_services_cupon_service__["a" /* CuponService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -407,7 +407,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/shared/components/sidebar/sidebar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"sidebar\" [ngClass]=\"{sidebarPushRight: isActive}\">\n    <ul class=\"list-group\">\n         \n        <a [routerLink]=\"['/orders']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-cutlery\"></i>&nbsp;{{ 'orders' | translate }}\n        </a>\n        <a [routerLink]=\"['/employee']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-users\"></i>&nbsp;{{ 'employees' | translate }}\n        </a>\n        <a [routerLink]=\"['/product']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-product-hunt\"></i>&nbsp;{{ 'product' | translate }}\n        </a>\n        <a [routerLink]=\"['/config']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-pencil\"></i>&nbsp;{{ 'config' | translate }}\n        </a>\n        <a [routerLink]=\"['/history']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-history\"></i>&nbsp;{{ 'history' | translate }}\n        </a>\n        <a [routerLink]=\"['/payment']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-credit-card\"></i>&nbsp;{{ 'form.payment' | translate }}\n        </a>\n        <a [routerLink]=\"['/cupons']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-gift\"></i>&nbsp;{{ 'cupons' | translate }}\n        </a>\n        <a routerLink=\"/report\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-bar-chart\"></i>&nbsp;{{ 'report' | translate }}\n        </a>\n        <a routerLink=\"/category\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-tags\"></i>&nbsp;{{ 'categories' | translate }}\n        </a> \n    </ul>\n</nav>\n"
+module.exports = "<nav class=\"sidebar\" [ngClass]=\"{sidebarPushRight: isActive}\">\n    <ul class=\"list-group\">\n         \n        <a [routerLink]=\"['/orders']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-cutlery\"></i>&nbsp;{{ 'orders' | translate }}\n        </a>\n        <a [routerLink]=\"['/employee']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-users\"></i>&nbsp;{{ 'employees' | translate }}\n        </a>\n        <a [routerLink]=\"['/product']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-product-hunt\"></i>&nbsp;{{ 'product' | translate }}\n        </a>\n        <a [routerLink]=\"['/config']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-pencil\"></i>&nbsp;{{ 'config' | translate }}\n        </a>\n        <a [routerLink]=\"['/history']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-history\"></i>&nbsp;{{ 'history' | translate }}\n        </a>\n        <a [routerLink]=\"['/payment']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-credit-card\"></i>&nbsp;{{ 'form.payment' | translate }}\n        </a>\n        <a [routerLink]=\"['/cupons']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-gift\"></i>&nbsp;{{ 'cupons' | translate }}\n        </a>\n        <a routerLink=\"/report\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-bar-chart\"></i>&nbsp;{{ 'report' | translate }}\n        </a>\n        <a routerLink=\"/cuisines\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-tags\"></i>&nbsp;{{ 'cuisines' | translate }}\n        </a> \n    </ul>\n</nav>\n"
 
 /***/ }),
 
@@ -877,7 +877,19 @@ var _a;
 
 /***/ }),
 
-/***/ "../../../../../src/app/shared/services/category.service.ts":
+/***/ "../../../../../src/app/shared/services/config.service.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CONFIG; });
+let CONFIG = {
+    //url: "https://subdominio.uaifoody.info"
+    url: "http://localhost:4000"
+}  
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/services/cuisines.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -888,7 +900,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__item_service__ = __webpack_require__("../../../../../src/app/shared/services/item.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CategoryService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CuisinesService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -904,158 +916,136 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var CategoryService = (function () {
-    function CategoryService(http, itemService, restaurantService) {
+var CuisinesService = (function () {
+    function CuisinesService(http, itemService, restaurantService) {
         this.http = http;
         this.itemService = itemService;
         this.restaurantService = restaurantService;
         //url: string = 'https://uaifomemaster.com';
         this.url = __WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* CONFIG */].url;
-        this.categories = [];
-        this.initCategories();
+        this.cuisines = [];
+        this.cuisinesWithItems = [];
     }
-    CategoryService.prototype.initCategories = function () {
+    CuisinesService.prototype.getCuisines = function (restaurantId) {
         var _this = this;
-        this.getCategories().subscribe(function (result) {
-            _this.categories = result.data;
-            _this.getItems(false);
-        });
-    };
-    CategoryService.prototype.getOnlyCategory = function () {
-        var _this = this;
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* CONFIG */].url + "/categories")
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* CONFIG */].url + "/cuisines/restaurant/" + restaurantId)
             .map(function (res) {
-            _this.categories = res.json().data;
+            _this.cuisines = res.json().data;
             return res.json();
         })
             .catch(function (error) { return error.json(); });
     };
-    CategoryService.prototype.getCategories = function () {
+    CuisinesService.prototype.getCuisinesWithItems = function (restaurantId) {
         var _this = this;
-        return this.http.get(this.url + "/categories")
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* CONFIG */].url + "/cuisines/cuisines/items/" + restaurantId)
             .map(function (res) {
-            if (res.json().status) {
-                var categoriesRestaurant = _this.restaurantService.getAll().id ? JSON.parse(_this.restaurantService.getAll().category_ids) : [];
-                var categories = res.json().data;
-                var newCategories = [];
-                for (var i = 0; i < categoriesRestaurant.length; i++) {
-                    for (var j = 0; j < categories.length; j++) {
-                        if (categories[j].id === categoriesRestaurant[i]) {
-                            newCategories.push(categories[j]);
-                        }
-                    }
-                }
-                return { status: true, data: newCategories };
-            }
-            else {
-                return res.json();
-            }
-        })
-            .catch(function (error) { return error.json(); });
-    };
-    CategoryService.prototype.getItems = function (find) {
-        var _this = this;
-        var items = this.itemService.getAll();
-        if (find || (!items || !items.length)) {
-            this.itemService.populate().subscribe(function (result) {
-                _this.populateWithItems(result.data);
-            });
-        }
-        else {
-            this.populateWithItems(items);
-        }
-    };
-    CategoryService.prototype.getAll = function (find) {
-        this.getItems(find);
-        return this.categories;
-    };
-    CategoryService.prototype.getOnlyCategories = function () {
-        return this.categories;
-    };
-    CategoryService.prototype.register = function (category) {
-        var _this = this;
-        return this.http.post(this.url + "/categories", category)
-            .map(function (res) {
-            _this.categories.push(res.json().data);
+            _this.cuisinesWithItems = res.json().data;
             return res.json();
         })
             .catch(function (error) { return error.json(); });
     };
-    CategoryService.prototype.edit = function (category) {
+    CuisinesService.prototype.getAll = function () {
+        return this.cuisines;
+    };
+    CuisinesService.prototype.getAllWithItems = function () {
+        return this.cuisinesWithItems;
+    };
+    CuisinesService.prototype.getOnlyCuisines = function () {
+        return this.cuisines;
+    };
+    CuisinesService.prototype.register = function (category) {
         var _this = this;
-        return this.http.put(this.url + "/categories", category)
+        return this.http.post(this.url + "/cuisines", category)
             .map(function (res) {
-            for (var i = 0; i < _this.categories.length; i++) {
-                if (_this.categories[i].id === category.id) {
-                    _this.categories[i] = category;
+            var category = res.json().data;
+            category.activated = category.activated === '0' ? false : true;
+            _this.cuisines.push(category);
+            return res.json();
+        })
+            .catch(function (error) { return error.json(); });
+    };
+    CuisinesService.prototype.edit = function (category) {
+        var _this = this;
+        return this.http.put(this.url + "/cuisines", category)
+            .map(function (res) {
+            for (var i = 0; i < _this.cuisines.length; i++) {
+                if (_this.cuisines[i].id === category.id) {
+                    category.activated = category.activated === '0' ? false : true;
+                    _this.cuisines[i] = category;
                 }
             }
             return res.json();
         })
             .catch(function (error) { return error.json(); });
     };
-    CategoryService.prototype.updateCategories = function (restaurant) {
-        return this.http.put(this.url + "/restaurant/categories", restaurant)
+    CuisinesService.prototype.updateCuisines = function (restaurant) {
+        return this.http.put(this.url + "/restaurant/cuisines", restaurant)
             .map(function (res) {
             return res.json();
         })
             .catch(function (error) { return error.json(); });
     };
-    CategoryService.prototype.remove = function (name) {
+    CuisinesService.prototype.remove = function (id) {
         var _this = this;
-        return this.http.delete(this.url + "/categories/" + name)
+        return this.http.delete(this.url + "/cuisines/" + id)
             .map(function (res) {
-            _this.categories = _this.categories.filter(function (item) { return item.name !== name; });
+            _this.cuisines = _this.cuisines.filter(function (item) { return item.id !== id; });
             return res.json();
         })
             .catch(function (error) { return error.json(); });
     };
-    CategoryService.prototype.populateWithItems = function (items) {
-        for (var j = 0; j < this.categories.length; j++) {
-            this.categories[j].items = [];
+    CuisinesService.prototype.populateWithItems = function (items) {
+        for (var j = 0; j < this.cuisines.length; j++) {
+            this.cuisines[j].items = [];
             for (var k = 0; k < items.length; k++) {
-                if (items[k].category_id == this.categories[j].id) {
-                    this.categories[j].items.push(items[k]);
+                if (items[k].category_id == this.cuisines[j].id) {
+                    this.cuisines[j].items.push(items[k]);
                 }
             }
         }
     };
-    CategoryService.prototype.addItem = function (item) {
-        for (var j = 0; j < this.categories.length; j++) {
-            if (item.category_id == this.categories[j].id) {
-                this.categories[j].items.push(item);
+    CuisinesService.prototype.addItem = function (item) {
+        for (var j = 0; j < this.cuisines.length; j++) {
+            if (item.category_id == this.cuisines[j].id) {
+                this.cuisines[j].items.push(item);
             }
         }
     };
-    CategoryService.prototype.refresh = function (categoryId, items) {
-        for (var j = 0; j < this.categories.length; j++) {
-            if (this.categories[j].id === parseInt(categoryId)) {
-                this.categories[j].items = items;
+    CuisinesService.prototype.refresh = function (categoryId, items) {
+        for (var j = 0; j < this.cuisines.length; j++) {
+            if (this.cuisines[j].id === parseInt(categoryId)) {
+                this.cuisines[j].items = items;
                 break;
             }
         }
     };
-    return CategoryService;
+    // Retorna a categoria do produto ja carregada pelo id da categoria
+    CuisinesService.prototype.findCuisines = function (id) {
+        for (var i = 0; i < this.cuisinesWithItems.length; i++) {
+            if (this.cuisinesWithItems[i].id === parseInt(id)) {
+                return this.cuisinesWithItems[i];
+            }
+        }
+        return {};
+    };
+    CuisinesService.prototype.getItem = function (cuisineId, itemId) {
+        var cuisine = this.findCuisines(cuisineId);
+        for (var i = 0; i < cuisine.Items.length; i++) {
+            if (cuisine.Items[i].id === parseInt(itemId)) {
+                return cuisine.Items[i];
+            }
+        }
+        return {};
+    };
+    return CuisinesService;
 }());
-CategoryService = __decorate([
+CuisinesService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__item_service__["a" /* ItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__item_service__["a" /* ItemService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__restaurant_service__["a" /* RestaurantService */]) === "function" && _c || Object])
-], CategoryService);
+], CuisinesService);
 
 var _a, _b, _c;
-//# sourceMappingURL=category.service.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/shared/services/config.service.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CONFIG; });
-let CONFIG = {
-    url: "https://subdominio.uaifoody.info"
-    //url: "http://localhost:4000"
-}  
+//# sourceMappingURL=cuisines.service.js.map
 
 /***/ }),
 
@@ -1528,12 +1518,7 @@ var PaymentService = (function () {
             .catch(function (error) { return error.json(); });
     };
     PaymentService.prototype.updatePayment = function (payments) {
-        var json = {
-            id: this.restaurantService.getRestaurantId(),
-            form_payment: JSON.stringify(payments),
-            updatedBy: this.loginService.getUser().email
-        };
-        return this.http.put(this.url + "/restaurant/payment", json)
+        return this.http.put(this.url + "/restaurant/payment", payments)
             .map(function (res) {
             return res.json();
         })

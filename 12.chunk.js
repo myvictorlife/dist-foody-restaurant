@@ -1,13 +1,13 @@
 webpackJsonp([12],{
 
-/***/ "../../../../../src/app/layout/config/config-routing.module.ts":
+/***/ "../../../../../src/app/layout/cuisines/cuisines-routing.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_component__ = __webpack_require__("../../../../../src/app/layout/config/config.component.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfigRoutingModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cuisines_component__ = __webpack_require__("../../../../../src/app/layout/cuisines/cuisines.component.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CuisinesRoutingModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,32 +18,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var routes = [
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_2__config_component__["a" /* ConfigComponent */] }
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_2__cuisines_component__["a" /* CuisinesComponent */] }
 ];
-var ConfigRoutingModule = (function () {
-    function ConfigRoutingModule() {
+var CuisinesRoutingModule = (function () {
+    function CuisinesRoutingModule() {
     }
-    return ConfigRoutingModule;
+    return CuisinesRoutingModule;
 }());
-ConfigRoutingModule = __decorate([
+CuisinesRoutingModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */].forChild(routes)],
         exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */]]
     })
-], ConfigRoutingModule);
+], CuisinesRoutingModule);
 
-//# sourceMappingURL=config-routing.module.js.map
+//# sourceMappingURL=cuisines-routing.module.js.map
 
 /***/ }),
 
-/***/ "../../../../../src/app/layout/config/config.component.html":
+/***/ "../../../../../src/app/layout/cuisines/cuisines.component.html":
 /***/ (function(module, exports) {
 
-module.exports = " <div [@routerTransition]>\n    <app-page-header [heading]=\"'Configuração'\" [icon]=\"'fa-edit'\"></app-page-header>\n\n    <form class=\"form-horizontal\" [formGroup]=\"formulario\">\n    <div class=\"row\">\n    \t<div class=\"col-lg-1\">\n    \t</div>\n    \t<div class=\"col-lg-5\">\n    \t\t<label>{{ 'screen.principal' | translate }} *</label><br/>\n    \t\t<!-- <img src=\"assets/images/r3.jpg\" class=\"rounded float-left\" width=\"350\" height=\"200\" > -->\n            <img *ngIf=\"!formulario.get('img').value\" src=\"assets/images/400x280.png\" class=\"rounded float-left\" width=\"350\" height=\"200\" >\n            <img *ngIf=\"formulario.get('img').value\" [src]=\"formulario.get('img').value\" class=\"rounded float-left\" width=\"350\" height=\"200\" >\n            <div style=\"cursor: pointer;\" *ngIf=\"formulario.get('img').value\" (click)=\"removeImg()\">Remover imagem</div>\n    \t\t<label class=\"custom-file size-input-file\" >\n\t\t\t  <input type=\"file\" id=\"file\" class=\"custom-file-input\" accept=\"image/*\" (change)=\"changeListener($event, 'imgFile')\"  >\n\t\t\t  <span class=\"custom-file-control\"></span>\n\t\t\t</label>\n    \t</div> \n    \t<div class=\"col-lg-5\">\n    \t\t<label>{{ 'screen.menu' | translate }}</label><br/>\n    \t\t<img *ngIf=\"!formulario.get('thumb').value\" src=\"assets/images/400x280.png\" class=\"rounded float-left\" width=\"350\" height=\"200\" >\n            <img *ngIf=\"formulario.get('thumb').value\" [src]=\"formulario.get('thumb').value\" class=\"rounded float-left\" width=\"350\" height=\"200\" >\n            <div style=\"cursor: pointer;\" *ngIf=\"formulario.get('thumb').value\" (click)=\"removeThumb()\">Remover imagem</div>\n    \t\t<label class=\"custom-file size-input-file\" >\n\t\t\t  <input type=\"file\" id=\"file\" class=\"custom-file-input\" accept=\"image/*\" (change)=\"changeListener($event, 'thumbImage')\" >\n\t\t\t  <span class=\"custom-file-control\"></span>\n\t\t\t</label>\n    \t</div>\n    </div>\n    <div class=\"row\">\n            <div class=\"col col-xl-1 col-lg-1\">\n            </div>\n            <div class=\"col-lg-10\">\n\n                    <div class=\"form-group\"  >\n                        <fieldset class=\"form-group\">\n                            <label>{{ 'name' | translate }}*</label>\n                            <input type=\"text\" class=\"form-control\"\n                                formControlName=\"name\"\n                                id=\"name\" placeholder=\"{{ 'name' | translate }}\" >\n\n                            <app-campo-control-erro\n                              [mostrarErro]=\"verificaValidTouched('name')\"\n                              msgErro=\"{{ 'name.required' | translate }}\">\n                            </app-campo-control-erro>\n                        </fieldset>\n                    </div>\n\n                    <div class=\"form-group\" >\n                        <fieldset class=\"form-group\">\n                            <label>{{ 'description' | translate }}*</label>\n                            <textarea type=\"text\" class=\"form-control\"\n                                formControlName=\"description\"\n                                id=\"description\" placeholder=\"{{ 'description' | translate }}\" rows=\"3\" ></textarea>\n\n                            <app-campo-control-erro\n                              [mostrarErro]=\"verificaValidTouched('description')\"\n                              msgErro=\"{{ 'description.required' | translate }}\">\n                            </app-campo-control-erro>\n                        </fieldset>\n                    </div>\n\n                    <div class=\"form-group\" >\n                        <fieldset class=\"form-group\">\n                            <label>{{ 'about_us' | translate }}*</label>\n                            <textarea type=\"text\" class=\"form-control\"\n                                formControlName=\"about_us\"\n                                id=\"about_us\" placeholder=\"{{ 'about_us' | translate }}\" rows=\"3\" ></textarea>\n                        </fieldset>\n                    </div>\n\n                    <div class=\"form-group\" >\n                        <fieldset class=\"form-group\">\n                            <label>{{ 'monday' | translate }}*</label>\n                            <input type=\"text\" class=\"form-control\"\n                                formControlName=\"monday\"\n                                id=\"monday\" placeholder=\"{{ 'example.time' | translate }}\" >\n                            <app-campo-control-erro\n                              [mostrarErro]=\"verificaValidTouched('monday')\"\n                              msgErro=\"{{ 'time.required' | translate }}\">\n                            </app-campo-control-erro>\n                        </fieldset>\n                    </div>\n\n                    <div class=\"form-group\" >\n                        <fieldset class=\"form-group\">\n                            <label>{{ 'tuesday' | translate }}*</label>\n                            <input type=\"text\" class=\"form-control\"\n                                formControlName=\"tuesday\"\n                                id=\"tuesday\" placeholder=\"{{ 'example.time' | translate }}\" >\n                            <app-campo-control-erro\n                              [mostrarErro]=\"verificaValidTouched('tuesday')\"\n                              msgErro=\"{{ 'time.required' | translate }}\">\n                            </app-campo-control-erro>\n                        </fieldset>\n                    </div>\n\n                    <div class=\"form-group\" >\n                        <fieldset class=\"form-group\">\n                            <label>{{ 'wednesday' | translate }}*</label>\n                            <input type=\"text\" class=\"form-control\"\n                                formControlName=\"wednesday\"\n                                id=\"wednesday\" placeholder=\"{{ 'example.time' | translate }}\" >\n                            <app-campo-control-erro\n                              [mostrarErro]=\"verificaValidTouched('wednesday')\"\n                              msgErro=\"{{ 'time.required' | translate }}\">\n                            </app-campo-control-erro>\n                        </fieldset>\n                    </div>\n\n                    <div class=\"form-group\" >\n                        <fieldset class=\"form-group\">\n                            <label>{{ 'thursday' | translate }}*</label>\n                            <input type=\"text\" class=\"form-control\"\n                                formControlName=\"thursday\"\n                                id=\"thursday\" placeholder=\"{{ 'example.time' | translate }}\" >\n                            <app-campo-control-erro\n                              [mostrarErro]=\"verificaValidTouched('thursday')\"\n                              msgErro=\"{{ 'time.required' | translate }}\">\n                            </app-campo-control-erro>\n                        </fieldset>\n                    </div>\n\n                    <div class=\"form-group\" >\n                        <fieldset class=\"form-group\">\n                            <label>{{ 'friday' | translate }}*</label>\n                            <input type=\"text\" class=\"form-control\"\n                                formControlName=\"friday\"\n                                id=\"friday\" placeholder=\"{{ 'example.time' | translate }}\" >\n                            <app-campo-control-erro\n                              [mostrarErro]=\"verificaValidTouched('friday')\"\n                              msgErro=\"{{ 'time.required' | translate }}\">\n                            </app-campo-control-erro>\n                        </fieldset>\n                    </div>\n\n                    <div class=\"form-group\" >\n                        <fieldset class=\"form-group\">\n                            <label>{{ 'saturday' | translate }}*</label>\n                            <input type=\"text\" class=\"form-control\"\n                                formControlName=\"saturday\"\n                                id=\"saturday\" placeholder=\"{{ 'example.time' | translate }}\" >\n                            <app-campo-control-erro\n                              [mostrarErro]=\"verificaValidTouched('saturday')\"\n                              msgErro=\"{{ 'time.required' | translate }}\">\n                            </app-campo-control-erro>\n                        </fieldset>\n                    </div>\n\n                    <div class=\"form-group\" >\n                        <fieldset class=\"form-group\">\n                            <label>{{ 'sunday' | translate }}*</label>\n                            <input type=\"text\" class=\"form-control\"\n                                formControlName=\"sunday\"\n                                id=\"sunday\" placeholder=\"{{ 'example.time' | translate }}\" >\n                            <app-campo-control-erro\n                              [mostrarErro]=\"verificaValidTouched('sunday')\"\n                              msgErro=\"{{ 'time.required' | translate }}\">\n                            </app-campo-control-erro>\n                        </fieldset>\n                    </div>\n\n                    <div class=\"form-group\" >\n                        <fieldset class=\"form-group\">\n                            <label>Distancia máxima da entrega:*</label>\n                            <input type=\"text\" class=\"form-control\"\n                                formControlName=\"km_max\"\n                                id=\"km_max\" placeholder=\"Ex: 5km\" >\n                        </fieldset>\n                    </div>\n\n                    <div class=\"text-center\">\n                        <button type=\"submit\" class=\"btn btn-default\" (click)=\"reset()\" >{{ 'clear' | translate }}</button>\n                        <button type=\"submit\" [disabled]=\"!formulario.valid\" class=\"btn btn-primary\" (click)=\"edit()\" >{{ 'save' | translate }}</button>\n                    </div>\n                \n            </div>\n        </div>\n        </form>\n\n</div>\n"
+module.exports = "<div [@routerTransition]>\n    <app-page-header [heading]=\"'Categorias dos produtos'\" [icon]=\"'fa-edit'\"></app-page-header>\n</div>\n    \n<div class=\"row\">\n    \n    <div class=\"col col-xl-6 col-lg-6\">\n    \t<div class=\"card mb-3\">\n            <div class=\"card-header\">\n                Lista de Categorias\n            </div>\n            <div class=\"card-block table-responsive\">\n                <table class=\"table table-hover\">\n                    <thead>\n                    <tr>\n                        <th>Categoria</th>\n                        <th>Mostrar</th>\n                        <th>Remover</th>\n                    </tr>\n                    </thead>\n                    <tbody>\n                        <tr *ngFor=\"let cat of categories\">\n                            <td (click)=\"populate(cat)\">\n                            \t{{cat.name}}\n                            </td>\n                            <td (click)=\"populate(cat)\">\n                            \t{{cat.activated ? 'Sim' : 'Não'}}\n                            </td>\n                            <td (click)=\"remove(content, cat)\">Remover</td>\n                        </tr>\n                    </tbody>\n                </table>\n            </div>\n    \t</div>\n    </div>\n    <div class=\"col col-xl-4 col-lg-4\">\n    \t <form class=\"form-horizontal\" [formGroup]=\"updateForm\">\n                <div class=\"form-group\">\n                    <fieldset class=\"form-group\">\n                        <label>{{ 'name' | translate }}*</label>\n                        <input type=\"text\" class=\"form-control\"\n                            formControlName=\"name\"\n                            id=\"name\" placeholder=\"{{ 'name' | translate }}\" >\n\n                        <app-campo-control-erro\n                          [mostrarErro]=\"verificaValidTouched('name')\"\n                          msgErro=\"{{ 'name.required' | translate }}\">\n                        </app-campo-control-erro>\n                    </fieldset>\n                </div>\n                \n                <fieldset class=\"form-group text-center\">\n                    <label>Ativar*</label>\n                    <div class=\"radio\">\n                        <label>\n                            <input type=\"radio\" formControlName=\"activated\" id=\"optionsRadios1\" value=\"1\" checked=\"\"> Sim\n                        </label> &nbsp;&nbsp;&nbsp;\n                        <label>\n                            <input type=\"radio\" formControlName=\"activated\" id=\"optionsRadios2\" value=\"0\"> Não\n                        </label>\n                    </div>\n                </fieldset>\n\n                <div class=\"text-center\">\n                    <button type=\"submit\" class=\"btn btn-default\" (click)=\"reset()\" >{{ 'clear' | translate }}</button>\n                    <button type=\"submit\" [disabled]=\"!updateForm.valid\" class=\"btn btn-primary\" (click)=\"register()\" >{{ 'save' | translate }}</button>\n                </div>\n                \n            </form>\n    </div>\n</div>\n\n<ng-template #content let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{ 'cuisines.remove' | translate }}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n  \t<h6 class=\"modal-title\">Todos os produtos relacionados a essa categoria também serão removidos.</h6>\n    <br/>\n    <p><strong>{{category.name}}</strong></p>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('no')\">{{ 'no' | translate }}</button>\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('yes')\">{{ 'yes' | translate }}</button>\n  </div>\n</ng-template>"
 
 /***/ }),
 
-/***/ "../../../../../src/app/layout/config/config.component.scss":
+/***/ "../../../../../src/app/layout/cuisines/cuisines.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -51,7 +51,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".size-input-file {\n  max-width: 79%; }\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -61,17 +61,18 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../../src/app/layout/config/config.component.ts":
+/***/ "../../../../../src/app/layout/cuisines/cuisines.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__router_animations__ = __webpack_require__("../../../../../src/app/router.animations.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_upload_service__ = __webpack_require__("../../../../../src/app/shared/services/upload.service.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfigComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_cuisines_service__ = __webpack_require__("../../../../../src/app/shared/services/cuisines.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CuisinesComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -87,32 +88,134 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ConfigComponent = (function () {
-    function ConfigComponent(restaurantService, uploadService, toastr, formBuilder) {
+
+var CuisinesComponent = (function () {
+    function CuisinesComponent(cuisinesService, restaurantService, toastr, formBuilder, modalService) {
+        var _this = this;
+        this.cuisinesService = cuisinesService;
         this.restaurantService = restaurantService;
-        this.uploadService = uploadService;
         this.toastr = toastr;
         this.formBuilder = formBuilder;
+        this.modalService = modalService;
+        this.category = "";
+        this.restaurant = this.restaurantService.getAll();
+        // Caso não esteja populado os dados do restaurante busca no banco de dados
+        if (!this.restaurant || !this.restaurant.id) {
+            this.restaurantService.populate().subscribe(function (result) {
+                _this.restaurant = result.data;
+                _this.findCuisines(_this.restaurant.id);
+            });
+        }
+        else {
+            this.findCuisines(this.restaurant.id);
+        }
     }
-    ConfigComponent.prototype.ngOnInit = function () {
-        this.initFormulario();
+    CuisinesComponent.prototype.findCuisines = function (restaurantId) {
+        var _this = this;
+        this.cuisinesService.getCuisines(restaurantId).subscribe(function (result) {
+            _this.categories = _this.cuisinesService.getAll();
+        });
     };
-    ConfigComponent.prototype.reset = function () {
-        this.formulario.reset();
+    CuisinesComponent.prototype.ngOnInit = function () {
+        this.updateForm = this.formBuilder.group({
+            'id': [],
+            'name': [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
+            'activated': []
+        });
     };
-    ConfigComponent.prototype.verificaValidTouched = function (campo) {
-        return (!this.formulario.get(campo).valid &&
-            (this.formulario.get(campo).touched || this.formulario.get(campo).dirty));
+    CuisinesComponent.prototype.getRestaurantCategories = function (id, restaurant) {
+        var restaurantCategories = restaurant.Categories;
+        for (var k in restaurantCategories) {
+            var cat = restaurantCategories[k];
+            if (cat === id) {
+                return true;
+            }
+        }
+        return false;
     };
-    ConfigComponent.prototype.aplicaCssErro = function (campo) {
-        return {
-            'has-error': this.verificaValidTouched(campo),
-            'has-feedback': this.verificaValidTouched(campo)
-        };
+    CuisinesComponent.prototype.populate = function (category) {
+        this.updateForm.setValue({
+            id: category.id,
+            name: category.name,
+            activated: category.activated ? "1" : "0",
+            restaurants_id: category.restaurants_id,
+        });
     };
-    ConfigComponent.prototype.verificaValidacoesForm = function (formGroup) {
+    CuisinesComponent.prototype.register = function () {
+        var _this = this;
+        if (this.updateForm.valid) {
+            if (this.updateForm.value.id) {
+                this.cuisinesService.edit(this.updateForm.value).subscribe(function (result) {
+                    if (result.status) {
+                        _this.categories = _this.cuisinesService.getAll();
+                        _this.toastr.success(result.message, '');
+                        _this.reset();
+                    }
+                    else {
+                        _this.toastr.warning('', result.message);
+                    }
+                });
+            }
+            else {
+                var category = this.updateForm.value;
+                category.restaurants_id = this.restaurant.id;
+                this.cuisinesService.register(category).subscribe(function (result) {
+                    if (result.status) {
+                        _this.categories = _this.cuisinesService.getAll();
+                        _this.toastr.success(result.message, '');
+                        _this.reset();
+                    }
+                    else {
+                        _this.toastr.warning('', result.message);
+                    }
+                });
+            }
+        }
+        else {
+            this.verificaValidacoesForm(this.updateForm);
+        }
+    };
+    CuisinesComponent.prototype.reset = function () {
+        this.updateForm.reset();
+    };
+    CuisinesComponent.prototype.remove = function (content, category) {
+        var _this = this;
+        this.category = category;
+        this.modalService.open(content).result.then(function (result) {
+            if (result === 'yes') {
+                _this.cuisinesService.remove(category.id)
+                    .subscribe(function (result) {
+                    if (result.status) {
+                        _this.toastr.success(result.message, '');
+                        _this.categories = _this.cuisinesService.getAll();
+                    }
+                    else {
+                        _this.toastr.warning('', result.message);
+                    }
+                });
+            }
+        }, function (reason) {
+        });
+    };
+    CuisinesComponent.prototype.getDismissReason = function (reason) {
+        if (reason === __WEBPACK_IMPORTED_MODULE_5__ng_bootstrap_ng_bootstrap__["b" /* ModalDismissReasons */].ESC) {
+            return 'by pressing ESC';
+        }
+        else if (reason === __WEBPACK_IMPORTED_MODULE_5__ng_bootstrap_ng_bootstrap__["b" /* ModalDismissReasons */].BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        }
+        else {
+            return "with: " + reason;
+        }
+    };
+    CuisinesComponent.prototype.verificaValidTouched = function (campo) {
+        return (!this.updateForm.get(campo).valid &&
+            (this.updateForm.get(campo).touched || this.updateForm.get(campo).dirty));
+    };
+    CuisinesComponent.prototype.verificaValidacoesForm = function (formGroup) {
         var _this = this;
         Object.keys(formGroup.controls).forEach(function (campo) {
+            console.log(campo);
             var controle = formGroup.get(campo);
             controle.markAsDirty();
             if (controle instanceof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* FormGroup */]) {
@@ -120,126 +223,39 @@ var ConfigComponent = (function () {
             }
         });
     };
-    ConfigComponent.prototype.changeListener = function ($event, inputName) {
-        this.readThis($event.target, inputName);
-    };
-    ConfigComponent.prototype.readThis = function (inputValue, inputName) {
-        var _this = this;
-        var file = inputValue.files[0];
-        var myReader = new FileReader();
-        myReader.onloadend = function (e) {
-            var base64 = myReader.result.substring(myReader.result.indexOf(",") + 1, myReader.result.length);
-            var jsonImage = {
-                filename: file.name,
-                type: file.type,
-                size: file.size,
-                base64: base64
-            };
-            _this.uploadService.getUrl(jsonImage).subscribe(function (result) {
-                if (inputName === 'imgFile') {
-                    _this.formulario.controls['img'].setValue(result.url);
-                }
-                else {
-                    _this.formulario.controls['thumb'].setValue(result.url);
-                }
-            });
-        };
-        myReader.readAsDataURL(file);
-    };
-    ConfigComponent.prototype.initFormulario = function () {
-        var _this = this;
-        this.formulario = this.formBuilder.group({
-            id: [null, []],
-            img: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
-            thumb: [null],
-            name: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].minLength(3)]],
-            description: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].minLength(3)]],
-            about_us: [null],
-            monday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
-            tuesday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
-            wednesday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
-            thursday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
-            friday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
-            saturday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
-            sunday: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]],
-            km_max: [null, []],
-        });
-        var restaurant = this.restaurantService.getAll();
-        if (!restaurant.length) {
-            this.restaurantService.populate().subscribe(function (result) {
-                if (result.status) {
-                    _this.populate(result.data);
-                }
-            });
-        }
-    };
-    ConfigComponent.prototype.populate = function (restaurant) {
-        this.formulario.setValue({
-            id: restaurant.id,
-            img: restaurant.img,
-            thumb: restaurant.thumb,
-            name: restaurant.name,
-            description: restaurant.description,
-            about_us: restaurant.about_us,
-            monday: restaurant.monday,
-            tuesday: restaurant.tuesday,
-            wednesday: restaurant.wednesday,
-            thursday: restaurant.thursday,
-            friday: restaurant.friday,
-            saturday: restaurant.saturday,
-            sunday: restaurant.sunday,
-            km_max: restaurant.km_max ? restaurant.km_max : ''
-        });
-    };
-    ConfigComponent.prototype.edit = function () {
-        var _this = this;
-        this.restaurantService.edit(this.formulario.value).subscribe(function (result) {
-            if (result.status) {
-                _this.toastr.success(result.message, '');
-            }
-            else {
-                _this.toastr.warning('', result.message);
-            }
-        });
-    };
-    ConfigComponent.prototype.removeImg = function () {
-        this.formulario.controls['img'].setValue(null);
-    };
-    ConfigComponent.prototype.removeThumb = function () {
-        this.formulario.controls['thumb'].setValue(null);
-    };
-    return ConfigComponent;
+    return CuisinesComponent;
 }());
-ConfigComponent = __decorate([
+CuisinesComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'app-config',
-        template: __webpack_require__("../../../../../src/app/layout/config/config.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/layout/config/config.component.scss")],
+        selector: 'app-cuisines',
+        template: __webpack_require__("../../../../../src/app/layout/cuisines/cuisines.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/layout/cuisines/cuisines.component.scss")],
         animations: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__router_animations__["a" /* routerTransition */])()]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_restaurant_service__["a" /* RestaurantService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_upload_service__["a" /* UploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_upload_service__["a" /* UploadService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__["b" /* ToastrService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */]) === "function" && _d || Object])
-], ConfigComponent);
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_cuisines_service__["a" /* CuisinesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_cuisines_service__["a" /* CuisinesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ngx_toastr__["b" /* ToastrService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* FormBuilder */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__ng_bootstrap_ng_bootstrap__["c" /* NgbModal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ng_bootstrap_ng_bootstrap__["c" /* NgbModal */]) === "function" && _e || Object])
+], CuisinesComponent);
 
-var _a, _b, _c, _d;
-//# sourceMappingURL=config.component.js.map
+var _a, _b, _c, _d, _e;
+//# sourceMappingURL=cuisines.component.js.map
 
 /***/ }),
 
-/***/ "../../../../../src/app/layout/config/config.module.ts":
+/***/ "../../../../../src/app/layout/cuisines/cuisines.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_component__ = __webpack_require__("../../../../../src/app/layout/config/config.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_routing_module__ = __webpack_require__("../../../../../src/app/layout/config/config-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cuisines_component__ = __webpack_require__("../../../../../src/app/layout/cuisines/cuisines.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cuisines_routing_module__ = __webpack_require__("../../../../../src/app/layout/cuisines/cuisines-routing.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_shared_module__ = __webpack_require__("../../../../../src/app/shared/shared.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__("../../../../@ngx-translate/core/index.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigModule", function() { return ConfigModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CuisinesModule", function() { return CuisinesModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -255,28 +271,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ConfigModule = (function () {
-    function ConfigModule() {
+
+var CuisinesModule = (function () {
+    function CuisinesModule() {
     }
-    return ConfigModule;
+    return CuisinesModule;
 }());
-ConfigModule = __decorate([
+CuisinesModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
-            __WEBPACK_IMPORTED_MODULE_3__config_routing_module__["a" /* ConfigRoutingModule */],
+            __WEBPACK_IMPORTED_MODULE_3__cuisines_routing_module__["a" /* CuisinesRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_4__shared__["b" /* PageHeaderModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_forms__["b" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_forms__["a" /* ReactiveFormsModule */],
+            __WEBPACK_IMPORTED_MODULE_9__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
             __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__["a" /* ToastrModule */].forRoot(),
             __WEBPACK_IMPORTED_MODULE_7__shared_shared_module__["a" /* SharedModule */],
             __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__["a" /* TranslateModule */],
         ],
-        declarations: [__WEBPACK_IMPORTED_MODULE_2__config_component__["a" /* ConfigComponent */]]
+        declarations: [__WEBPACK_IMPORTED_MODULE_2__cuisines_component__["a" /* CuisinesComponent */]]
     })
-], ConfigModule);
+], CuisinesModule);
 
-//# sourceMappingURL=config.module.js.map
+//# sourceMappingURL=cuisines.module.js.map
 
 /***/ })
 

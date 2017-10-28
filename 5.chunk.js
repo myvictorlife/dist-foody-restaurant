@@ -39,7 +39,7 @@ ProductRoutingModule = __decorate([
 /***/ "../../../../../src/app/layout/product/product.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div [@routerTransition]>\n    <app-page-header [heading]=\"'Pedidos'\" [icon]=\"'fa-edit'\"></app-page-header>\n</div>  \n  <!--list of categories-->\n  <div *ngFor=\"let cat of categories\" >\n    \n    <ol class=\"breadcrumb\">\n\t  <li class=\"breadcrumb-item category\">{{ cat.name }}</li>\n\t</ol>\t\n\t\n\t<div class=\"table-responsive\">\n    <table class=\"table \" *ngIf=\"cat.items && cat.items.length\">\n\t  <thead>\n\t    <tr>\n\t      <th>{{ 'img' | translate }}</th>\n\t      <th>{{ 'product' | translate }}</th>\n\t      <th>{{ 'ingredients' | translate }}</th>\n\t      <th>{{ 'price' | translate }}</th>\n        <th>{{ 'required' | translate }}</th>\n        <th>{{ 'additional' | translate }}</th>\n        <th>{{ 'remove' | translate }}</th>\n        <th>{{ 'duplicate' | translate }}</th>\n\t    </tr>\n\t  </thead>\n\t  <tbody>\n\t    <tr *ngFor=\"let item of cat.items\">\n\t      <td *ngIf=\"item.thumb\" (click)=\"editItem(content, cat, item)\"><img src=\"{{ item.thumb }}\" alt=\"\" width=\"40\" height=\"30\"></td>\n        <td *ngIf=\"!item.thumb\" (click)=\"editItem(content, cat, item)\"><img src=\"assets/images/250x250.png\" alt=\"\" width=\"40\" height=\"30\"></td>\n\t      <td (click)=\"editItem(content, cat, item)\">{{ item.name }}</td>\n\t      <td (click)=\"editItem(content, cat, item)\">{{ item.ingredients }}</td>\n\t      <td (click)=\"editItem(content, cat, item)\">R$ {{ item.price }}</td>\n        <td (click)=\"addRequired(contentAdditional, item, cat.id)\" ><button type=\"button\" class=\"btn btn-outline-primary\">{{ 'required' | translate }}</button></td>\n        <td (click)=\"addOptional(contentAdditional, item, cat.id)\"><button type=\"button\" class=\"btn btn-outline-primary\">{{ 'additional' | translate }}</button></td>\n        <td (click)=\"removeItem(contentRemove, item, cat.id)\"><button type=\"button\" class=\"btn btn-outline-danger\">{{ 'remove' | translate }}</button></td>\n        <td (click)=\"duplicateItem(item)\"><button type=\"button\" class=\"btn btn-outline-success\">{{ 'duplicate' | translate }}</button></td>\n\t    </tr>\n\t  </tbody>\n\t</table>\n\t</div>\n\t<button type=\"button\" class=\"btn btn-outline-info btn-lg btn-block margin-button\" (click)=\"add(content, cat)\">\n\t\tAdicionar  {{cat.name}}\n\t</button>\n  </div>\n\n  <ng-template #content let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{title}}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n\n  \t<form class=\"form-horizontal\" [formGroup]=\"formulario\">\n\n  \t\t\t<div class=\"row\">\n  \t\t\t\t<div class=\"col-lg-3\">\n  \t\t\t\t</div>\n\t\t    \t<div class=\"col-lg-5\">\n\t\t    \t\t<!-- <img src=\"assets/images/r3.jpg\" class=\"rounded float-left\" width=\"350\" height=\"200\" > -->\n\t\t            <img *ngIf=\"!formulario.get('thumb').value\" src=\"assets/images/250x250.png  \" class=\"rounded float-left\" width=\"200\" height=\"150\" >\n\t\t            <img *ngIf=\"formulario.get('thumb').value\" [src]=\"formulario.get('thumb').value\" class=\"rounded float-left\" width=\"150\" height=\"150\" >\n                <div style=\"cursor: pointer;\" *ngIf=\"formulario.get('thumb').value\" (click)=\"removeImg()\">Remover imagem</div>\n\n\t\t    \t\t<label class=\"custom-file size-input-file\" >\n\t\t\t\t\t  <input type=\"file\" id=\"file\" class=\"custom-file-input\" accept=\"image/*\" (change)=\"changeListener($event, 'imgFile')\"  >\n\t\t\t\t\t  <span class=\"custom-file-control\"></span>\n\t\t\t\t\t</label>\n\t\t    \t</div> \n\t\t    </div>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'name' | translate }}</label>\n                <input type=\"text\" class=\"form-control\"\n                    formControlName=\"name\"\n                    id=\"name\" placeholder=\"{{ 'name' | translate }}\" >\n\n                <app-campo-control-erro\n                  [mostrarErro]=\"verificaValidTouched('name')\"\n                  msgErro=\"{{ 'name.required' | translate }}\">\n                </app-campo-control-erro>\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'ingredients' | translate }}</label>\n                <input type=\"text\" class=\"form-control\"\n                    formControlName=\"ingredients\"\n                    id=\"l\" placeholder=\"{{ 'ingredients' | translate }}\" >\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'price' | translate }}</label>\n                <input type=\"price\" class=\"form-control\"\n                    formControlName=\"price\"\n                    id=\"l\" placeholder=\"{{ 'price' | translate }}\" >\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'amount' | translate }}</label>\n                <input type=\"price\" class=\"form-control\"\n                    formControlName=\"amount\"\n                    id=\"l\" placeholder=\"0\" >\n            </fieldset>\n\n            <fieldset class=\"form-group text-center\">\n                <label>Ativar*</label>\n                <div class=\"radio\">\n                    <label>\n                        <input type=\"radio\" formControlName=\"disponible\" id=\"optionsRadios1\" value=\"1\" checked=\"\"> Sim\n                    </label> &nbsp;&nbsp;&nbsp;\n                    <label>\n                        <input type=\"radio\" formControlName=\"disponible\" id=\"optionsRadios2\" value=\"0\"> Não\n                    </label>\n                </div>\n            </fieldset>\n        \n    </form>\n    \n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-danger\" (click)=\"c('no')\">{{ 'cancel' | translate }}</button>\n    <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"c('yes')\">{{ 'save' | translate }}</button>\n  </div>\n</ng-template>\n\n\n <ng-template #contentAdditional let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{ 'additional' | translate }}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n\n    <app-additional\n      item_id={{item_id}}\n      options={{options}}\n      category_id={{category_id}}\n      items=\"{{additional}}\">\n    </app-additional>\n    \n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"c('yes')\">{{ 'closed' | translate }}</button>\n  </div>\n</ng-template>\n\n\n<ng-template #contentRemove let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{ 'product.remove' | translate }}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <p>{{itemSelected.name}}</p>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('no')\">{{ 'no' | translate }}</button>\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('yes')\">{{ 'yes' | translate }}</button>\n  </div>\n</ng-template>"
+module.exports = "<div [@routerTransition]>\n    <app-page-header [heading]=\"'Cardapio'\" [icon]=\"'fa-edit'\"></app-page-header>\n</div>  \n  <!--list of cuisines-->\n  <div *ngFor=\"let cat of cuisines\" >\n    \n    <ol class=\"breadcrumb\">\n\t  <li class=\"breadcrumb-item category\">{{ cat.name }}</li>\n\t</ol>\t\n\t\n\t<div class=\"table-responsive\">\n    <table class=\"table \" *ngIf=\"cat.Items && cat.Items.length\">\n\t  <thead>\n\t    <tr>\n\t      <th>{{ 'img' | translate }}</th>\n\t      <th>{{ 'product' | translate }}</th>\n\t      <th>{{ 'ingredients' | translate }}</th>\n\t      <th>{{ 'price' | translate }}</th>\n        <th>{{ 'required' | translate }}</th>\n        <th>{{ 'additional' | translate }}</th>\n        <th>{{ 'remove' | translate }}</th>\n        <th>{{ 'duplicate' | translate }}</th>\n\t    </tr>\n\t  </thead>\n\t  <tbody>\n\t    <tr *ngFor=\"let item of cat.Items\">\n\t      <td *ngIf=\"item.thumb\" (click)=\"editItem(content, cat, item)\"><img src=\"{{ item.thumb }}\" alt=\"\" width=\"40\" height=\"30\"></td>\n        <td *ngIf=\"!item.thumb\" (click)=\"editItem(content, cat, item)\"><img src=\"assets/images/250x250.png\" alt=\"\" width=\"40\" height=\"30\"></td>\n\t      <td (click)=\"editItem(content, cat, item)\">{{ item.name }}</td>\n\t      <td (click)=\"editItem(content, cat, item)\">{{ item.ingredients }}</td>\n\t      <td (click)=\"editItem(content, cat, item)\">R$ {{ item.price }}</td>\n        <td (click)=\"addRequired(contentAdditional, item, cat.id)\" ><button type=\"button\" class=\"btn btn-outline-primary\">{{ 'required' | translate }}</button></td>\n        <td (click)=\"addOptional(contentAdditional, item, cat.id)\"><button type=\"button\" class=\"btn btn-outline-primary\">{{ 'additional' | translate }}</button></td>\n        <td (click)=\"removeItem(contentRemove, item, cat.id)\"><button type=\"button\" class=\"btn btn-outline-danger\">{{ 'remove' | translate }}</button></td>\n        <td (click)=\"duplicateItem(item)\"><button type=\"button\" class=\"btn btn-outline-success\">{{ 'duplicate' | translate }}</button></td>\n\t    </tr>\n\t  </tbody>\n\t</table>\n\t</div>\n\t<button type=\"button\" class=\"btn btn-outline-info btn-lg btn-block margin-button\" (click)=\"add(content, cat)\">\n\t\tAdicionar  {{cat.name}}\n\t</button>\n  </div>\n\n  <ng-template #content let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{title}}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n\n  \t<form class=\"form-horizontal\" [formGroup]=\"formulario\">\n\n  \t\t\t<div class=\"row\">\n  \t\t\t\t<div class=\"col-lg-3\">\n  \t\t\t\t</div>\n\t\t    \t<div class=\"col-lg-5\">\n\t\t    \t\t<!-- <img src=\"assets/images/r3.jpg\" class=\"rounded float-left\" width=\"350\" height=\"200\" > -->\n\t\t            <img *ngIf=\"!formulario.get('thumb').value\" src=\"assets/images/250x250.png  \" class=\"rounded float-left\" width=\"200\" height=\"150\" >\n\t\t            <img *ngIf=\"formulario.get('thumb').value\" [src]=\"formulario.get('thumb').value\" class=\"rounded float-left\" width=\"150\" height=\"150\" >\n                <div style=\"cursor: pointer;\" *ngIf=\"formulario.get('thumb').value\" (click)=\"removeImg()\">Remover imagem</div>\n\n\t\t    \t\t<label class=\"custom-file size-input-file\" >\n\t\t\t\t\t  <input type=\"file\" id=\"file\" class=\"custom-file-input\" accept=\"image/*\" (change)=\"changeListener($event, 'imgFile')\"  >\n\t\t\t\t\t  <span class=\"custom-file-control\"></span>\n\t\t\t\t\t</label>\n\t\t    \t</div> \n\t\t    </div>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'name' | translate }}</label>\n                <input type=\"text\" class=\"form-control\"\n                    formControlName=\"name\"\n                    id=\"name\" placeholder=\"{{ 'name' | translate }}\" >\n\n                <app-campo-control-erro\n                  [mostrarErro]=\"verificaValidTouched('name')\"\n                  msgErro=\"{{ 'name.required' | translate }}\">\n                </app-campo-control-erro>\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'ingredients' | translate }}</label>\n                <input type=\"text\" class=\"form-control\"\n                    formControlName=\"ingredients\"\n                    id=\"l\" placeholder=\"{{ 'ingredients' | translate }}\" >\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'price' | translate }}</label>\n                <input type=\"price\" class=\"form-control\"\n                    formControlName=\"price\"\n                    id=\"l\" placeholder=\"{{ 'price' | translate }}\" >\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'amount' | translate }}</label>\n                <input type=\"price\" class=\"form-control\"\n                    formControlName=\"amount\"\n                    id=\"l\" placeholder=\"0\" >\n            </fieldset>\n\n            <fieldset class=\"form-group text-center\">\n                <label>Ativar*</label>\n                <div class=\"radio\">\n                    <label>\n                        <input type=\"radio\" formControlName=\"disponible\" id=\"optionsRadios1\" value=\"1\" checked=\"\"> Sim\n                    </label> &nbsp;&nbsp;&nbsp;\n                    <label>\n                        <input type=\"radio\" formControlName=\"disponible\" id=\"optionsRadios2\" value=\"0\"> Não\n                    </label>\n                </div>\n            </fieldset>\n        \n    </form>\n    \n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-danger\" (click)=\"c('no')\">{{ 'cancel' | translate }}</button>\n    <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"c('yes')\">{{ 'save' | translate }}</button>\n  </div>\n</ng-template>\n\n\n <ng-template #contentAdditional let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{ 'additional' | translate }}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n\n    <app-additional\n      required={{required}}\n      cuisines_id={{cuisines_id}}\n      item_id={{item_id}}\n      >\n    </app-additional>\n    \n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"c('yes')\">{{ 'closed' | translate }}</button>\n  </div>\n</ng-template>\n\n\n<ng-template #contentRemove let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{ 'product.remove' | translate }}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <p>{{itemSelected.name}}</p>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('no')\">{{ 'no' | translate }}</button>\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('yes')\">{{ 'yes' | translate }}</button>\n  </div>\n</ng-template>"
 
 /***/ }),
 
@@ -70,7 +70,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_category_service__ = __webpack_require__("../../../../../src/app/shared/services/category.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_cuisines_service__ = __webpack_require__("../../../../../src/app/shared/services/cuisines.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_upload_service__ = __webpack_require__("../../../../../src/app/shared/services/upload.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services_restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_services_item_service__ = __webpack_require__("../../../../../src/app/shared/services/item.service.ts");
@@ -94,37 +94,52 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ProductComponent = (function () {
-    function ProductComponent(formBuilder, toastr, modalService, uploadService, restaurantService, itemService, categoryService) {
+    function ProductComponent(formBuilder, toastr, modalService, uploadService, restaurantService, itemService, cuisinesService) {
         this.formBuilder = formBuilder;
         this.toastr = toastr;
         this.modalService = modalService;
         this.uploadService = uploadService;
         this.restaurantService = restaurantService;
         this.itemService = itemService;
-        this.categoryService = categoryService;
+        this.cuisinesService = cuisinesService;
         this.title = '';
-        this.categories = [];
+        this.cuisines = [];
     }
     ProductComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.formulario = this.formBuilder.group({
             id: [null, []],
-            thumb: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["g" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["g" /* Validators */].minLength(3)]],
-            name: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["g" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["g" /* Validators */].minLength(3)]],
-            ingredients: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["g" /* Validators */].required]],
+            thumb: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].minLength(3)]],
+            name: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].minLength(3)]],
+            ingredients: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required]],
             price: [null, []],
-            restaurants_id: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["g" /* Validators */].required]],
-            category_id: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["g" /* Validators */].required]],
+            restaurants_id: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required]],
+            cuisines_id: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required]],
             amount: [null],
-            disponible: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["g" /* Validators */].required]],
+            disponible: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required]],
         });
-        this.categories = this.categoryService.getAll(false);
-        if (!this.categories || !this.categories.length) {
-            this.categoryService.getCategories().subscribe(function (result) {
-                _this.categoryService.getItems(false);
-                _this.categories = _this.categoryService.getAll(false);
-            });
+        this.cuisines = this.cuisinesService.getAllWithItems();
+        if (!this.cuisines.length) {
+            var restaurant_1 = this.restaurantService.getAll();
+            // Caso não esteja populado os dados do restaurante busca no banco de dados
+            if (!restaurant_1 || !restaurant_1.id) {
+                this.restaurantService.populate().subscribe(function (result) {
+                    restaurant_1 = result.data;
+                    _this.restaurantId = restaurant_1.id;
+                    _this.findCuisinesWithItems();
+                });
+            }
+            else {
+                this.restaurantId = restaurant_1.id;
+                this.findCuisinesWithItems();
+            }
         }
+    };
+    ProductComponent.prototype.findCuisinesWithItems = function () {
+        var _this = this;
+        this.cuisinesService.getCuisinesWithItems(this.restaurantId).subscribe(function (result) {
+            _this.cuisines = result.data;
+        });
     };
     ProductComponent.prototype.add = function (content, category) {
         var _this = this;
@@ -136,7 +151,7 @@ var ProductComponent = (function () {
             ingredients: null,
             price: '0.00',
             restaurants_id: this.restaurantService.getRestaurantId(),
-            category_id: category.id,
+            cuisines_id: category.id,
             amount: 0,
             disponible: "1"
         };
@@ -145,8 +160,7 @@ var ProductComponent = (function () {
             if (result === 'yes') {
                 _this.itemService.register(_this.formulario.value).subscribe(function (result) {
                     if (result.status) {
-                        _this.categoryService.addItem(result.data);
-                        _this.categories = _this.categoryService.getAll(false);
+                        _this.findCuisinesWithItems();
                         _this.toastr.success(result.message, '');
                     }
                     else {
@@ -167,7 +181,7 @@ var ProductComponent = (function () {
             ingredients: item.ingredients,
             price: item.price,
             restaurants_id: this.restaurantService.getRestaurantId(),
-            category_id: category.id,
+            cuisines_id: category.id,
             amount: item.amount,
             disponible: item.disponible == 1 ? "1" : "0"
         };
@@ -176,7 +190,7 @@ var ProductComponent = (function () {
             if (result === 'yes') {
                 _this.itemService.edit(_this.formulario.value).subscribe(function (result) {
                     if (result.status) {
-                        _this.categories = _this.categoryService.getAll(true);
+                        _this.findCuisinesWithItems();
                         _this.toastr.success(result.message, '');
                     }
                     else {
@@ -187,42 +201,28 @@ var ProductComponent = (function () {
         }, function (reason) {
         });
     };
-    ProductComponent.prototype.addRequired = function (contentAdditional, item, categoryId) {
+    ProductComponent.prototype.addRequired = function (contentAdditional, cuisine, categoryId) {
         var _this = this;
-        this.options = "1";
-        this.item_id = item.id;
-        this.category_id = categoryId;
-        if (!item.options) {
-            item.options = {};
-            item.options.required = [];
-            this.additional = "[]";
-        }
-        else {
-            this.additional = JSON.stringify(item.options.required);
-        }
+        //Variaveis enviadas como parametros tela de aditional
+        this.cuisines_id = cuisine.cuisines_id;
+        this.required = 1;
+        this.item_id = cuisine.id;
         this.modalService.open(contentAdditional).result.then(function (result) {
             if (result === 'yes') {
-                _this.categories = _this.categoryService.getAll(true);
+                _this.findCuisinesWithItems();
             }
         }, function (reason) {
         });
     };
-    ProductComponent.prototype.addOptional = function (contentAdditional, item, categoryId) {
+    ProductComponent.prototype.addOptional = function (contentAdditional, cuisine, categoryId) {
         var _this = this;
-        if (!item.options) {
-            item.options = {};
-            item.options.additional = [];
-            this.additional = "[]";
-        }
-        else {
-            this.additional = JSON.stringify(item.options.optional);
-        }
-        this.options = "0";
-        this.item_id = item.id;
-        this.category_id = categoryId;
+        //Variaveis enviadas como parametros tela de aditional
+        this.cuisines_id = cuisine.cuisines_id;
+        this.required = 0;
+        this.item_id = cuisine.id;
         this.modalService.open(contentAdditional).result.then(function (result) {
             if (result === 'yes') {
-                _this.categories = _this.categoryService.getAll(true);
+                _this.findCuisinesWithItems();
             }
         }, function (reason) {
         });
@@ -263,7 +263,7 @@ var ProductComponent = (function () {
             ingredients: value.ingredients,
             price: value.price,
             restaurants_id: value.restaurants_id,
-            category_id: value.category_id,
+            cuisines_id: value.cuisines_id,
             amount: value.amount,
             disponible: value.disponible
         });
@@ -277,7 +277,7 @@ var ProductComponent = (function () {
                     .subscribe(function (result) {
                     if (result.status) {
                         _this.toastr.success(result.message, '');
-                        _this.categories = _this.categoryService.getAll(true);
+                        _this.findCuisinesWithItems();
                     }
                     else {
                         _this.toastr.warning('', result.message);
@@ -306,7 +306,7 @@ var ProductComponent = (function () {
             .subscribe(function (result) {
             if (result.status) {
                 _this.toastr.success(result.message, '');
-                _this.categories = _this.categoryService.getAll(true);
+                _this.findCuisinesWithItems();
             }
             else {
                 _this.toastr.warning('', result.message);
@@ -322,7 +322,7 @@ ProductComponent = __decorate([
         styles: [__webpack_require__("../../../../../src/app/layout/product/product.component.scss")],
         animations: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__router_animations__["a" /* routerTransition */])()]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* FormBuilder */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__["b" /* ToastrService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__["a" /* NgbModal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__["a" /* NgbModal */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_upload_service__["a" /* UploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_upload_service__["a" /* UploadService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_restaurant_service__["a" /* RestaurantService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_8__shared_services_item_service__["a" /* ItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_services_item_service__["a" /* ItemService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_category_service__["a" /* CategoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_category_service__["a" /* CategoryService */]) === "function" && _g || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* FormBuilder */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__["b" /* ToastrService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__["c" /* NgbModal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__["c" /* NgbModal */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_upload_service__["a" /* UploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_upload_service__["a" /* UploadService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_restaurant_service__["a" /* RestaurantService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_8__shared_services_item_service__["a" /* ItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_services_item_service__["a" /* ItemService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_cuisines_service__["a" /* CuisinesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_cuisines_service__["a" /* CuisinesService */]) === "function" && _g || Object])
 ], ProductComponent);
 
 var _a, _b, _c, _d, _e, _f, _g;
@@ -376,7 +376,7 @@ ProductModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_6__angular_forms__["b" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_forms__["a" /* ReactiveFormsModule */],
             __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__["a" /* ToastrModule */].forRoot(),
-            __WEBPACK_IMPORTED_MODULE_8__ng_bootstrap_ng_bootstrap__["b" /* NgbModule */].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_8__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
             __WEBPACK_IMPORTED_MODULE_7__shared_shared_module__["a" /* SharedModule */],
             __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__["a" /* TranslateModule */],
         ],
