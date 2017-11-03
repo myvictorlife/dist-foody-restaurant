@@ -211,6 +211,9 @@ var OrdersComponent = (function () {
                         _this.ordersService.populate().subscribe(function (result) {
                             _this.bkpOrders = result.data;
                             _this.selectOrders(_this.currentStatus);
+                            if (_this.currentStatus === 'pendente') {
+                                _this.audio.pause();
+                            }
                             // Precisa dessa funcionalidade a baixo??
                             _this.updateVariables();
                         });
