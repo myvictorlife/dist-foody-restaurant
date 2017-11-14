@@ -361,31 +361,60 @@ var OrdersComponent = (function () {
      */
     OrdersComponent.prototype.print = function (order) {
         return __awaiter(this, void 0, void 0, function () {
-            var communicator, err_1;
+            var string, communicator, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 4, , 5]);
+                        string = this.removerAcentos(JSON.stringify(order));
+                        order = JSON.parse(string);
+                        console.log(order);
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 5, , 6]);
                         communicator = new __WEBPACK_IMPORTED_MODULE_5__shared_services_communicator__["a" /* Communicator */]();
                         return [4 /*yield*/, communicator.connect(this.url)];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, communicator.sendPrintMessage(order)];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, communicator.close()];
+                        return [4 /*yield*/, communicator.sendPrintMessage(order)];
                     case 3:
                         _a.sent();
-                        return [3 /*break*/, 5];
+                        return [4 /*yield*/, communicator.close()];
                     case 4:
+                        _a.sent();
+                        return [3 /*break*/, 6];
+                    case 5:
                         err_1 = _a.sent();
                         //console.log(err);
                         this.toastr.warning('', 'Verifique se a impressora esta conectada.');
-                        return [3 /*break*/, 5];
-                    case 5: return [2 /*return*/];
+                        return [3 /*break*/, 6];
+                    case 6: return [2 /*return*/];
                 }
             });
         });
+    };
+    OrdersComponent.prototype.removerAcentos = function (stringComAcento) {
+        var string = stringComAcento;
+        var mapaAcentosHex = {
+            a: /[\xE0-\xE6]/g,
+            A: /[\xC0-\xC6]/g,
+            e: /[\xE8-\xEB]/g,
+            E: /[\xC8-\xCB]/g,
+            i: /[\xEC-\xEF]/g,
+            I: /[\xCC-\xCF]/g,
+            o: /[\xF2-\xF6]/g,
+            O: /[\xD2-\xD6]/g,
+            u: /[\xF9-\xFC]/g,
+            U: /[\xD9-\xDC]/g,
+            c: /\xE7/g,
+            C: /\xC7/g,
+            n: /\xF1/g,
+            N: /\xD1/g
+        };
+        for (var letra in mapaAcentosHex) {
+            var expressaoRegular = mapaAcentosHex[letra];
+            string = string.replace(expressaoRegular, letra);
+        }
+        return string;
     };
     return OrdersComponent;
 }());
