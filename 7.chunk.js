@@ -135,7 +135,6 @@ var OrdersComponent = (function () {
         this.toastr = toastr;
         this.modalService = modalService;
         this._pushNotifications = _pushNotifications;
-        this.url = '127.0.0.1:3478';
         this.status = {
             pendente: true,
             emPreparo: false,
@@ -372,7 +371,7 @@ var OrdersComponent = (function () {
                     case 1:
                         _a.trys.push([1, 5, , 6]);
                         communicator = new __WEBPACK_IMPORTED_MODULE_5__shared_services_communicator__["a" /* Communicator */]();
-                        return [4 /*yield*/, communicator.connect(this.url)];
+                        return [4 /*yield*/, communicator.connect()];
                     case 2:
                         _a.sent();
                         return [4 /*yield*/, communicator.sendPrintMessage(order)];

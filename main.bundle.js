@@ -939,16 +939,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 var Communicator = (function () {
     function Communicator() {
+        this.url = '127.0.0.1:3478';
     }
-    Communicator.prototype.connect = function (url) {
+    Communicator.prototype.connect = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
             var _a;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         _a = this;
                         return [4 /*yield*/, new Promise(function (resolve, reject) {
-                                var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client__(url);
+                                var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client__(_this.url);
                                 socket.on('connect_error', function (err) {
                                     socket.close();
                                     reject(err);
