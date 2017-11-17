@@ -939,7 +939,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 var Communicator = (function () {
     function Communicator() {
-        this.url = 'http://127.0.0.1:3478';
+        this.url = 'http://127.0.0.1:USB001';
     }
     Communicator.prototype.connect = function () {
         return __awaiter(this, void 0, void 0, function () {
