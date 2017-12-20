@@ -203,7 +203,8 @@ var AdditionalComponent = (function () {
     };
     AdditionalComponent.prototype.saveOrEdit = function () {
         var _this = this;
-        console.log(this.formularioAdditional.get('id').value);
+        var price = this.formularioAdditional.get('price').value;
+        this.formularioAdditional.controls['price'].setValue(price.replace(',', '.'));
         if (!this.formularioAdditional.get('id').value) {
             this.additionalItemService.register(this.formularioAdditional.value).subscribe(function (result) {
                 if (result.status) {

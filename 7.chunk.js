@@ -242,17 +242,22 @@ var OrdersComponent = (function () {
                     id: _this.orderSelected.id,
                     note: _this.orderSelected.note
                 };
+                if (_this.statusSelected.status === 5 && !_this.orderSelected.note) {
+                    _this.toastr.warning('', 'Qual o motivo do cancelamento?');
+                    return false;
+                }
                 _this.ordersService.editStatus(json).subscribe(function (result) {
                     if (result.status) {
                         _this.selectOrders(_this.currentStatus);
                         _this.ordersService.populate().subscribe(function (result) {
                             _this.bkpOrders = result.data;
                             _this.selectOrders(_this.currentStatus);
-                            if (_this.currentStatus === 'pendente') {
+                            if (_this.currentStatus === 'pendente' && _this.audio && !_this.audio.paused) {
                                 _this.audio.pause();
                             }
                             // Precisa dessa funcionalidade a baixo??
                             _this.updateVariables();
+                            _this.toastr.success('', 'Pedido: ' + _this.statusName[_this.statusSelected.status]);
                         });
                     }
                     else {
