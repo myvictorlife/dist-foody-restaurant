@@ -424,7 +424,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/shared/components/sidebar/sidebar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"sidebar\" [ngClass]=\"{sidebarPushRight: isActive}\">\n    <ul class=\"list-group\">\n         \n        <a [routerLink]=\"['/orders']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-cutlery\"></i>&nbsp;{{ 'orders' | translate }}\n        </a>\n        <a [routerLink]=\"['/employee']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-users\"></i>&nbsp;{{ 'employees' | translate }}\n        </a>\n        <a [routerLink]=\"['/product']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-product-hunt\"></i>&nbsp;{{ 'product' | translate }}\n        </a>\n        <a [routerLink]=\"['/config']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-pencil\"></i>&nbsp;{{ 'config' | translate }}\n        </a>\n        <a [routerLink]=\"['/history']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-history\"></i>&nbsp;{{ 'history' | translate }}\n        </a>\n        <a [routerLink]=\"['/payment']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-credit-card\"></i>&nbsp;{{ 'form.payment' | translate }}\n        </a>\n        <a [routerLink]=\"['/cupons']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-gift\"></i>&nbsp;{{ 'cupons' | translate }}\n        </a>\n        <a routerLink=\"/report\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-bar-chart\"></i>&nbsp;{{ 'report' | translate }}\n        </a>\n        <a routerLink=\"/cuisines\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-tags\"></i>&nbsp;{{ 'cuisines' | translate }}\n        </a> \n    </ul>\n</nav>\n"
+module.exports = "<nav class=\"sidebar\" [ngClass]=\"{sidebarPushRight: isActive}\">\n    <ul class=\"list-group\">\n         \n        <a [routerLink]=\"['/orders']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-cutlery\"></i>&nbsp;{{ 'orders' | translate }}\n        </a>\n        <a [routerLink]=\"['/employee']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-users\"></i>&nbsp;{{ 'employees' | translate }}\n        </a>\n        <a [routerLink]=\"['/product']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-product-hunt\"></i>&nbsp;{{ 'product' | translate }}\n        </a>\n        <a [routerLink]=\"['/config']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-pencil\"></i>&nbsp;{{ 'config' | translate }}\n        </a>\n        <a [routerLink]=\"['/history']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-history\"></i>&nbsp;{{ 'history' | translate }}\n        </a>\n        <a [routerLink]=\"['/payment']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-credit-card\"></i>&nbsp;{{ 'form.payment' | translate }}\n        </a>\n        <a [routerLink]=\"['/cupons']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-gift\"></i>&nbsp;{{ 'cupons' | translate }}\n        </a>\n        <a routerLink=\"/report\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-bar-chart\"></i>&nbsp;{{ 'report' | translate }}\n        </a>\n        <a routerLink=\"/cuisines\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-tags\"></i>&nbsp;{{ 'cuisines' | translate }}\n        </a> \n        <a [routerLink]=\"['/status']\" (click)=\"onLoggedout()\" class=\"list-group-item\">\n            <i class=\"fa fa-fw fa-power-off\"></i>&nbsp;{{ 'logout' | translate }}\n        </a>\n    </ul>\n</nav>\n"
 
 /***/ }),
 
@@ -474,6 +474,10 @@ var SidebarComponent = (function () {
         else {
             this.showMenu = element;
         }
+    };
+    SidebarComponent.prototype.onLoggedout = function () {
+        localStorage.removeItem("isUserLogged");
+        window.location.reload();
     };
     return SidebarComponent;
 }());
@@ -841,6 +845,9 @@ SharedPipesModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdditionalItemService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -855,41 +862,65 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var AdditionalItemService = (function () {
-    function AdditionalItemService(http) {
+    function AdditionalItemService(http, loginService) {
         this.http = http;
+        this.loginService = loginService;
         //url: string = 'https://uaifomemaster.com';
         this.url = __WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url;
     }
     AdditionalItemService.prototype.register = function (additionalItem) {
-        return this.http.post(this.url + "/items-additional", additionalItem)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.post(this.url + "/items-additional", additionalItem, {
+            headers: headers
+        })
             .map(function (res) {
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     AdditionalItemService.prototype.edit = function (additionalItem) {
-        return this.http.put(this.url + "/items-additional", additionalItem)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.put(this.url + "/items-additional", additionalItem, {
+            headers: headers
+        })
             .map(function (res) {
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     AdditionalItemService.prototype.removeById = function (id) {
-        return this.http.delete(this.url + "/items-additional/" + id)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.delete(this.url + "/items-additional/" + id, {
+            headers: headers
+        })
             .map(function (res) {
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
+    };
+    AdditionalItemService.prototype.getToken = function () {
+        return this.loginService.getToken();
     };
     return AdditionalItemService;
 }());
 AdditionalItemService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__login_service__["a" /* LoginService */]) === "function" && _b || Object])
 ], AdditionalItemService);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=additional-item.service.js.map
 
 /***/ }),
@@ -1037,6 +1068,9 @@ let CONFIG = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__item_service__ = __webpack_require__("../../../../../src/app/shared/services/item.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CuisinesService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1053,10 +1087,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var CuisinesService = (function () {
-    function CuisinesService(http, itemService, restaurantService) {
+    function CuisinesService(http, itemService, loginService, restaurantService) {
         this.http = http;
         this.itemService = itemService;
+        this.loginService = loginService;
         this.restaurantService = restaurantService;
         //url: string = 'https://uaifomemaster.com';
         this.url = __WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* CONFIG */].url;
@@ -1065,24 +1102,37 @@ var CuisinesService = (function () {
     }
     CuisinesService.prototype.getCuisines = function (restaurantId) {
         var _this = this;
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* CONFIG */].url + "/cuisines/restaurant/" + restaurantId)
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* CONFIG */].url + "/cuisines/restaurant/" + restaurantId, {
+            headers: headers
+        })
             .map(function (res) {
             _this.cuisines = res.json().data;
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     CuisinesService.prototype.setCuisines = function (cuisines) {
         this.cuisinesWithItems = cuisines;
     };
     CuisinesService.prototype.getCuisinesWithItems = function (restaurantId) {
         var _this = this;
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* CONFIG */].url + "/cuisines/cuisines/items/" + restaurantId)
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* CONFIG */].url + "/cuisines/cuisines/items/" + restaurantId, {
+            headers: headers
+        })
             .map(function (res) {
             _this.cuisinesWithItems = res.json().data;
+            console.log(_this.cuisinesWithItems);
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     CuisinesService.prototype.getAll = function () {
         return this.cuisines;
@@ -1095,18 +1145,28 @@ var CuisinesService = (function () {
     };
     CuisinesService.prototype.register = function (category) {
         var _this = this;
-        return this.http.post(this.url + "/cuisines", category)
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.post(this.url + "/cuisines", category, {
+            headers: headers
+        })
             .map(function (res) {
             var category = res.json().data;
             category.activated = category.activated === '0' ? false : true;
             _this.cuisines.push(category);
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     CuisinesService.prototype.edit = function (category) {
         var _this = this;
-        return this.http.put(this.url + "/cuisines", category)
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.put(this.url + "/cuisines", category, {
+            headers: headers
+        })
             .map(function (res) {
             for (var i = 0; i < _this.cuisines.length; i++) {
                 if (_this.cuisines[i].id === category.id) {
@@ -1116,23 +1176,37 @@ var CuisinesService = (function () {
             }
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     CuisinesService.prototype.updateCuisines = function (restaurant) {
-        return this.http.put(this.url + "/restaurant/cuisines", restaurant)
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.put(this.url + "/restaurant/cuisines", restaurant, {
+            headers: headers
+        })
             .map(function (res) {
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     CuisinesService.prototype.remove = function (id) {
         var _this = this;
-        return this.http.delete(this.url + "/cuisines/" + id)
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.delete(this.url + "/cuisines/" + id, {
+            headers: headers
+        })
             .map(function (res) {
             _this.cuisines = _this.cuisines.filter(function (item) { return item.id !== id; });
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     CuisinesService.prototype.populateWithItems = function (items) {
         for (var j = 0; j < this.cuisines.length; j++) {
@@ -1177,14 +1251,17 @@ var CuisinesService = (function () {
         }
         return {};
     };
+    CuisinesService.prototype.getToken = function () {
+        return this.loginService.getToken();
+    };
     return CuisinesService;
 }());
 CuisinesService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__item_service__["a" /* ItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__item_service__["a" /* ItemService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__restaurant_service__["a" /* RestaurantService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__item_service__["a" /* ItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__item_service__["a" /* ItemService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_7__login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__login_service__["a" /* LoginService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__restaurant_service__["a" /* RestaurantService */]) === "function" && _d || Object])
 ], CuisinesService);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=cuisines.service.js.map
 
 /***/ }),
@@ -1200,6 +1277,8 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CuponService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1216,6 +1295,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CuponService = (function () {
     function CuponService(http, restaurantService, loginService) {
         this.http = http;
@@ -1226,12 +1306,18 @@ var CuponService = (function () {
     CuponService.prototype.populate = function () {
         var _this = this;
         var restaurant = this.restaurantService.getAll();
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url + "/coupon/restaurant/" + restaurant.id)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url + "/coupon/restaurant/" + restaurant.id, {
+            headers: headers
+        })
             .map(function (res) {
             _this.cupons = res.json().data;
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     CuponService.prototype.getAll = function () {
         return this.cupons;
@@ -1248,12 +1334,18 @@ var CuponService = (function () {
         cupon.latitude = restaurant.latitude;
         cupon.longitude = restaurant.longitude;
         cupon.createdBy = this.loginService.getUser().email;
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url + "/coupon", cupon)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url + "/coupon", cupon, {
+            headers: headers
+        })
             .map(function (res) {
             _this.cupons.push(res.json().data);
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     CuponService.prototype.edit = function (cupon) {
         var _this = this;
@@ -1267,7 +1359,11 @@ var CuponService = (function () {
         cupon.latitude = restaurant.latitude;
         cupon.longitude = restaurant.longitude;
         cupon.updatedBy = this.loginService.getUser().email;
-        return this.http.put(__WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url + "/coupon", cupon)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.put(__WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url + "/coupon", cupon, {
+            headers: headers
+        })
             .map(function (res) {
             for (var i = 0; i < _this.cupons.length; i++) {
                 if (_this.cupons[i].id === cupon.id) {
@@ -1276,16 +1372,27 @@ var CuponService = (function () {
             }
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     CuponService.prototype.remove = function (id) {
         var _this = this;
-        return this.http.delete(__WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url + "/coupon/" + id)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.delete(__WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url + "/coupon/" + id, {
+            headers: headers
+        })
             .map(function (res) {
             _this.cupons = _this.cupons.filter(function (item) { return item.id !== id; });
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].throw(error);
+        });
+    };
+    CuponService.prototype.getToken = function () {
+        return this.loginService.getToken();
     };
     return CuponService;
 }());
@@ -1309,6 +1416,9 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1324,10 +1434,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var DashboardService = (function () {
-    //url:string = 'https://uaifomemaster.com';
-    function DashboardService(http, restaurantService) {
+    function DashboardService(http, loginService, restaurantService) {
         this.http = http;
+        this.loginService = loginService;
         this.restaurantService = restaurantService;
         this.url = __WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* CONFIG */].url;
     }
@@ -1337,20 +1449,29 @@ var DashboardService = (function () {
             startDate: start,
             endDate: end,
         };
-        return this.http.post(this.url + "/restaurant/dashboard", send)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.post(this.url + "/restaurant/dashboard", send, {
+            headers: headers
+        })
             .map(function (res) {
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
+    };
+    DashboardService.prototype.getToken = function () {
+        return this.loginService.getToken();
     };
     return DashboardService;
 }());
 DashboardService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__login_service__["a" /* LoginService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__restaurant_service__["a" /* RestaurantService */]) === "function" && _c || Object])
 ], DashboardService);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=dashboard.service.js.map
 
 /***/ }),
@@ -1365,6 +1486,8 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ItemService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1375,6 +1498,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1393,26 +1517,42 @@ var ItemService = (function () {
         });
     }
     ItemService.prototype.populate = function () {
-        return this.http.get(this.url + "/items/restaurant/" + this.restaurantId)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.get(this.url + "/items/restaurant/" + this.restaurantId, {
+            headers: headers
+        })
             .map(function (res) {
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     ItemService.prototype.register = function (items) {
         var _this = this;
         items.createdBy = this.loginService.getUser().email;
-        return this.http.post(this.url + "/items", items)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.post(this.url + "/items", items, {
+            headers: headers
+        })
             .map(function (res) {
             _this.items.push(res.json().data);
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     ItemService.prototype.edit = function (items) {
         var _this = this;
         items.updatedBy = this.loginService.getUser().email;
-        return this.http.put(this.url + "/items", items)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.put(this.url + "/items", items, {
+            headers: headers
+        })
             .map(function (res) {
             var item = res.json().data;
             for (var x = 0; x < _this.items.length; x++) {
@@ -1422,14 +1562,20 @@ var ItemService = (function () {
             }
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     ItemService.prototype.getAll = function () {
         return this.items;
     };
     ItemService.prototype.remove = function (id) {
         var _this = this;
-        return this.http.delete(this.url + "/items/" + id)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.delete(this.url + "/items/" + id, {
+            headers: headers
+        })
             .map(function (res) {
             for (var x = 0; x < _this.items.length; x++) {
                 if (_this.items[x].id === id) {
@@ -1438,16 +1584,27 @@ var ItemService = (function () {
             }
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     ItemService.prototype.duplicate = function (itemDuplicate) {
         var _this = this;
-        return this.http.post(this.url + "/items/additional", itemDuplicate)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.post(this.url + "/items/additional", itemDuplicate, {
+            headers: headers
+        })
             .map(function (res) {
             _this.items.push(res.json().data);
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
+    };
+    ItemService.prototype.getToken = function () {
+        return this.loginService.getToken();
     };
     return ItemService;
 }());
@@ -1489,19 +1646,29 @@ var LoginService = (function () {
         this.http = http;
         //url:string = 'https://uaifomemaster.com';
         this.url = __WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* CONFIG */].url;
-        this.profile = localStorage.getItem('isUserLogged') ? JSON.parse(localStorage.getItem('isUserLogged')) : {};
+        this.getProfile();
     }
     LoginService.prototype.authenticate = function (profile) {
         var _this = this;
         return this.http.post(this.url + "/authenticate-restaurant", profile)
             .map(function (res) {
             _this.profile = res.json().data;
+            localStorage.setItem('userToken', res.json().token);
             return res.json();
         })
             .catch(function (error) { return error.json(); });
     };
     LoginService.prototype.getUser = function () {
+        this.getProfile();
         return this.profile;
+    };
+    LoginService.prototype.getToken = function () {
+        return localStorage.getItem('userToken');
+    };
+    LoginService.prototype.getProfile = function () {
+        if (!this.profile) {
+            this.profile = localStorage.getItem('isUserLogged') ? JSON.parse(localStorage.getItem('isUserLogged')) : {};
+        }
     };
     return LoginService;
 }());
@@ -1525,6 +1692,8 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrdersService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1535,6 +1704,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1561,24 +1731,40 @@ var OrdersService = (function () {
         return false;
     };
     OrdersService.prototype.populate = function () {
-        return this.http.get(this.url + "/orders/restaurant/" + this.restaurantId)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.get(this.url + "/orders/restaurant/" + this.restaurantId, {
+            headers: headers
+        })
             .map(function (res) {
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     OrdersService.prototype.findByStatus = function (status) {
-        return this.http.get(this.url + "/orders/restaurant/" + this.restaurantId + "/status/" + status)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.get(this.url + "/orders/restaurant/" + this.restaurantId + "/status/" + status, {
+            headers: headers
+        })
             .map(function (res) {
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     OrdersService.prototype.register = function (orders) {
     };
     OrdersService.prototype.editStatus = function (order) {
         var _this = this;
-        return this.http.put(this.url + "/orders/status", order)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.put(this.url + "/orders/status", order, {
+            headers: headers
+        })
             .map(function (res) {
             var result = res.json().data;
             for (var i = 0; i < _this.orders.length; i++) {
@@ -1588,7 +1774,9 @@ var OrdersService = (function () {
             }
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     OrdersService.prototype.edit = function (orders) {
     };
@@ -1597,6 +1785,9 @@ var OrdersService = (function () {
     };
     OrdersService.prototype.getAll = function () {
         return this.orders;
+    };
+    OrdersService.prototype.getToken = function () {
+        return this.loginService.getToken();
     };
     return OrdersService;
 }());
@@ -1621,6 +1812,8 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1631,6 +1824,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1651,21 +1845,36 @@ var PaymentService = (function () {
         });
     }
     PaymentService.prototype.populate = function () {
-        return this.http.get(this.url + "/payment")
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.get(this.url + "/payment", {
+            headers: headers
+        })
             .map(function (res) {
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     PaymentService.prototype.updatePayment = function (payments) {
-        return this.http.put(this.url + "/restaurant/payment", payments)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.put(this.url + "/restaurant/payment", payments, {
+            headers: headers
+        })
             .map(function (res) {
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     PaymentService.prototype.getAll = function () {
         return this.payment;
+    };
+    PaymentService.prototype.getToken = function () {
+        return this.loginService.getToken();
     };
     return PaymentService;
 }());
@@ -1721,51 +1930,72 @@ var RestaurantService = (function () {
         });
     }
     RestaurantService.prototype.populate = function () {
-        return this.http.get(this.url + "/restaurant/" + this.restaurantId + "/latitude/null/longitude/null")
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.get(this.url + "/restaurant/" + this.restaurantId + "/latitude/null/longitude/null", {
+            headers: headers
+        })
             .map(function (res) {
             return res.json();
         })
-            .catch(this.handleError);
-    };
-    RestaurantService.prototype.handleError = function (error) {
-        return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error || 'Server error');
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     RestaurantService.prototype.edit = function (restaurant) {
         var _this = this;
         restaurant.updatedBy = this.loginService.getUser().email;
-        return this.http.put(this.url + "/restaurant", restaurant)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.put(this.url + "/restaurant", restaurant, {
+            headers: headers
+        })
             .map(function (res) {
             if (res.json() && res.json().status && res.json().data) {
                 _this.restaurant = res.json().data;
             }
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     RestaurantService.prototype.editDeliveryTime = function (restaurant) {
         var _this = this;
         restaurant.id = this.restaurantId;
         restaurant.updatedBy = this.loginService.getUser().email;
-        return this.http.put(this.url + "/restaurant/deliverytime", restaurant)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.put(this.url + "/restaurant/deliverytime", restaurant, {
+            headers: headers
+        })
             .map(function (res) {
             _this.restaurant.delivery_max = restaurant.delivery_max;
             _this.restaurant.delivery_min = restaurant.delivery_min;
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     RestaurantService.prototype.editPriceFrete = function (restaurant) {
         var _this = this;
         restaurant.id = this.restaurantId;
         restaurant.updatedBy = this.loginService.getUser().email;
-        return this.http.put(this.url + "/restaurant/frete", restaurant)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.put(this.url + "/restaurant/frete", restaurant, {
+            headers: headers
+        })
             .map(function (res) {
             _this.restaurant.frete = restaurant.frete;
             _this.restaurant.km_normal = restaurant.km_normal;
             _this.restaurant.frete_km = restaurant.frete_km;
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     RestaurantService.prototype.getAll = function () {
         return this.restaurant;
@@ -1781,6 +2011,9 @@ var RestaurantService = (function () {
     };
     RestaurantService.prototype.setCategories = function (categories) {
         this.restaurant.category_ids = categories;
+    };
+    RestaurantService.prototype.getToken = function () {
+        return this.loginService.getToken();
     };
     return RestaurantService;
 }());
@@ -1864,6 +2097,8 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1874,6 +2109,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1892,27 +2128,43 @@ var UserService = (function () {
         });
     }
     UserService.prototype.populate = function () {
-        return this.http.get(this.url + "/users-restaurant/restaurant/" + this.profile.restaurants_id)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.get(this.url + "/users-restaurant/restaurant/" + this.profile.restaurants_id, {
+            headers: headers
+        })
             .map(function (res) {
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     UserService.prototype.register = function (users) {
         var _this = this;
         users.restaurants_id = this.profile.restaurants_id;
         users.createdBy = this.loginService.getUser().email;
-        return this.http.post(this.url + "/users-restaurant", users)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.post(this.url + "/users-restaurant", users, {
+            headers: headers
+        })
             .map(function (res) {
             _this.users.push(res.json().data);
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     UserService.prototype.edit = function (users) {
         var _this = this;
         users.updatedBy = this.loginService.getUser().email;
-        return this.http.put(this.url + "/users-restaurant", users)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.put(this.url + "/users-restaurant", users, {
+            headers: headers
+        })
             .map(function (res) {
             for (var i = 0; i < _this.users.length; i++) {
                 if (_this.users[i].id === users.id) {
@@ -1921,25 +2173,42 @@ var UserService = (function () {
             }
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     UserService.prototype.existEmail = function (email) {
-        return this.http.get(this.url + "/users-restaurant/email/" + email)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.get(this.url + "/users-restaurant/email/" + email, {
+            headers: headers
+        })
             .map(function (res) {
             return res.json();
-        }).catch(function (error) { return error.json(); });
+        }).catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
     };
     UserService.prototype.getAll = function () {
         return this.users;
     };
     UserService.prototype.remove = function (email) {
         var _this = this;
-        return this.http.delete(this.url + "/users-restaurant/" + email)
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.delete(this.url + "/users-restaurant/" + email, {
+            headers: headers
+        })
             .map(function (res) {
             _this.users = _this.users.filter(function (item) { return item.email !== email; });
             return res.json();
         })
-            .catch(function (error) { return error.json(); });
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
+    };
+    UserService.prototype.getToken = function () {
+        return this.loginService.getToken();
     };
     return UserService;
 }());

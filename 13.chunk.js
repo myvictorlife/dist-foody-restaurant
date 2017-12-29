@@ -142,6 +142,10 @@ var ConfigComponent = (function () {
                 else {
                     _this.formulario.controls['thumb'].setValue(result.url);
                 }
+            }, function (error) {
+                if (error.status === 401) {
+                    _this.onLoggedout();
+                }
             });
         };
         myReader.readAsDataURL(file);
@@ -170,6 +174,10 @@ var ConfigComponent = (function () {
             this.restaurantService.populate().subscribe(function (result) {
                 if (result.status) {
                     _this.populate(result.data);
+                }
+            }, function (error) {
+                if (error.status === 401) {
+                    _this.onLoggedout();
                 }
             });
         }
@@ -202,6 +210,10 @@ var ConfigComponent = (function () {
             else {
                 _this.toastr.warning('', result.message);
             }
+        }, function (error) {
+            if (error.status === 401) {
+                _this.onLoggedout();
+            }
         });
     };
     ConfigComponent.prototype.removeImg = function () {
@@ -209,6 +221,10 @@ var ConfigComponent = (function () {
     };
     ConfigComponent.prototype.removeThumb = function () {
         this.formulario.controls['thumb'].setValue(null);
+    };
+    ConfigComponent.prototype.onLoggedout = function () {
+        localStorage.removeItem("isUserLogged");
+        window.location.reload();
     };
     return ConfigComponent;
 }());

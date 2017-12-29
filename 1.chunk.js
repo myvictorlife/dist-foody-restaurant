@@ -301,6 +301,10 @@ var DashboardComponent = (function () {
         this.dashboardService.calculateByDates(init, to)
             .subscribe(function (result) {
             _this.dashboard = result.data;
+        }, function (error) {
+            if (error.status === 401) {
+                _this.onLoggedout();
+            }
         });
     }
     DashboardComponent.prototype.ngOnInit = function () {
@@ -315,6 +319,10 @@ var DashboardComponent = (function () {
         this.dashboardService.calculateByDates(init, to)
             .subscribe(function (result) {
             _this.dashboard = result.data;
+        }, function (error) {
+            if (error.status === 401) {
+                _this.onLoggedout();
+            }
         });
     };
     DashboardComponent.prototype.formatDate = function (date) {
@@ -322,6 +330,10 @@ var DashboardComponent = (function () {
             var day = date.date.day <= 9 ? "0" + date.date.day : date.date.day, month = date.date.month <= 9 ? "0" + date.date.month : date.date.month;
             return day + '-' + month + '-' + date.date.year;
         }
+    };
+    DashboardComponent.prototype.onLoggedout = function () {
+        localStorage.removeItem("isUserLogged");
+        window.location.reload();
     };
     return DashboardComponent;
 }());

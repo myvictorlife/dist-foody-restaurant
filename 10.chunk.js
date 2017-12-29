@@ -137,6 +137,10 @@ var EmployeeComponent = (function () {
                             else {
                                 _this.toastr.warning('', result.message);
                             }
+                        }, function (error) {
+                            if (error.status === 401) {
+                                _this.onLoggedout();
+                            }
                         });
                     }
                     else {
@@ -154,6 +158,10 @@ var EmployeeComponent = (function () {
                     }
                     else {
                         _this.toastr.warning('', result.message);
+                    }
+                }, function (error) {
+                    if (error.status === 401) {
+                        _this.onLoggedout();
                     }
                 });
             }
@@ -201,6 +209,10 @@ var EmployeeComponent = (function () {
                     else {
                         _this.toastr.warning('', result.message);
                     }
+                }, function (error) {
+                    if (error.status === 401) {
+                        _this.onLoggedout();
+                    }
                 });
             }
         }, function (reason) {
@@ -216,6 +228,10 @@ var EmployeeComponent = (function () {
         else {
             return "with: " + reason;
         }
+    };
+    EmployeeComponent.prototype.onLoggedout = function () {
+        localStorage.removeItem("isUserLogged");
+        window.location.reload();
     };
     return EmployeeComponent;
 }());

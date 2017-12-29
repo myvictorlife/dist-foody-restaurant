@@ -100,7 +100,15 @@ var PaymentComponent = (function () {
             _this.paymentService.populate().subscribe(function (result) {
                 _this.payments = result.data;
                 _this.paymentSelectByRestaurant(_this.restaurantPayments);
+            }, function (error) {
+                if (error.status === 401) {
+                    _this.onLoggedout();
+                }
             });
+        }, function (error) {
+            if (error.status === 401) {
+                _this.onLoggedout();
+            }
         });
     }
     PaymentComponent.prototype.ngOnInit = function () {
@@ -137,6 +145,10 @@ var PaymentComponent = (function () {
             else {
                 _this.toastr.warning(result.message, '');
             }
+        }, function (error) {
+            if (error.status === 401) {
+                _this.onLoggedout();
+            }
         });
     };
     PaymentComponent.prototype.addPayment = function () {
@@ -165,6 +177,10 @@ var PaymentComponent = (function () {
             }
         }
         return rmPayment;
+    };
+    PaymentComponent.prototype.onLoggedout = function () {
+        localStorage.removeItem("isUserLogged");
+        window.location.reload();
     };
     return PaymentComponent;
 }());

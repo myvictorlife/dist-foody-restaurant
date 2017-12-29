@@ -104,6 +104,10 @@ var CuisinesComponent = (function () {
             this.restaurantService.populate().subscribe(function (result) {
                 _this.restaurant = result.data;
                 _this.findCuisines(_this.restaurant.id);
+            }, function (error) {
+                if (error.status === 401) {
+                    _this.onLoggedout();
+                }
             });
         }
         else {
@@ -114,6 +118,10 @@ var CuisinesComponent = (function () {
         var _this = this;
         this.cuisinesService.getCuisines(restaurantId).subscribe(function (result) {
             _this.categories = _this.cuisinesService.getAll();
+        }, function (error) {
+            if (error.status === 401) {
+                _this.onLoggedout();
+            }
         });
     };
     CuisinesComponent.prototype.ngOnInit = function () {
@@ -154,6 +162,10 @@ var CuisinesComponent = (function () {
                     else {
                         _this.toastr.warning('', result.message);
                     }
+                }, function (error) {
+                    if (error.status === 401) {
+                        _this.onLoggedout();
+                    }
                 });
             }
             else {
@@ -167,6 +179,10 @@ var CuisinesComponent = (function () {
                     }
                     else {
                         _this.toastr.warning('', result.message);
+                    }
+                }, function (error) {
+                    if (error.status === 401) {
+                        _this.onLoggedout();
                     }
                 });
             }
@@ -191,6 +207,10 @@ var CuisinesComponent = (function () {
                     }
                     else {
                         _this.toastr.warning('', result.message);
+                    }
+                }, function (error) {
+                    if (error.status === 401) {
+                        _this.onLoggedout();
                     }
                 });
             }
@@ -222,6 +242,10 @@ var CuisinesComponent = (function () {
                 _this.verificaValidacoesForm(controle);
             }
         });
+    };
+    CuisinesComponent.prototype.onLoggedout = function () {
+        localStorage.removeItem("isUserLogged");
+        window.location.reload();
     };
     return CuisinesComponent;
 }());

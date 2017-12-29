@@ -102,6 +102,10 @@ var HistoryComponent = (function () {
         this.orderSelected = {};
         this.ordersService.findByStatus("4").subscribe(function (result) {
             _this.orders = result.data;
+        }, function (error) {
+            if (error.status === 401) {
+                _this.onLoggedout();
+            }
         });
     }
     HistoryComponent.prototype.ngOnInit = function () {
@@ -166,6 +170,10 @@ var HistoryComponent = (function () {
             total = parseFloat(orderSelected.total);
         }
         return total.toFixed(2);
+    };
+    HistoryComponent.prototype.onLoggedout = function () {
+        localStorage.removeItem("isUserLogged");
+        window.location.reload();
     };
     return HistoryComponent;
 }());

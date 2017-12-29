@@ -151,6 +151,10 @@ var OrdersComponent = (function () {
                 _this.bkpOrders = result.data;
                 _this.selectOrders(_this.currentStatus);
                 _this.updateVariables();
+            }, function (error) {
+                if (error.status === 401) {
+                    _this.onLoggedout();
+                }
             });
         }
         else {
@@ -186,6 +190,10 @@ var OrdersComponent = (function () {
             }
             if (alarme && orders.length) {
                 _this.alertAudio();
+            }
+        }, function (error) {
+            if (error.status === 401) {
+                _this.onLoggedout();
             }
         });
     };
@@ -260,11 +268,19 @@ var OrdersComponent = (function () {
                             // Precisa dessa funcionalidade a baixo??
                             _this.updateVariables();
                             _this.toastr.success('', 'Pedido: ' + _this.statusName[_this.statusSelected.status]);
+                        }, function (error) {
+                            if (error.status === 401) {
+                                _this.onLoggedout();
+                            }
                         });
                     }
                     else {
                         _this.toastr.warning('', result.message);
                         _this.selectOrders(_this.currentStatus);
+                    }
+                }, function (error) {
+                    if (error.status === 401) {
+                        _this.onLoggedout();
                     }
                 });
             }
@@ -296,6 +312,10 @@ var OrdersComponent = (function () {
             else {
                 _this.toastr.warning('', result.message);
             }
+        }, function (error) {
+            if (error.status === 401) {
+                _this.onLoggedout();
+            }
         });
     };
     OrdersComponent.prototype.setStatus = function (status) {
@@ -314,6 +334,10 @@ var OrdersComponent = (function () {
             }
             else {
                 _this.toastr.warning('', result.message);
+            }
+        }, function (error) {
+            if (error.status === 401) {
+                _this.onLoggedout();
             }
         });
     };
@@ -437,6 +461,10 @@ var OrdersComponent = (function () {
             return order.name + ": " + order.value + '%';
         }
         return order.name + ": R$ " + order.value;
+    };
+    OrdersComponent.prototype.onLoggedout = function () {
+        localStorage.removeItem("isUserLogged");
+        window.location.reload();
     };
     return OrdersComponent;
 }());

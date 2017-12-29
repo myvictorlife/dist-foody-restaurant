@@ -39,7 +39,7 @@ ProductRoutingModule = __decorate([
 /***/ "../../../../../src/app/layout/product/product.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div [@routerTransition]>\n    <app-page-header [heading]=\"'Cardapio'\" [icon]=\"'fa-edit'\"></app-page-header>\n</div>  \n  <!--list of cuisines-->\n  <div *ngFor=\"let cat of cuisines\" (click)=\"showItems(cat); $event.stopPropagation();\">\n\n    <ol class=\"breadcrumb\">\n\t  <li class=\"breadcrumb-item category\">{{ cat.name }}</li>\n    \n    <i class=\"fa fa-arrow-circle-right\" style=\"float: right; margin-top: 5px; font-size: 20px;\" aria-hidden=\"true\" *ngIf=\"!cat.showItems\" ></i>\n    <i class=\"fa fa-arrow-circle-down\" style=\"float: right; margin-top: 5px; font-size: 20px;\" aria-hidden=\"true\" *ngIf=\"cat.showItems\" ></i>\n    \n    <span class=\"amount-products\" >{{cat.Items.length}} <i class=\"fa fa-product-hunt\"></i></span>\n\t</ol>\t\n\t\n\t<div class=\"table-responsive\" *ngIf=\"cat.showItems\">\n    <table class=\"table \" *ngIf=\"cat.Items && cat.Items.length\">\n\t  <thead>\n\t    <tr>\n\t      <th>{{ 'img' | translate }}</th>\n\t      <th>{{ 'product' | translate }}</th>\n\t      <th>{{ 'ingredients' | translate }}</th>\n\t      <th>{{ 'price' | translate }}</th>\n        <th>{{ 'required' | translate }}</th>\n        <th>{{ 'additional' | translate }}</th>\n        <th>{{ 'remove' | translate }}</th>\n        <th>{{ 'duplicate' | translate }}</th>\n\t    </tr>\n\t  </thead>\n\t  <tbody>\n\t    <tr *ngFor=\"let item of cat.Items\">\n\t      <td *ngIf=\"item.thumb\" (click)=\"editItem(content, cat, item); $event.stopPropagation();\"><img src=\"{{ item.thumb }}\" alt=\"\" width=\"40\" height=\"30\"></td>\n        <td *ngIf=\"!item.thumb\" (click)=\"editItem(content, cat, item); $event.stopPropagation();\"><img src=\"assets/images/300x250.png\" alt=\"\" width=\"40\" height=\"30\"></td>\n\t      <td (click)=\"editItem(content, cat, item); $event.stopPropagation();\">{{ item.name }}</td>\n\t      <td (click)=\"editItem(content, cat, item); $event.stopPropagation();\">{{ item.ingredients }}</td>\n\t      <td (click)=\"editItem(content, cat, item); $event.stopPropagation();\">R$ {{ item.price }}</td>\n        <td (click)=\"addRequired(contentAdditional, item, cat.id); $event.stopPropagation();\" ><button type=\"button\" class=\"btn btn-outline-primary\">{{ 'required' | translate }}</button></td>\n        <td (click)=\"addOptional(contentAdditional, item, cat.id); $event.stopPropagation();\"><button type=\"button\" class=\"btn btn-outline-primary\">{{ 'additional' | translate }}</button></td>\n        <td (click)=\"removeItem(contentRemove, item, cat.id); $event.stopPropagation();\"><button type=\"button\" class=\"btn btn-outline-danger\">{{ 'remove' | translate }}</button></td>\n        <td (click)=\"duplicateItem(item); $event.stopPropagation();\"><button type=\"button\" class=\"btn btn-outline-success\">{{ 'duplicate' | translate }}</button></td>\n\t    </tr>\n\t  </tbody>\n\t</table>\n\t</div>\n\t<button type=\"button\" class=\"btn btn-outline-info btn-lg btn-block margin-button\" (click)=\"add(content, cat); $event.stopPropagation();\">\n\t\tAdicionar  {{cat.name}}\n\t</button>\n  </div>\n\n  <ng-template #content let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{title}}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n\n  \t<form class=\"form-horizontal\" [formGroup]=\"formulario\">\n\n  \t\t\t<div class=\"row\">\n  \t\t\t\t<div class=\"col-lg-3\">\n  \t\t\t\t</div>\n\t\t    \t<div class=\"col-lg-5\">\n\t\t    \t\t<!-- <img src=\"assets/images/r3.jpg\" class=\"rounded float-left\" width=\"350\" height=\"200\" > -->\n\t\t            <img *ngIf=\"!formulario.get('thumb').value\" src=\"assets/images/300x250.png  \" class=\"rounded float-left\" width=\"200\" height=\"150\" >\n\t\t            <img *ngIf=\"formulario.get('thumb').value\" [src]=\"formulario.get('thumb').value\" class=\"rounded float-left\" width=\"150\" height=\"150\" >\n                <div style=\"cursor: pointer;\" *ngIf=\"formulario.get('thumb').value\" (click)=\"removeImg()\">Remover imagem</div>\n\n\t\t    \t\t<label class=\"custom-file size-input-file\" >\n\t\t\t\t\t  <input type=\"file\" id=\"file\" class=\"custom-file-input\" accept=\"image/*\" (change)=\"changeListener($event, 'imgFile')\"  >\n\t\t\t\t\t  <span class=\"custom-file-control\"></span>\n\t\t\t\t\t</label>\n\t\t    \t</div> \n\t\t    </div>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'name' | translate }}</label>\n                <input type=\"text\" class=\"form-control\"\n                    formControlName=\"name\"\n                    id=\"name\" placeholder=\"{{ 'name' | translate }}\" >\n\n                <app-campo-control-erro\n                  [mostrarErro]=\"verificaValidTouched('name')\"\n                  msgErro=\"{{ 'name.required' | translate }}\">\n                </app-campo-control-erro>\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'ingredients' | translate }}</label>\n                <textarea type=\"text\" class=\"form-control\"\n                                formControlName=\"ingredients\"\n                                id=\"about_us\" placeholder=\"{{ 'ingredients' | translate }}\" rows=\"3\" ></textarea>\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'price' | translate }}</label>\n                <input type=\"price\" class=\"form-control\"\n                    formControlName=\"price\"\n                    id=\"l\" placeholder=\"{{ 'price' | translate }}\" >\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'amount' | translate }}</label>\n                <input type=\"price\" class=\"form-control\"\n                    formControlName=\"amount\"\n                    id=\"l\" placeholder=\"0\" >\n            </fieldset>\n\n            <fieldset class=\"form-group text-center\">\n                <label>Ativar*</label>\n                <div class=\"radio\">\n                    <label>\n                        <input type=\"radio\" formControlName=\"disponible\" id=\"optionsRadios1\" value=\"1\" checked=\"\"> Sim\n                    </label> &nbsp;&nbsp;&nbsp;\n                    <label>\n                        <input type=\"radio\" formControlName=\"disponible\" id=\"optionsRadios2\" value=\"0\"> Não\n                    </label>\n                </div>\n            </fieldset>\n        \n    </form>\n    \n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-danger\" (click)=\"c('no')\">{{ 'cancel' | translate }}</button>\n    <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"c('yes')\">{{ 'save' | translate }}</button>\n  </div>\n</ng-template>\n\n\n <ng-template #contentAdditional let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{ 'additional' | translate }}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n\n    <app-additional\n      required={{required}}\n      cuisines_id={{cuisines_id}}\n      item_id={{item_id}}\n      >\n    </app-additional>\n    \n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"c('yes')\">{{ 'closed' | translate }}</button>\n  </div>\n</ng-template>\n\n\n<ng-template #contentRemove let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{ 'product.remove' | translate }}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <p>{{itemSelected.name}}</p>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('no')\">{{ 'no' | translate }}</button>\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('yes')\">{{ 'yes' | translate }}</button>\n  </div>\n</ng-template>"
+module.exports = "<div [@routerTransition]>\n    <app-page-header [heading]=\"'Cardapio'\" [icon]=\"'fa-edit'\"></app-page-header>\n</div>  \n  <!--list of cuisines-->\n  <div *ngFor=\"let cat of cuisines\" (click)=\"showItems(cat); $event.stopPropagation();\">\n\n    <ol class=\"breadcrumb\">\n\t  <li class=\"breadcrumb-item category\">{{ cat.name }}</li>\n    \n    <i class=\"fa fa-arrow-circle-right\" style=\"float: right; margin-top: 5px; font-size: 20px;\" aria-hidden=\"true\" *ngIf=\"!cat.showItems\" ></i>\n    <i class=\"fa fa-arrow-circle-down\" style=\"float: right; margin-top: 5px; font-size: 20px;\" aria-hidden=\"true\" *ngIf=\"cat.showItems\" ></i>\n    \n    <span class=\"amount-products\" >{{cat.Items.length}} <i class=\"fa fa-product-hunt\"></i></span>\n\t</ol>\t\n\t\n\t<div class=\"table-responsive\" *ngIf=\"cat.showItems\">\n    <table class=\"table \" *ngIf=\"cat.Items && cat.Items.length\">\n\t  <thead>\n\t    <tr>\n        <th>{{ 'sort' | translate }}</th>\n\t      <th>{{ 'img' | translate }}</th>\n\t      <th>{{ 'product' | translate }}</th>\n\t      <th>{{ 'ingredients' | translate }}</th>\n\t      <th>{{ 'price' | translate }}</th>\n        <th>{{ 'required' | translate }}</th>\n        <th>{{ 'additional' | translate }}</th>\n        <th>{{ 'remove' | translate }}</th>\n        <th>{{ 'duplicate' | translate }}</th>\n\t    </tr>\n\t  </thead>\n\t  <tbody>\n\t    <tr *ngFor=\"let item of cat.Items\">\n\t      <td (click)=\"$event.stopPropagation();\">{{item.order_by}}</td>\n        <td *ngIf=\"item.thumb\" (click)=\"editItem(content, cat, item); $event.stopPropagation();\"><img src=\"{{ item.thumb }}\" alt=\"\" width=\"40\" height=\"30\"></td>\n        <td *ngIf=\"!item.thumb\" (click)=\"editItem(content, cat, item); $event.stopPropagation();\"><img src=\"assets/images/300x250.png\" alt=\"\" width=\"40\" height=\"30\"></td>\n\t      <td (click)=\"editItem(content, cat, item); $event.stopPropagation();\">{{ item.name }}</td>\n\t      <td (click)=\"editItem(content, cat, item); $event.stopPropagation();\">{{ item.ingredients }}</td>\n\t      <td (click)=\"editItem(content, cat, item); $event.stopPropagation();\">R$ {{ item.price }}</td>\n        <td (click)=\"addRequired(contentAdditional, item, cat.id); $event.stopPropagation();\" ><button type=\"button\" class=\"btn btn-outline-primary\">{{ 'required' | translate }}</button></td>\n        <td (click)=\"addOptional(contentAdditional, item, cat.id); $event.stopPropagation();\"><button type=\"button\" class=\"btn btn-outline-primary\">{{ 'additional' | translate }}</button></td>\n        <td (click)=\"removeItem(contentRemove, item, cat.id); $event.stopPropagation();\"><button type=\"button\" class=\"btn btn-outline-danger\">{{ 'remove' | translate }}</button></td>\n        <td (click)=\"duplicateItem(item); $event.stopPropagation();\"><button type=\"button\" class=\"btn btn-outline-success\">{{ 'duplicate' | translate }}</button></td>\n\t    </tr>\n\t  </tbody>\n\t</table>\n\t</div>\n\t<button type=\"button\" class=\"btn btn-outline-info btn-lg btn-block margin-button\" (click)=\"add(content, cat); $event.stopPropagation();\" *ngIf=\"cat.showItems\">\n\t\tAdicionar  {{cat.name}}\n\t</button>\n  </div>\n\n  <ng-template #content let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{title}}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n\n  \t<form class=\"form-horizontal\" [formGroup]=\"formulario\">\n\n  \t\t\t<div class=\"row\">\n  \t\t\t\t<div class=\"col-lg-3\">\n  \t\t\t\t</div>\n\t\t    \t<div class=\"col-lg-5\">\n\t\t    \t\t<!-- <img src=\"assets/images/r3.jpg\" class=\"rounded float-left\" width=\"350\" height=\"200\" > -->\n\t\t            <img *ngIf=\"!formulario.get('thumb').value\" src=\"assets/images/300x250.png  \" class=\"rounded float-left\" width=\"200\" height=\"150\" >\n\t\t            <img *ngIf=\"formulario.get('thumb').value\" [src]=\"formulario.get('thumb').value\" class=\"rounded float-left\" width=\"150\" height=\"150\" >\n                <div style=\"cursor: pointer;\" *ngIf=\"formulario.get('thumb').value\" (click)=\"removeImg()\">Remover imagem</div>\n\n\t\t    \t\t<label class=\"custom-file size-input-file\" >\n\t\t\t\t\t  <input type=\"file\" id=\"file\" class=\"custom-file-input\" accept=\"image/*\" (change)=\"changeListener($event, 'imgFile')\"  >\n\t\t\t\t\t  <span class=\"custom-file-control\"></span>\n\t\t\t\t\t</label>\n\t\t    \t</div> \n\t\t    </div>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'name' | translate }}</label>\n                <input type=\"text\" class=\"form-control\"\n                    formControlName=\"name\"\n                    id=\"name\" placeholder=\"{{ 'name' | translate }}\" >\n\n                <app-campo-control-erro\n                  [mostrarErro]=\"verificaValidTouched('name')\"\n                  msgErro=\"{{ 'name.required' | translate }}\">\n                </app-campo-control-erro>\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'ingredients' | translate }}</label>\n                <textarea type=\"text\" class=\"form-control\"\n                                formControlName=\"ingredients\"\n                                id=\"about_us\" placeholder=\"{{ 'ingredients' | translate }}\" rows=\"3\" ></textarea>\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'price' | translate }}</label>\n                <input type=\"price\" class=\"form-control\"\n                    formControlName=\"price\"\n                    id=\"l\" placeholder=\"{{ 'price' | translate }}\" >\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'amount' | translate }}</label>\n                <input type=\"price\" class=\"form-control\"\n                    formControlName=\"amount\"\n                    id=\"l\" placeholder=\"0\" >\n            </fieldset>\n\n            <fieldset class=\"form-group\">\n                <label>{{ 'sort' | translate }}</label>\n                <input type=\"number\" class=\"form-control\"\n                    formControlName=\"order_by\"\n                    id=\"l\" placeholder=\"0\" >\n            </fieldset>\n\n            <fieldset class=\"form-group text-center\">\n                <label>Ativar*</label>\n                <div class=\"radio\">\n                    <label>\n                        <input type=\"radio\" formControlName=\"disponible\" id=\"optionsRadios1\" value=\"1\" checked=\"\"> Sim\n                    </label> &nbsp;&nbsp;&nbsp;\n                    <label>\n                        <input type=\"radio\" formControlName=\"disponible\" id=\"optionsRadios2\" value=\"0\"> Não\n                    </label>\n                </div>\n            </fieldset>\n        \n    </form>\n    \n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-danger\" (click)=\"c('no')\">{{ 'cancel' | translate }}</button>\n    <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"c('yes')\">{{ 'save' | translate }}</button>\n  </div>\n</ng-template>\n\n\n <ng-template #contentAdditional let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{ 'additional' | translate }}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n\n    <app-additional\n      required={{required}}\n      cuisines_id={{cuisines_id}}\n      item_id={{item_id}}\n      >\n    </app-additional>\n    \n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"c('yes')\">{{ 'closed' | translate }}</button>\n  </div>\n</ng-template>\n\n\n<ng-template #contentRemove let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">{{ 'product.remove' | translate }}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <p>{{itemSelected.name}}</p>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('no')\">{{ 'no' | translate }}</button>\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('yes')\">{{ 'yes' | translate }}</button>\n  </div>\n</ng-template>"
 
 /***/ }),
 
@@ -116,6 +116,7 @@ var ProductComponent = (function () {
             restaurants_id: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required]],
             cuisines_id: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required]],
             amount: [null],
+            order_by: [null],
             disponible: [null, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required]],
         });
         this.cuisines = this.cuisinesService.getAllWithItems();
@@ -127,6 +128,10 @@ var ProductComponent = (function () {
                     restaurant_1 = result.data;
                     _this.restaurantId = restaurant_1.id;
                     _this.findCuisinesWithItems();
+                }, function (error) {
+                    if (error.status === 401) {
+                        _this.onLoggedout();
+                    }
                 });
             }
             else {
@@ -158,6 +163,7 @@ var ProductComponent = (function () {
             restaurants_id: this.restaurantService.getRestaurantId(),
             cuisines_id: category.id,
             amount: 0,
+            order_by: 0,
             disponible: "1"
         };
         this.populate(values);
@@ -171,6 +177,10 @@ var ProductComponent = (function () {
                     }
                     else {
                         _this.toastr.warning('', result.message);
+                    }
+                }, function (error) {
+                    if (error.status === 401) {
+                        _this.onLoggedout();
                     }
                 });
             }
@@ -189,6 +199,7 @@ var ProductComponent = (function () {
             restaurants_id: this.restaurantService.getRestaurantId(),
             cuisines_id: category.id,
             amount: item.amount,
+            order_by: !!item.order_by ? item.order_by : 0,
             disponible: item.disponible == 1 ? "1" : "0"
         };
         this.populate(values);
@@ -203,6 +214,10 @@ var ProductComponent = (function () {
                     }
                     else {
                         _this.toastr.warning('', result.message);
+                    }
+                }, function (error) {
+                    if (error.status === 401) {
+                        _this.onLoggedout();
                     }
                 });
             }
@@ -219,8 +234,7 @@ var ProductComponent = (function () {
             if (result === 'yes') {
                 _this.findCuisinesWithItems();
             }
-        }, function (reason) {
-        });
+        }, function (reason) { });
     };
     ProductComponent.prototype.showItems = function (product) {
         if (!product.showItems) {
@@ -268,6 +282,10 @@ var ProductComponent = (function () {
             };
             _this.uploadService.getUrl(jsonImage).subscribe(function (result) {
                 _this.formulario.controls['thumb'].setValue(result.url);
+            }, function (error) {
+                if (error.status === 401) {
+                    _this.onLoggedout();
+                }
             });
         };
         myReader.readAsDataURL(file);
@@ -282,6 +300,7 @@ var ProductComponent = (function () {
             restaurants_id: value.restaurants_id,
             cuisines_id: value.cuisines_id,
             amount: value.amount,
+            order_by: value.order_by,
             disponible: value.disponible
         });
     };
@@ -298,6 +317,10 @@ var ProductComponent = (function () {
                     }
                     else {
                         _this.toastr.warning('', result.message);
+                    }
+                }, function (error) {
+                    if (error.status === 401) {
+                        _this.onLoggedout();
                     }
                 });
             }
@@ -328,7 +351,15 @@ var ProductComponent = (function () {
             else {
                 _this.toastr.warning('', result.message);
             }
+        }, function (error) {
+            if (error.status === 401) {
+                _this.onLoggedout();
+            }
         });
+    };
+    ProductComponent.prototype.onLoggedout = function () {
+        localStorage.removeItem("isUserLogged");
+        window.location.reload();
     };
     return ProductComponent;
 }());
