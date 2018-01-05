@@ -1725,18 +1725,21 @@ var OrdersService = (function () {
     OrdersService.prototype.contains = function (order) {
         for (var i = 0; i < this.orders.length; i++) {
             if (this.orders[i].id === order.id) {
+                this.orders[i] = order;
                 return true;
             }
         }
         return false;
     };
     OrdersService.prototype.populate = function () {
+        var _this = this;
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
         headers.append('authorization', this.getToken());
         return this.http.get(this.url + "/orders/restaurant/" + this.restaurantId, {
             headers: headers
         })
             .map(function (res) {
+            _this.orders = res.json().data;
             return res.json();
         })
             .catch(function (error) {
@@ -1781,10 +1784,34 @@ var OrdersService = (function () {
     OrdersService.prototype.edit = function (orders) {
     };
     OrdersService.prototype.addOrder = function (order) {
-        this.orders.push(order);
+        if (!this.contains(order)) {
+            this.orders.push(order);
+        }
+    };
+    // Remove os elementons pelo status do pedido 1, 2, 3 ...
+    OrdersService.prototype.removeOrdersByStatus = function (indexStatus) {
+        if (this.orders && this.orders.length) {
+            for (var i = 0; i < this.orders.length; i++) {
+                if (parseInt(this.orders[i].status) === parseInt(indexStatus)) {
+                    this.orders.splice(i, 1);
+                    i = -1;
+                }
+            }
+        }
     };
     OrdersService.prototype.getAll = function () {
         return this.orders;
+    };
+    OrdersService.prototype.getAllByStatus = function (indexStatus) {
+        var newArray = [];
+        if (this.orders && this.orders.length) {
+            for (var i = 0; i < this.orders.length; i++) {
+                if (parseInt(this.orders[i].status) === parseInt(indexStatus)) {
+                    newArray.push(this.orders[i]);
+                }
+            }
+        }
+        return newArray;
     };
     OrdersService.prototype.getToken = function () {
         return this.loginService.getToken();
