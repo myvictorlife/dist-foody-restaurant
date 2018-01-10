@@ -86,7 +86,7 @@
     "email.required":"Email é obrigatório",
     "password.required":"Senha é obrigatória",
     "change.status.order":"Mudar status do pedido",
-    "orders.detail":"Detalhes do pedido",
+    "orders.detail":"Ver pedido",
     "form.payment":"Forma de Pagamento",
     "time.required":"Horario de funcionamento é obrigatória.",
     "example.time":"Exemplo: 10:00 a 23:00  ou  fechado",
