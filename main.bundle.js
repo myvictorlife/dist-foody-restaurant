@@ -1969,6 +1969,19 @@ var RestaurantService = (function () {
             return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
         });
     };
+    RestaurantService.prototype.openOrClose = function (open) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.get(this.url + "/restaurant/" + this.restaurantId + "/open/" + open, {
+            headers: headers
+        })
+            .map(function (res) {
+            return res.json();
+        })
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
+    };
     RestaurantService.prototype.edit = function (restaurant) {
         var _this = this;
         restaurant.updatedBy = this.loginService.getUser().email;
