@@ -1970,12 +1970,14 @@ var RestaurantService = (function () {
         });
     };
     RestaurantService.prototype.openOrClose = function (open) {
+        var _this = this;
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
         headers.append('authorization', this.getToken());
         return this.http.get(this.url + "/restaurant/" + this.restaurantId + "/open/" + open, {
             headers: headers
         })
             .map(function (res) {
+            _this.restaurant.open = open;
             return res.json();
         })
             .catch(function (error) {
