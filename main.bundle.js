@@ -1035,6 +1035,33 @@ var Communicator = (function () {
             });
         });
     };
+    Communicator.prototype.stopBell = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.socket) return [3 /*break*/, 2];
+                        return [4 /*yield*/, new Promise(function (resolve, reject) {
+                                _this.socket.emit('stop_bell', 'Parar alarme', function (err) {
+                                    if (!err)
+                                        resolve();
+                                    else
+                                        reject(err);
+                                });
+                                _this.socket.on('error', function (err) {
+                                    reject(err);
+                                });
+                            })];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2: throw new Error('no socket');
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     return Communicator;
 }());
 
@@ -1049,9 +1076,10 @@ var Communicator = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CONFIG; });
 let CONFIG = {
-    url: "https://prod.saciafome.com"
+    //url: "https://prod.saciafome.com"
     //url: "http://localhost:8000"
     //url: "https://dev.saciafome.com"
+    url: "http://dev-saciafome-com.umbler.net"
     //url: "http://dev-saciafome-com.umbler.net"
 }  
 
@@ -1977,7 +2005,7 @@ var RestaurantService = (function () {
             headers: headers
         })
             .map(function (res) {
-            _this.restaurant.open = open;
+            _this.restaurant.open = open ? 1 : 0;
             return res.json();
         })
             .catch(function (error) {
