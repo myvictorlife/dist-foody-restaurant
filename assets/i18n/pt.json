@@ -79,6 +79,7 @@
     "print":"Imprimir",
     "sort":"Ordenar",
     "time":"Horário",
+    "expiration":"Data expiração",
     "standby.time": "Tempo em espera",
     "timeDelivery":"ESTIMATIVA DE ENTREGA DO PEDIDO",
     "page.not.found":"404 - Página não encontrada",
