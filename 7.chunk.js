@@ -146,6 +146,10 @@ var OrdersComponent = (function () {
         this.frete = {};
         this.orderSelected = {};
         this.currentStatus = 'pendente';
+        this.statusSelected = {
+            id: 1,
+            status: "pendente"
+        };
         var orders = this.ordersService.getAll();
         if (!orders || !orders.length) {
             this.ordersService.populate().subscribe(function (result) {
@@ -197,6 +201,9 @@ var OrdersComponent = (function () {
         var _this = this;
         //
         var flag = false;
+        if (!position) {
+            position = this.statusSelected.id;
+        }
         this.ordersService.findByStatus(position).subscribe(function (result) {
             var orders = result.data;
             if (orders && orders.length) {
@@ -225,6 +232,7 @@ var OrdersComponent = (function () {
     };
     // Muda o Status do Pedido
     OrdersComponent.prototype.changeStatus = function (status) {
+        this.setStatus(status);
         if (!this.status[status]) {
             this.status[status] = !this.status[status];
             for (var key in this.status) {
@@ -288,10 +296,8 @@ var OrdersComponent = (function () {
             note: this.orderSelected.note
         };
         this.ordersService.editStatus(json).subscribe(function (result) {
-            if ((json.status - 1) === 1) {
-                _this.stopBell();
-            }
-            if (result.status) {
+            _this.stopBell();
+            if (result && result.status) {
                 _this.selectOrders(_this.currentStatus);
                 _this.ordersService.populate().subscribe(function (result) {
                     _this.selectOrders(_this.currentStatus);
@@ -300,7 +306,7 @@ var OrdersComponent = (function () {
                     }
                     // Precisa dessa funcionalidade a baixo??
                     _this.updateVariables();
-                    _this.toastr.success('', 'Pedido: ' + _this.statusName[_this.statusSelected.status]);
+                    _this.toastr.success('', 'Pedido: ' + statusName);
                 }, function (error) {
                     if (error.status === 401) {
                         _this.onLoggedout();
@@ -351,7 +357,7 @@ var OrdersComponent = (function () {
     OrdersComponent.prototype.setStatus = function (status) {
         this.modalButtonSelected = status;
         this.statusSelected = {
-            id: this.orderSelected.id,
+            id: this.indexStatus.indexOf(status),
             status: status
         };
     };
