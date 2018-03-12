@@ -1077,9 +1077,9 @@ var Communicator = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CONFIG; });
 let CONFIG = {
     //url: "https://prod.saciafome.com"
-    url: "http://localhost:8000"
+    //url: "http://localhost:8000"
     //url: "https://dev.saciafome.com"
-    //url: "http://dev-saciafome-com.umbler.net"
+    url: "http://dev-saciafome-com.umbler.net"
 }  
 
 /***/ }),
