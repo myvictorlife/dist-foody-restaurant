@@ -79,6 +79,7 @@
     "print":"Imprimir",
     "sort":"Ordenar",
     "time":"Horário",
+    "max_per_item":"Máximo de itens adicionais",
     "expiration":"Data expiração",
     "standby.time": "Tempo em espera",
     "timeDelivery":"ESTIMATIVA DE ENTREGA DO PEDIDO",
