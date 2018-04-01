@@ -1,4 +1,4 @@
-webpackJsonp([15],{
+webpackJsonp([16],{
 
 /***/ "../../../../../src async recursive":
 /***/ (function(module, exports, __webpack_require__) {
@@ -6,17 +6,17 @@ webpackJsonp([15],{
 var map = {
 	"./config/config.module": [
 		"../../../../../src/app/layout/config/config.module.ts",
-		13,
+		14,
 		0
 	],
 	"./cuisines/cuisines.module": [
 		"../../../../../src/app/layout/cuisines/cuisines.module.ts",
-		12,
+		13,
 		0
 	],
 	"./cupons/cupons.module": [
 		"../../../../../src/app/layout/cupons/cupons.module.ts",
-		11,
+		12,
 		0
 	],
 	"./dashboard/dashboard.module": [
@@ -26,17 +26,17 @@ var map = {
 	],
 	"./employee/employee.module": [
 		"../../../../../src/app/layout/employee/employee.module.ts",
-		10,
+		11,
 		0
 	],
 	"./history/history.module": [
 		"../../../../../src/app/layout/history/history.module.ts",
-		9,
+		10,
 		0
 	],
 	"./layout/layout.module": [
 		"../../../../../src/app/layout/layout.module.ts",
-		8,
+		9,
 		0
 	],
 	"./login/login.module": [
@@ -51,16 +51,21 @@ var map = {
 	],
 	"./orders/orders.module": [
 		"../../../../../src/app/layout/orders/orders.module.ts",
-		7,
+		8,
 		0
 	],
 	"./payment/payment.module": [
 		"../../../../../src/app/layout/payment/payment.module.ts",
-		6,
+		7,
 		0
 	],
 	"./product/product.module": [
 		"../../../../../src/app/layout/product/product.module.ts",
+		6,
+		0
+	],
+	"./promotion/promotion.module": [
+		"../../../../../src/app/layout/promotion/promotion.module.ts",
 		5,
 		0
 	],
@@ -221,10 +226,11 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_services_orders_service__ = __webpack_require__("../../../../../src/app/shared/services/orders.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shared_services_additional_item_service__ = __webpack_require__("../../../../../src/app/shared/services/additional-item.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__shared_services_payment_service__ = __webpack_require__("../../../../../src/app/shared/services/payment.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__shared_services_cupon_service__ = __webpack_require__("../../../../../src/app/shared/services/cupon.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__shared_services_communicator__ = __webpack_require__("../../../../../src/app/shared/services/communicator.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_angular2_notifications__ = __webpack_require__("../../../../angular2-notifications/dist/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_angular2_notifications___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22_angular2_notifications__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__shared_services_promotion_service__ = __webpack_require__("../../../../../src/app/shared/services/promotion.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__shared_services_cupon_service__ = __webpack_require__("../../../../../src/app/shared/services/cupon.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__shared_services_communicator__ = __webpack_require__("../../../../../src/app/shared/services/communicator.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_angular2_notifications__ = __webpack_require__("../../../../angular2-notifications/dist/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_angular2_notifications___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23_angular2_notifications__);
 /* unused harmony export HttpLoaderFactory */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -245,6 +251,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 // AoT requires an exported function for factories
 // Services
+
 
 
 
@@ -281,8 +288,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_7__app_routing_module__["a" /* AppRoutingModule */],
-            __WEBPACK_IMPORTED_MODULE_22_angular2_notifications__["SimpleNotificationsModule"],
-            __WEBPACK_IMPORTED_MODULE_22_angular2_notifications__["PushNotificationsModule"],
+            __WEBPACK_IMPORTED_MODULE_23_angular2_notifications__["SimpleNotificationsModule"],
+            __WEBPACK_IMPORTED_MODULE_23_angular2_notifications__["PushNotificationsModule"],
             __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__["a" /* TranslateModule */].forRoot({
                 loader: {
                     provide: __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__["b" /* TranslateLoader */],
@@ -304,8 +311,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_18__shared_services_additional_item_service__["a" /* AdditionalItemService */],
             __WEBPACK_IMPORTED_MODULE_17__shared_services_orders_service__["a" /* OrdersService */],
             __WEBPACK_IMPORTED_MODULE_19__shared_services_payment_service__["a" /* PaymentService */],
-            __WEBPACK_IMPORTED_MODULE_20__shared_services_cupon_service__["a" /* CuponService */],
-            __WEBPACK_IMPORTED_MODULE_21__shared_services_communicator__["a" /* Communicator */]
+            __WEBPACK_IMPORTED_MODULE_20__shared_services_promotion_service__["a" /* PromotionService */],
+            __WEBPACK_IMPORTED_MODULE_21__shared_services_cupon_service__["a" /* CuponService */],
+            __WEBPACK_IMPORTED_MODULE_22__shared_services_communicator__["a" /* Communicator */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]]
     })
@@ -424,7 +432,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/shared/components/sidebar/sidebar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"sidebar\" [ngClass]=\"{sidebarPushRight: isActive}\">\n    <ul class=\"list-group\">\n         \n        <a [routerLink]=\"['/orders']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-cutlery\"></i>&nbsp;{{ 'orders' | translate }}\n        </a>\n        <a [routerLink]=\"['/employee']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-users\"></i>&nbsp;{{ 'employees' | translate }}\n        </a>\n        <a [routerLink]=\"['/product']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-product-hunt\"></i>&nbsp;{{ 'product' | translate }}\n        </a>\n        <a [routerLink]=\"['/config']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-pencil\"></i>&nbsp;{{ 'config' | translate }}\n        </a>\n        <a [routerLink]=\"['/history']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-history\"></i>&nbsp;{{ 'history' | translate }}\n        </a>\n        <a [routerLink]=\"['/payment']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-credit-card\"></i>&nbsp;{{ 'form.payment' | translate }}\n        </a>\n        <a [routerLink]=\"['/cupons']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-gift\"></i>&nbsp;{{ 'cupons' | translate }}\n        </a>\n        <a routerLink=\"/report\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-bar-chart\"></i>&nbsp;{{ 'report' | translate }}\n        </a>\n        <a routerLink=\"/cuisines\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-tags\"></i>&nbsp;{{ 'cuisines' | translate }}\n        </a> \n        <a [routerLink]=\"['/status']\" (click)=\"onLoggedout()\" class=\"list-group-item\">\n            <i class=\"fa fa-fw fa-power-off\"></i>&nbsp;{{ 'logout' | translate }}\n        </a>\n    </ul>\n</nav>\n"
+module.exports = "<nav class=\"sidebar\" [ngClass]=\"{sidebarPushRight: isActive}\">\n    <ul class=\"list-group\">\n         \n        <a [routerLink]=\"['/orders']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-cutlery\"></i>&nbsp;{{ 'orders' | translate }}\n        </a>\n        <a [routerLink]=\"['/employee']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-users\"></i>&nbsp;{{ 'employees' | translate }}\n        </a>\n        <a [routerLink]=\"['/product']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-product-hunt\"></i>&nbsp;{{ 'product' | translate }}\n        </a>\n        <a [routerLink]=\"['/config']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-pencil\"></i>&nbsp;{{ 'config' | translate }}\n        </a>\n        <a [routerLink]=\"['/history']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-history\"></i>&nbsp;{{ 'history' | translate }}\n        </a>\n        <a [routerLink]=\"['/payment']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-credit-card\"></i>&nbsp;{{ 'form.payment' | translate }}\n        </a>\n        <a [routerLink]=\"['/cupons']\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-gift\"></i>&nbsp;{{ 'cupons' | translate }}\n        </a>\n        <a routerLink=\"/report\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-bar-chart\"></i>&nbsp;{{ 'report' | translate }}\n        </a>\n        <a routerLink=\"/cuisines\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-tags\"></i>&nbsp;{{ 'cuisines' | translate }}\n        </a> \n        <a routerLink=\"/promotion\" [routerLinkActive]=\"['router-link-active']\" class=\"list-group-item\">\n            <i class=\"fa fa-gift\"></i>&nbsp;{{ 'promotions' | translate }}\n        </a> \n        <a [routerLink]=\"['/status']\" (click)=\"onLoggedout()\" class=\"list-group-item\">\n            <i class=\"fa fa-fw fa-power-off\"></i>&nbsp;{{ 'logout' | translate }}\n        </a>\n    </ul>\n</nav>\n"
 
 /***/ }),
 
@@ -1944,6 +1952,91 @@ var _a, _b, _c;
 
 /***/ }),
 
+/***/ "../../../../../src/app/shared/services/promotion.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_service__ = __webpack_require__("../../../../../src/app/shared/services/config.service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PromotionService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var PromotionService = (function () {
+    function PromotionService(http, restaurantService, loginService) {
+        this.http = http;
+        this.restaurantService = restaurantService;
+        this.loginService = loginService;
+        this.promotions = [];
+    }
+    PromotionService.prototype.populate = function () {
+        var _this = this;
+        var restaurant = this.restaurantService.getAll();
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url + "/promotion", {
+            headers: headers
+        })
+            .map(function (res) {
+            _this.promotions = res.json().data;
+            return res.json();
+        })
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].throw(error);
+        });
+    };
+    PromotionService.prototype.getAll = function () {
+        return this.promotions;
+    };
+    PromotionService.prototype.addOrRmPromotion = function (promotion) {
+        promotion.updatedBy = this.loginService.getUser().email;
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.put(__WEBPACK_IMPORTED_MODULE_4__config_service__["a" /* CONFIG */].url + "/restaurant/promotion", promotion, {
+            headers: headers
+        })
+            .map(function (res) {
+            return res.json();
+        })
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].throw(error);
+        });
+    };
+    PromotionService.prototype.getToken = function () {
+        return this.loginService.getToken();
+    };
+    return PromotionService;
+}());
+PromotionService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__restaurant_service__["a" /* RestaurantService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__login_service__["a" /* LoginService */]) === "function" && _c || Object])
+], PromotionService);
+
+var _a, _b, _c;
+//# sourceMappingURL=promotion.service.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/shared/services/restaurant.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2067,6 +2160,25 @@ var RestaurantService = (function () {
             .catch(function (error) {
             return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
         });
+    };
+    /*
+     * Adicion ou Remove a promoção do estabelecimento (somente local)
+     * "add" or "rm"
+     */
+    RestaurantService.prototype.addOrremovePromotion = function (promotion, option) {
+        if (option === "add") {
+            this.restaurant.Promotions.push(promotion);
+        }
+        else {
+            var idPromotion = promotion.id;
+            var promotions = this.restaurant.Promotions;
+            for (var i = 0; i < promotions.length; i++) {
+                if (promotions[i].id === idPromotion) {
+                    promotions.splice(i, 1);
+                    break;
+                }
+            }
+        }
     };
     RestaurantService.prototype.getAll = function () {
         return this.restaurant;
