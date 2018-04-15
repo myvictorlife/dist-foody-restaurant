@@ -100,8 +100,16 @@ var HistoryComponent = (function () {
         this.indexStatus = ['', 'pendente', 'emPreparo', 'saiuEntrega', 'entregue'];
         this.statusName = ['', 'PENDENTE', 'EM PREPARO', 'SAIU PARA ENTREGA', 'ENTREGUE'];
         this.orderSelected = {};
+        this.orders = [];
         this.ordersService.findByStatus("4").subscribe(function (result) {
-            _this.orders = result.data;
+            _this.orders = _this.orders.concat(result.data);
+        }, function (error) {
+            if (error.status === 401) {
+                _this.onLoggedout();
+            }
+        });
+        this.ordersService.findByStatus("5").subscribe(function (result) {
+            _this.orders = _this.orders.concat(result.data);
         }, function (error) {
             if (error.status === 401) {
                 _this.onLoggedout();
@@ -148,13 +156,16 @@ var HistoryComponent = (function () {
     };
     HistoryComponent.prototype.getDiscountValue = function (order) {
         order = JSON.parse(order.discount);
-        if (order.discount_type) {
-            if (order.name.indexOf(order.value) > -1) {
-                return order.name;
+        if (order && order.name) {
+            if (order.discount_type) {
+                if (order.name.indexOf(order.value) > -1) {
+                    return order.name;
+                }
+                return order.name + ": " + order.value + '%';
             }
-            return order.name + ": " + order.value + '%';
+            return order.name + ": R$ " + order.value;
         }
-        return order.name + ": R$ " + order.value;
+        return "";
     };
     HistoryComponent.prototype.getTotal = function (orderSelected) {
         var total = 0.00;

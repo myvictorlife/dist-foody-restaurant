@@ -1084,10 +1084,9 @@ var Communicator = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CONFIG; });
 var CONFIG = {
-    url: "https://prod.saciafome.com"
+    //url: "https://prod.saciafome.com"
     //url: "http://localhost:8000"
-    //url: "https://dev.saciafome.com"
-    //url: "http://dev-saciafome-com.umbler.net"
+    url: "https://app-saciafome.herokuapp.com"
 };
 //# sourceMappingURL=config.service.js.map
 
@@ -1686,7 +1685,11 @@ var LoginService = (function () {
     }
     LoginService.prototype.authenticate = function (profile) {
         var _this = this;
-        return this.http.post(this.url + "/authenticate-restaurant", profile)
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Headers */]();
+        headers.append("Content-Type", 'application/json');
+        return this.http.post(this.url + "/authenticate-restaurant", profile, {
+            headers: headers
+        })
             .map(function (res) {
             _this.profile = res.json().data;
             localStorage.setItem('userToken', res.json().token);
