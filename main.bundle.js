@@ -1084,9 +1084,9 @@ var Communicator = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CONFIG; });
 var CONFIG = {
-    //url: "https://prod.saciafome.com"
+    url: "https://prod.saciafome.com"
     //url: "http://localhost:8000"
-    url: "https://app-saciafome.herokuapp.com"
+    //url: "https://app-saciafome.herokuapp.com"
 };
 //# sourceMappingURL=config.service.js.map
 
