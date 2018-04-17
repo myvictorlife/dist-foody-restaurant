@@ -186,6 +186,35 @@ var AppComponent = (function () {
         var browserLang = translate.getBrowserLang();
         translate.use(browserLang.match(/en|fr|ur|es|pt/) ? browserLang : 'pt');
     }
+    AppComponent.prototype.ngOnInit = function () {
+        setTimeout(function () {
+            var OneSignal = window['OneSignal'] || [];
+            console.log("Init OneSignal");
+            console.log(OneSignal);
+            OneSignal.push(["init", {
+                    appId: "09352f4b-13c8-4b95-ae66-0f15e5a8a0f0",
+                    autoRegister: true,
+                    allowLocalhostAsSecureOrigin: true,
+                    notifyButton: {
+                        enable: false
+                    }
+                }]);
+            console.log('OneSignal Initialized');
+            OneSignal.push(function () {
+                console.log('Register For Push');
+                OneSignal.push(["registerForPushNotifications"]);
+            });
+            OneSignal.push(function () {
+                // Occurs when the user's subscription changes to a new value.
+                OneSignal.on('subscriptionChange', function (isSubscribed) {
+                    console.log("The user's subscription state is now:", isSubscribed);
+                    OneSignal.getUserId().then(function (userId) {
+                        console.log("User ID is", userId);
+                    });
+                });
+            });
+        }, 2000);
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
@@ -1084,9 +1113,9 @@ var Communicator = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CONFIG; });
 var CONFIG = {
-    url: "https://prod.saciafome.com"
+    //url: "https://prod.saciafome.com"
     //url: "http://localhost:8000"
-    //url: "https://app-saciafome.herokuapp.com"
+    url: "https://app-saciafome.herokuapp.com"
 };
 //# sourceMappingURL=config.service.js.map
 

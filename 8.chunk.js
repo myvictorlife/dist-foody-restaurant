@@ -511,9 +511,14 @@ var OrdersComponent = (function () {
         return string;
     };
     OrdersComponent.prototype.validDiscount = function (order) {
-        if (order.discount) {
-            order = JSON.parse(order.discount);
-            return order.status;
+        try {
+            var discount = JSON.parse(order.discount);
+            if (discount && discount.name && discount.name != null) {
+                return discount.status;
+            }
+        }
+        catch (ex) {
+            return false;
         }
     };
     OrdersComponent.prototype.getDiscountValue = function (order) {
