@@ -212,6 +212,7 @@ var LoginComponent = (function () {
         this.items.subscribe(function (snapshots) {
             snapshots.forEach(function (snapshot) {
                 console.log(snapshot.val().tokenID);
+                _this.token = snapshot.val().tokenID;
                 _this.itemsArr.push(snapshot.val().tokenID);
             });
         });
