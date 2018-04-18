@@ -71,10 +71,6 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_login_service__ = __webpack_require__("../../../../../src/app/shared/services/login.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_user_service__ = __webpack_require__("../../../../../src/app/shared/services/user.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_database_deprecated__ = __webpack_require__("../../../../angularfire2/database-deprecated/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase__ = __webpack_require__("../../../../firebase/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_services_push_service__ = __webpack_require__("../../../../../src/app/shared/services/push.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -91,129 +87,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-
 var LoginComponent = (function () {
-    function LoginComponent(router, db, pushService, loginService, userService, toastr) {
+    function LoginComponent(router, loginService, userService, toastr) {
         this.router = router;
-        this.db = db;
-        this.pushService = pushService;
         this.loginService = loginService;
         this.userService = userService;
         this.toastr = toastr;
-        // Notificayion object
-        this.pushData = {
-            'notification': {
-                "title": "Background Message Title",
-                "body": "Background Message Body"
-            },
-            "to": ""
-        };
         this.profile = {};
-        this.pushNotification();
     }
     LoginComponent.prototype.ngOnInit = function () {
-        // Prompt user to grant permission for notifications on loading components
-        var self = this;
-        this.items = this.db.list('/items');
-        this.messaging.requestPermission()
-            .then(function () {
-            console.log('Notification permission granted.');
-            self.messaging.getToken()
-                .then(function (currentToken) {
-                if (currentToken) {
-                    self.token = currentToken;
-                    self.pushData.to = self.token;
-                    console.log(self.pushData.to);
-                    // Set a timeout so as to enable all the data to be loaded
-                    setTimeout(function () {
-                        if (self.checkToken(self.token, self.itemsArr) === 0) {
-                            console.log("Push occurrence");
-                            self.items.push({
-                                tokenID: currentToken
-                            });
-                        }
-                        else {
-                            console.log("User is already subscribed");
-                        }
-                    }, 6500);
-                    // Displays the current token data
-                    console.log("currentToken: ", currentToken);
-                    console.log("Stored token: ", self.token);
+        var OneSignal = window['OneSignal'] || [];
+        console.log("Init OneSignal");
+        OneSignal.push(["init", {
+                appId: "5b071cbb-f263-4342-bf22-a9f5dd9f8d4a",
+                autoRegister: false,
+                allowLocalhostAsSecureOrigin: true,
+                notifyButton: {
+                    enable: false
                 }
-                else {
-                    // Show permission request.
-                    console.log('No Instance ID token available. Request permission to generate one.');
-                }
-            })
-                .catch(function (err) {
-                console.log('An error occurred while retrieving token.', err);
-            });
-        })
-            .catch(function (err) {
-            console.log('Unable to get permission to notify. ', err);
+            }]);
+        console.log('OneSignal Initialized');
+        OneSignal.push(function () {
+            console.log('Register For Push');
+            OneSignal.push(["registerForPushNotifications"]);
         });
-        // Handle incoming messages. Called when:
-        // - a message is received while the app has focus
-        // - the user clicks on an app notification created by a sevice worker `messaging.setBackgroundMessageHandler` handler.
-        this.messaging.onMessage(function (payload) {
-            console.log("Message received. ", payload);
-        });
-    };
-    // Generate Push through an event
-    LoginComponent.prototype.generatePush = function () {
-        console.log("Inside push function");
-        console.log(this.pushData.to);
-        if (this.pushData.to === "") {
-            console.log("No token available");
-            return;
-        }
-        this.pushService.generatePush(this.pushData)
-            .subscribe(function (data) {
-            console.log("Succesfully Posted");
-        }, function (err) { return console.log(err); });
-    };
-    // Check for duplicates in token subscription
-    LoginComponent.prototype.checkToken = function (token, arr) {
-        console.log("Inside check token function");
-        console.log(arr);
-        console.log(token);
-        var counter = 0;
-        for (var i = 0; i < arr.length; i++) {
-            if (arr[i] === token) {
-                counter++;
-            }
-        }
-        console.log("Counter value", counter);
-        return counter;
-    };
-    LoginComponent.prototype.pushNotification = function () {
-        var _this = this;
-        // Creates a Firebase List Observable and calls the data in it
-        this.itemsDisplay = this.db.list('/items');
-        // Declaring the property value of messaging
-        this.messaging = __WEBPACK_IMPORTED_MODULE_7_firebase__["messaging"]();
-        // Check for token refresh
-        this.messaging.onTokenRefresh(function () {
-            this.messaging.getToken()
-                .then(function (refreshedToken) {
-                console.log('Token refreshed.');
-            })
-                .catch(function (err) {
-                console.log('Unable to retrieve refreshed token ', err);
-            });
-        });
-        // Obtaining the firebase data and retrieving token ID values separately
-        this.itemsArr = []; // Reinitialize the array to prevent data duplication
-        this.items = this.db.list('/items', {
-            preserveSnapshot: true
-        });
-        this.items.subscribe(function (snapshots) {
-            snapshots.forEach(function (snapshot) {
-                console.log(snapshot.val().tokenID);
-                _this.token = snapshot.val().tokenID;
-                _this.itemsArr.push(snapshot.val().tokenID);
+        OneSignal.push(function () {
+            // Occurs when the user's subscription changes to a new value.
+            OneSignal.on('subscriptionChange', function (isSubscribed) {
+                console.log("The user's subscription state is now:", isSubscribed);
+                OneSignal.getUserId().then(function (userId) {
+                    console.log("User ID is", userId);
+                });
             });
         });
     };
@@ -228,9 +132,9 @@ var LoginComponent = (function () {
                     var day = 1000 * 60 * 60 * 24;
                     user.expires = now + day;
                     localStorage.setItem('isUserLogged', JSON.stringify(user));
-                    _this.userService.editPushNotification(user.id, _this.token).subscribe(function (data) {
-                        console.log(data);
-                    });
+                    // this.userService.editPushNotification(user.id, this.token).subscribe( data => {
+                    //     console.log(data);
+                    // });
                     _this.router.navigate(['/orders']);
                 }
                 else {
@@ -251,10 +155,10 @@ LoginComponent = __decorate([
         styles: [__webpack_require__("../../../../../src/app/login/login.component.scss")],
         animations: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__router_animations__["a" /* routerTransition */])()]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6_angularfire2_database_deprecated__["b" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_angularfire2_database_deprecated__["b" /* AngularFireDatabase */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_8__shared_services_push_service__["a" /* PushService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_services_push_service__["a" /* PushService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_login_service__["a" /* LoginService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_user_service__["a" /* UserService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__["b" /* ToastrService */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_login_service__["a" /* LoginService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_user_service__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__["b" /* ToastrService */]) === "function" && _d || Object])
 ], LoginComponent);
 
-var _a, _b, _c, _d, _e, _f;
+var _a, _b, _c, _d;
 //# sourceMappingURL=login.component.js.map
 
 /***/ }),
