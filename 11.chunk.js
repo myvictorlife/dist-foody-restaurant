@@ -236,7 +236,18 @@ var EmployeeComponent = (function () {
             /* These examples are all valid */
             OneSignal.getUserId(function (pushId) {
                 console.log("OneSignal User ID:", pushId);
-                env.userService.editPushNotification(pushId);
+                env.userService.editPushNotification(pushId).subscribe(function (result) {
+                    if (result.status) {
+                        env.toastr.success(result.message, '');
+                    }
+                    else {
+                        env.toastr.warning('', result.message);
+                    }
+                }, function (error) {
+                    if (error.status === 401) {
+                        env.onLoggedout();
+                    }
+                });
                 // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316    
             });
         });
