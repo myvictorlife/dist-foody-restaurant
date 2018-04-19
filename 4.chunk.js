@@ -39,7 +39,7 @@ LoginRoutingModule = __decorate([
 /***/ "../../../../../src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-page\" [@routerTransition]>\n    <div class=\"row\">\n        <div class=\"col-md-4 push-md-4\">\n            <img src=\"assets/images/logo.png\" width=\"150px\" class=\"user-avatar\" />\n            <h1>Sacia Fome</h1>\n            <form role=\"form\">\n                <div class=\"form-content\">\n                    <div class=\"form-group\">\n                        <input type=\"text\" [(ngModel)]=\"profile.email\"\n                        name=\"email\"\n                        class=\"form-control input-underline input-lg\" id=\"\" placeholder=\"{{ 'email' | translate }}\">\n                    </div>\n\n                    <div class=\"form-group\">\n                        <input type=\"password\" \n                        [(ngModel)]=\"profile.password\"\n                        name=\"password\"\n                        class=\"form-control input-underline input-lg\" id=\"\" placeholder=\"{{ 'password' | translate }}\">\n                    </div>\n                </div>\n                <a class=\"btn rounded-btn\" (click)=\"onLoggedin()\"> {{ 'login' | translate }} </a>\n            </form>\n\n            <a class=\"btn rounded-btn\" (click)=\"getUserId()\"> Get User id </a>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"login-page\" [@routerTransition]>\n    <div class=\"row\">\n        <div class=\"col-md-4 push-md-4\">\n            <img src=\"assets/images/logo.png\" width=\"150px\" class=\"user-avatar\" />\n            <h1>Sacia Fome</h1>\n            <form role=\"form\">\n                <div class=\"form-content\">\n                    <div class=\"form-group\">\n                        <input type=\"text\" [(ngModel)]=\"profile.email\"\n                        name=\"email\"\n                        class=\"form-control input-underline input-lg\" id=\"\" placeholder=\"{{ 'email' | translate }}\">\n                    </div>\n\n                    <div class=\"form-group\">\n                        <input type=\"password\" \n                        [(ngModel)]=\"profile.password\"\n                        name=\"password\"\n                        class=\"form-control input-underline input-lg\" id=\"\" placeholder=\"{{ 'password' | translate }}\">\n                    </div>\n                </div>\n                <a class=\"btn rounded-btn\" (click)=\"onLoggedin()\"> {{ 'login' | translate }} </a>\n            </form>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -113,20 +113,6 @@ var LoginComponent = (function () {
         else {
             this.toastr.warning('Os campos devem ser preenchidos', 'Alerta');
         }
-    };
-    LoginComponent.prototype.getUserId = function () {
-        var OneSignal = window['OneSignal'] || [];
-        OneSignal.push(function () {
-            /* These examples are all valid */
-            OneSignal.getUserId(function (userId) {
-                console.log("OneSignal User ID:", userId);
-                // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316    
-            });
-            OneSignal.getUserId().then(function (userId) {
-                console.log("OneSignal User ID:", userId);
-                // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316    
-            });
-        });
     };
     return LoginComponent;
 }());

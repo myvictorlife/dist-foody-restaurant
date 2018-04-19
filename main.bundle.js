@@ -232,9 +232,8 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_firebase__ = __webpack_require__("../../../../firebase/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__environments_firebase_config__ = __webpack_require__("../../../../../src/environments/firebase.config.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__shared_services_push_service__ = __webpack_require__("../../../../../src/app/shared/services/push.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angularfire2__ = __webpack_require__("../../../../angularfire2/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_angularfire2_database_deprecated__ = __webpack_require__("../../../../angularfire2/database-deprecated/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_angularfire2__ = __webpack_require__("../../../../angularfire2/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angularfire2_database_deprecated__ = __webpack_require__("../../../../angularfire2/database-deprecated/index.js");
 /* unused harmony export HttpLoaderFactory */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -272,7 +271,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
 // for AngularFireDatabases
 
 //Initialize Firebase App
@@ -299,8 +297,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_7__app_routing_module__["a" /* AppRoutingModule */],
-            __WEBPACK_IMPORTED_MODULE_26_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_24__environments_firebase_config__["a" /* firebaseConfig */]),
-            __WEBPACK_IMPORTED_MODULE_27_angularfire2_database_deprecated__["a" /* AngularFireDatabaseModule */],
+            __WEBPACK_IMPORTED_MODULE_25_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_24__environments_firebase_config__["a" /* firebaseConfig */]),
+            __WEBPACK_IMPORTED_MODULE_26_angularfire2_database_deprecated__["a" /* AngularFireDatabaseModule */],
             __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__["a" /* TranslateModule */].forRoot({
                 loader: {
                     provide: __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__["b" /* TranslateLoader */],
@@ -324,8 +322,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_19__shared_services_payment_service__["a" /* PaymentService */],
             __WEBPACK_IMPORTED_MODULE_20__shared_services_promotion_service__["a" /* PromotionService */],
             __WEBPACK_IMPORTED_MODULE_21__shared_services_cupon_service__["a" /* CuponService */],
-            __WEBPACK_IMPORTED_MODULE_22__shared_services_communicator__["a" /* Communicator */],
-            __WEBPACK_IMPORTED_MODULE_25__shared_services_push_service__["a" /* PushService */]
+            __WEBPACK_IMPORTED_MODULE_22__shared_services_communicator__["a" /* Communicator */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]]
     })
@@ -2053,51 +2050,6 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ "../../../../../src/app/shared/services/push.service.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PushService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var PushService = (function () {
-    function PushService(http) {
-        this.http = http;
-        this.pushData = [];
-    }
-    // Providers function that triggers a push operation
-    PushService.prototype.generatePush = function (pushData) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]({ 'Content-Type': 'application/json', 'Authorization': 'key=AAAA8Aqd-yA:APA91bHNvtOfCunfCLFa320APsl59JtxnmlYJuawgT__oyyy5LFsF2Wlh8oRH1vaaiwEePvKk0R9JUqwfEz5uYnnf3t0boC1KJo828biIiGdQ9unEdCH1kxxWGhGj0ToxcRy4Oj69rGP' });
-        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
-        return this.http.post('https://fcm.googleapis.com/fcm/send', pushData, options)
-            .map(function (data) { console.log("Successfully Sent"); });
-    };
-    return PushService;
-}());
-PushService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
-], PushService);
-
-var _a;
-//# sourceMappingURL=push.service.js.map
-
-/***/ }),
-
 /***/ "../../../../../src/app/shared/services/restaurant.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2424,9 +2376,9 @@ var UserService = (function () {
             return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
         });
     };
-    UserService.prototype.editPushNotification = function (userId, pushId) {
+    UserService.prototype.editPushNotification = function (pushId) {
         var json = {
-            id: userId,
+            id: this.profile.id,
             push_notification: pushId
         };
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
