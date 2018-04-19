@@ -2374,6 +2374,9 @@ var UserService = (function () {
     UserService.prototype.populate = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
         headers.append('authorization', this.getToken());
+        if (!this.profile.restaurants_id) {
+            __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].empty();
+        }
         return this.http.get(this.url + "/users-restaurant/restaurant/" + this.profile.restaurants_id, {
             headers: headers
         })

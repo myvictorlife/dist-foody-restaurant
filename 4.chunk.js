@@ -96,30 +96,6 @@ var LoginComponent = (function () {
         this.profile = {};
     }
     LoginComponent.prototype.ngOnInit = function () {
-        var OneSignal = window['OneSignal'] || [];
-        console.log("Init OneSignal");
-        OneSignal.push(["init", {
-                appId: "5b071cbb-f263-4342-bf22-a9f5dd9f8d4a",
-                autoRegister: false,
-                allowLocalhostAsSecureOrigin: true,
-                notifyButton: {
-                    enable: false
-                }
-            }]);
-        console.log('OneSignal Initialized');
-        OneSignal.push(function () {
-            console.log('Register For Push');
-            OneSignal.push(["registerForPushNotifications"]);
-        });
-        OneSignal.push(function () {
-            // Occurs when the user's subscription changes to a new value.
-            OneSignal.on('subscriptionChange', function (isSubscribed) {
-                console.log("The user's subscription state is now:", isSubscribed);
-                OneSignal.getUserId().then(function (userId) {
-                    console.log("User ID is", userId);
-                });
-            });
-        });
     };
     LoginComponent.prototype.onLoggedin = function () {
         var _this = this;
