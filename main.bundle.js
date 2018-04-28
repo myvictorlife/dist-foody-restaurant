@@ -1095,7 +1095,8 @@ var Communicator = (function () {
 var CONFIG = {
     //url: "https://prod.saciafome.com"
     //url: "http://localhost:8000"
-    url: "https://app-saciafome.herokuapp.com"
+    //url: "https://app-saciafome.herokuapp.com"
+    url: "https://uaifoody.com"
 };
 //# sourceMappingURL=config.service.js.map
 
