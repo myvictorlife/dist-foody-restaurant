@@ -332,6 +332,150 @@ CampoControlErroComponent = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/shared/components/frete/frete.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formularioFrete\">\n\n    <fieldset class=\"form-group\">\n        <label>Distancia*</label>\n        <input type=\"number\" class=\"form-control\"\n            formControlName=\"distance\"\n            id=\"distance\" placeholder=\"5\" >\n    </fieldset>\n\n    <fieldset class=\"form-group\">\n        <label>Preço*</label>\n        <input type=\"number\" class=\"form-control\"\n            formControlName=\"price\"\n            id=\"prices\" placeholder=\"0.00\" >\n    </fieldset>\n\n    <div class=\"text-center margin-button\">\n        <button type=\"submit\" class=\"btn btn-default\" (click)=\"reset()\" >Novo</button>\n        <button type=\"submit\" [disabled]=\"!formularioFrete.valid\" class=\"btn btn-primary\" (click)=\"saveOrEdit()\" >Salvar</button>\n    </div>\n    \n</form>\n\n<table class=\"table\">\n  <thead>\n    <tr>\n      <th>Distancia</th>\n      <th>Preço</th>\n      <th>Opção</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let item of items\">\n      <td>{{ item.distance }} km</td>\n      <td>R$ {{ item.price.toFixed(2) }}</td>\n      <td (click)=\"removeFreteItem(content, item)\"><button type=\"button\" class=\"btn btn-outline-primary\">Remover</button></td>\n    </tr>\n  </tbody>\n</table>\n\n<ng-template #content let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Deseja remover esse frete?</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('no')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <p>{{itemName}}</p>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"c('no')\">Não</button>\n    <button type=\"button\" class=\"btn btn-warning\" (click)=\"c('yes')\">Sim</button>\n  </div>\n</ng-template>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/components/frete/frete.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".margin-button {\n  margin-bottom: 15px; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/components/frete/frete.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_restaurant_service__ = __webpack_require__("../../../../../src/app/shared/services/restaurant.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FreteComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var FreteComponent = (function () {
+    function FreteComponent(formBuilder, toastr, modalService, restaurantService) {
+        this.formBuilder = formBuilder;
+        this.toastr = toastr;
+        this.modalService = modalService;
+        this.restaurantService = restaurantService;
+        this.items = [];
+    }
+    FreteComponent.prototype.ngOnInit = function () {
+        this.formularioFrete = this.formBuilder.group({
+            distance: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]],
+            price: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required]]
+        });
+        this.items = this.getItems();
+    };
+    FreteComponent.prototype.getItems = function () {
+        this.restaurant = this.restaurantService.getAll();
+        if (this.restaurant.frete_distance) {
+            return typeof this.restaurant.frete_distance === 'string' ? JSON.parse(this.restaurant.frete_distance) : this.restaurant.frete_distance;
+        }
+        return [];
+    };
+    FreteComponent.prototype.removeFreteItem = function (content, item) {
+        var _this = this;
+        this.itemName = item.distance + "km";
+        this.modalService.open(content).result.then(function (result) {
+            if (result === 'yes') {
+                var fretes = _this.items.filter(function (el) {
+                    return el.distance !== item.distance;
+                });
+                _this.restaurantService.removePrecoFrete(fretes).subscribe(function (result) {
+                    if (result.status) {
+                        _this.toastr.success(result.message, '');
+                        _this.items.push(result.data);
+                        _this.reset();
+                        _this.items = _this.getItems();
+                    }
+                    else {
+                        _this.toastr.warning('', result.message);
+                    }
+                });
+            }
+        }, function (reason) {
+        });
+    };
+    FreteComponent.prototype.reset = function () {
+        this.formularioFrete.reset();
+    };
+    FreteComponent.prototype.saveOrEdit = function () {
+        var _this = this;
+        var item = this.formularioFrete.value;
+        if (!item.distance || !item.price) {
+            this.toastr.warning('', 'Todos os campos são obrigatórios');
+            return;
+        }
+        this.restaurantService.editPrecoFrete(this.formularioFrete.value).subscribe(function (result) {
+            if (result.status) {
+                _this.toastr.success(result.message, '');
+                _this.items.push(result.data);
+                _this.reset();
+                _this.items = _this.getItems();
+            }
+            else {
+                _this.toastr.warning('', result.message);
+            }
+        });
+    };
+    return FreteComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Input */])(),
+    __metadata("design:type", Number)
+], FreteComponent.prototype, "required", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Input */])(),
+    __metadata("design:type", Number)
+], FreteComponent.prototype, "cuisines_id", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Input */])(),
+    __metadata("design:type", Number)
+], FreteComponent.prototype, "item_id", void 0);
+FreteComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
+        selector: 'app-frete',
+        template: __webpack_require__("../../../../../src/app/shared/components/frete/frete.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/shared/components/frete/frete.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* FormBuilder */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_toastr__["b" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_toastr__["b" /* ToastrService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["b" /* NgbModal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["b" /* NgbModal */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_restaurant_service__["a" /* RestaurantService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_restaurant_service__["a" /* RestaurantService */]) === "function" && _d || Object])
+], FreteComponent);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=frete.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/shared/shared.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -342,6 +486,7 @@ CampoControlErroComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_additional_additional_component__ = __webpack_require__("../../../../../src/app/shared/components/additional/additional.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_frete_frete_component__ = __webpack_require__("../../../../../src/app/shared/components/frete/frete.component.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SharedModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -349,6 +494,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -370,7 +516,8 @@ SharedModule = __decorate([
         ],
         declarations: [
             __WEBPACK_IMPORTED_MODULE_2__components_campo_control_erro_campo_control_erro_component__["a" /* CampoControlErroComponent */],
-            __WEBPACK_IMPORTED_MODULE_5__components_additional_additional_component__["a" /* AdditionalComponent */]
+            __WEBPACK_IMPORTED_MODULE_5__components_additional_additional_component__["a" /* AdditionalComponent */],
+            __WEBPACK_IMPORTED_MODULE_6__components_frete_frete_component__["a" /* FreteComponent */]
         ],
         exports: [
             __WEBPACK_IMPORTED_MODULE_4__angular_common__["k" /* CommonModule */],
@@ -378,7 +525,8 @@ SharedModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_0__angular_forms__["b" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_0__angular_forms__["a" /* ReactiveFormsModule */],
             __WEBPACK_IMPORTED_MODULE_2__components_campo_control_erro_campo_control_erro_component__["a" /* CampoControlErroComponent */],
-            __WEBPACK_IMPORTED_MODULE_5__components_additional_additional_component__["a" /* AdditionalComponent */]
+            __WEBPACK_IMPORTED_MODULE_5__components_additional_additional_component__["a" /* AdditionalComponent */],
+            __WEBPACK_IMPORTED_MODULE_6__components_frete_frete_component__["a" /* FreteComponent */]
         ],
         providers: []
     })

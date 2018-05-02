@@ -2175,6 +2175,50 @@ var RestaurantService = (function () {
             return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
         });
     };
+    RestaurantService.prototype.editPrecoFrete = function (frete) {
+        var _this = this;
+        var fretes = [];
+        if (this.restaurant.frete_distance) {
+            fretes = typeof this.restaurant.frete_distance === 'string' ? JSON.parse(this.restaurant.frete_distance) : this.restaurant.frete_distance;
+        }
+        fretes.push(frete);
+        var json = {
+            id: this.restaurantId,
+            frete_distance: fretes
+        };
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.put(this.url + "/restaurant/frete-distance", json, {
+            headers: headers
+        })
+            .map(function (res) {
+            _this.restaurant.frete_distance = fretes;
+            return res.json();
+        })
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
+    };
+    RestaurantService.prototype.removePrecoFrete = function (fretes) {
+        var _this = this;
+        fretes = typeof fretes === 'string' ? JSON.parse(fretes) : fretes;
+        var json = {
+            id: this.restaurantId,
+            frete_distance: fretes
+        };
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.put(this.url + "/restaurant/frete-distance", json, {
+            headers: headers
+        })
+            .map(function (res) {
+            _this.restaurant.frete_distance = fretes;
+            return res.json();
+        })
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
+    };
     /*
      * Adicion ou Remove a promoção do estabelecimento (somente local)
      * "add" or "rm"
