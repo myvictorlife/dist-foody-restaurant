@@ -2156,6 +2156,25 @@ var RestaurantService = (function () {
             return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
         });
     };
+    RestaurantService.prototype.editCashBack = function (cashBack) {
+        var _this = this;
+        var json = {
+            id: this.restaurantId,
+            percentage_discount: cashBack
+        };
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('authorization', this.getToken());
+        return this.http.put(this.url + "/restaurant/percentage", json, {
+            headers: headers
+        })
+            .map(function (res) {
+            _this.restaurant.percentage_discount = json.percentage_discount;
+            return res.json();
+        })
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].throw(error);
+        });
+    };
     RestaurantService.prototype.editPriceFrete = function (restaurant) {
         var _this = this;
         restaurant.id = this.restaurantId;
