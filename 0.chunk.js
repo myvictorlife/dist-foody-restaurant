@@ -398,10 +398,19 @@ var FreteComponent = (function () {
     };
     FreteComponent.prototype.getItems = function () {
         this.restaurant = this.restaurantService.getAll();
+        var newList = [];
         if (this.restaurant.frete_distance) {
-            return typeof this.restaurant.frete_distance === 'string' ? JSON.parse(this.restaurant.frete_distance) : this.restaurant.frete_distance;
+            var listFrete = typeof this.restaurant.frete_distance === 'string' ? JSON.parse(this.restaurant.frete_distance) : this.restaurant.frete_distance;
+            for (var i = 0; i < listFrete.length; i++) {
+                if (i === 0) {
+                    newList.push({ distance: "0 - " + listFrete[i].distance, price: listFrete[i].price });
+                }
+                else {
+                    newList.push({ distance: listFrete[i - 1].distance + " - " + listFrete[i].distance, price: listFrete[i].price });
+                }
+            }
         }
-        return [];
+        return newList;
     };
     FreteComponent.prototype.removeFreteItem = function (content, item) {
         var _this = this;
